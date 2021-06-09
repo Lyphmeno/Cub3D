@@ -6,11 +6,24 @@
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:50:02 by hlevi             #+#    #+#             */
-/*   Updated: 2021/05/07 11:37:22 by lyphmeno         ###   ########.fr       */
+/*   Updated: 2021/06/09 12:20:48 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/cub3dlib/cub3dlib.h"
+
+void	free_m(t_maparam *maparam)
+{
+	free(maparam->map);
+	free(maparam->ccolor);
+	free(maparam->fcolor);
+	free(maparam->nopath);
+	free(maparam->spipath);
+	free(maparam->sopath);
+	free(maparam->eapath);
+	free(maparam->wepath);
+	free(maparam);
+}
 
 int		main(int argc, char **argv)
 {
@@ -29,14 +42,6 @@ int		main(int argc, char **argv)
 	// mlx_win = mlx_new_window(mlx, 1, 1, "Hello world!");
 	// mlx_loop(mlx);
 	// (void)mlx_win;
-	free(maparam->map);
-	free(maparam->ccolor);
-	free(maparam->fcolor);
-	free(maparam->nopath);
-	free(maparam->spipath);
-	free(maparam->sopath);
-	free(maparam->eapath);
-	free(maparam->wepath);
-	free(maparam);
+	free_m(maparam);
 	return (0);
 }

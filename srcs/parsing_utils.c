@@ -6,7 +6,7 @@
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:46:40 by lyphmeno          #+#    #+#             */
-/*   Updated: 2021/05/04 13:47:33 by lyphmeno         ###   ########.fr       */
+/*   Updated: 2021/05/07 12:38:39 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		get_size(char *map, t_maparam *maparam) // Recuperation de la height et wid
 		tmpline = NULL;
 	}
 	maparam->height += 2;
-	maparam->width++;
+	maparam->width += 2;
 	maparam->tmpheight = 1;
 	free(tmpline);
 	close(maparam->fd);

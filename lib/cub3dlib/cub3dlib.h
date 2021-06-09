@@ -6,7 +6,7 @@
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:12:05 by hlevi             #+#    #+#             */
-/*   Updated: 2021/05/03 18:34:13 by lyphmeno         ###   ########.fr       */
+/*   Updated: 2021/06/09 11:50:27 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ int		check_res(char **tmp, t_maparam *maparam);
 int		check_paramvalue(char **tmp, t_maparam *maparam);
 char	*check_paramtype(char *line, char *tmp, t_maparam *maparam, int *validparam);
 
+int		check_horizontal(char **map, int count);
+int		init_new_map(t_maparam *map_file, t_maparam *new_file);
+int		check_vertical(t_maparam *map_file);
 
 #endif

@@ -6,40 +6,11 @@
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:45:24 by lyphmeno          #+#    #+#             */
-/*   Updated: 2021/05/04 13:47:09 by lyphmeno         ###   ########.fr       */
+/*   Updated: 2021/06/09 11:50:38 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/cub3dlib/cub3dlib.h"
-
-int		check_map_error(char **map)
-{
-	char	*line;
-	char	last_case;
-	char	last_no_floor;
-
-	while (**map && ft_strlen(*map))
-	{
-		last_case = ' ';
-		last_no_floor = ' ';
-		line = *map;
-		while (*line)
-		{
-			if (*line == ' ' && is_charset(last_case, "02NSEW")) // trou basique
-				(printf("erreur de map avec line |%s| sur %c et %c\n", line, *line, last_case));
-			if (is_charset(*line, " 1"))
-				last_no_floor = *line;
-			else if (last_no_floor == ' ')
-				(printf("erreur de map avec line (%s) sur %c et %c\n", line, *line, last_case));
-			last_case = *line;
-			line++;
-		}
-		if (last_case == '0')
-			(printf("erreur de map avec line {%s} sur %c et %c\n", line, *line, last_case));
-		map++;
-	}
-	return (0);
-}
 
 int		parsing_map(char *line, t_maparam *maparam) // putting MAP from line to **map
 {
@@ -94,23 +65,19 @@ int		parsing_all(char *map, t_maparam *maparam) // Coeur du parsing
 		line = NULL;
 	}
 	fill_spaces(maparam);
+	check_horizontal(maparam->map, maparam->height);
 	maparam->tmpheight = 0;
+	printf("Height = %d\nWidth = %d\n", maparam->height, maparam->width);
 	while (maparam->tmpheight < maparam->height)
 	{
 	 	printf("map%d = |%s|\n", maparam->tmpheight, maparam->map[maparam->tmpheight]);
 	 	maparam->tmpheight++;
 	}
-	//check_map_error(maparam->map);
-	// maparam->tmpheight = 0;
-	// while (maparam->tmpheight < maparam->height)
-	// {
-	//  	printf("map%d = |%s|\n", maparam->tmpheight, maparam->map[maparam->tmpheight]);
-	//  	maparam->tmpheight++;
-	// }
+	check_vertical(maparam);	
 	// printf("lores * lares = %d * %d\nnopath = %s\nsopath = %s\nwepath = %s\neapath = %s\nopath = %s\n", maparam->lores, maparam->lares, maparam->nopath, maparam->sopath, maparam->wepath, maparam->eapath, maparam->spipath);
 	// printf("fcolor = %d,%d,%d\n", maparam->fcolor[0], maparam->fcolor[1], maparam->fcolor[2]);
 	// printf("ccolor = %d,%d,%d\n", maparam->ccolor[0], maparam->ccolor[1], maparam->ccolor[2]);
 	// printf("COUNT = %d\n", maparam->paramcount);
-	printf("Height = %d\nWidth = %d\n", maparam->height, maparam->width);
+	// printf("Height = %d\nWidth = %d\n", maparam->height, maparam->width);
 	return (0);
 }
