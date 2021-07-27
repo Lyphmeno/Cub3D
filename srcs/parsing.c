@@ -6,20 +6,20 @@
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:45:24 by lyphmeno          #+#    #+#             */
-/*   Updated: 2021/06/09 11:50:38 by lyphmeno         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:41:28 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/cub3dlib/cub3dlib.h"
 
-int		parsing_map(char *line, t_maparam *maparam) // putting MAP from line to **map
+int		parsing_map(char *line, t_maparam *param) // putting MAP from line to **map
 {
-	ft_strlcat(maparam->map[maparam->tmpheight], line, maparam->width);
-	maparam->tmpheight++;
+	ft_strlcat(param->map[param->tmpheight], line, param->width);
+	param->tmpheight++;
 	return (0);
 }
 
-int		parsing_base(char *line, t_maparam *maparam) // Parse les arguments hors map
+int		parsing_base(char *line, t_maparam *param) // Parse les arguments hors map
 {
 	char	**tmp; // Permet de stocker les valeur et type en attendant les checks
 	int		validparam;
@@ -29,9 +29,9 @@ int		parsing_base(char *line, t_maparam *maparam) // Parse les arguments hors ma
 	tmp = ft_split(line, ' '); // On split pour les espaces
 	fsize = nbr_of_words(line, ' ');
 	validparam = 1;
-	line = check_paramtype(line, tmp[0], maparam, &validparam);
+	line = check_paramtype(line, tmp[0], param, &validparam);
 	if (validparam == 1)
-		check_paramvalue(tmp, maparam);
+		check_paramvalue(tmp, param);
 	i = -1;
 	while (i++ < fsize)
 		free(tmp[i]);
@@ -39,45 +39,34 @@ int		parsing_base(char *line, t_maparam *maparam) // Parse les arguments hors ma
 	return (0);
 }
 
-int		parsing_all(char *map, t_maparam *maparam) // Coeur du parsing
+int		parsing_all(char *map, t_maparam *param) // Coeur du parsing
 {
 	char	*line;
 
-	get_size(map, maparam); // On recup height et width avec un premier passage
-	maparam->map = (char **)ft_newarray(maparam->width, maparam->height, sizeof(char)); // creation du tableau map
-	if ((maparam->fd = open(map, O_RDONLY)) == -1) // Ouverture du fd
+	get_size(map, param); // On recup height et width avec un premier passage
+	param->map = (char **)ft_newarray(param->width, param->height, sizeof(char)); // creation du tableau map
+	if ((param->fd = open(map, O_RDONLY)) == -1) // Ouverture du fd
 		return (-1);
-	while (get_next_line(maparam->fd, &line)) // Commencement du parsing avec gnl
+	while (get_next_line(param->fd, &line)) // Commencement du parsing avec gnl
 	{
-		if (ft_strlen(line) != 0 && maparam->paramcount != 12 && is_map(line) != 2) // on parse les param de base hors map
-			parsing_base(line, maparam);
+		if (ft_strlen(line) != 0 && param->paramcount != 12 && is_map(line) != 2) // on parse les param de base hors map
+			parsing_base(line, param);
 		if (ft_strlen(line) != 0 && is_map(line) == 2)
 		{
-			if (maparam->paramcount != 12) // verification qu'il y a bien tous (et non plus) les params avant la map
+			if (param->paramcount != 12) // verification qu'il y a bien tous (et non plus) les params avant la map
 			{
 				printf("Error !! Invalid number of param !!\n");
 				return (-1);
 			}
 			else
-				parsing_map(line, maparam); // Parsing de la map
+				parsing_map(line, param); // Parsing de la map
 		}
 		free(line);
 		line = NULL;
 	}
-	fill_spaces(maparam);
-	check_horizontal(maparam->map, maparam->height);
-	maparam->tmpheight = 0;
-	printf("Height = %d\nWidth = %d\n", maparam->height, maparam->width);
-	while (maparam->tmpheight < maparam->height)
-	{
-	 	printf("map%d = |%s|\n", maparam->tmpheight, maparam->map[maparam->tmpheight]);
-	 	maparam->tmpheight++;
-	}
-	check_vertical(maparam);	
-	// printf("lores * lares = %d * %d\nnopath = %s\nsopath = %s\nwepath = %s\neapath = %s\nopath = %s\n", maparam->lores, maparam->lares, maparam->nopath, maparam->sopath, maparam->wepath, maparam->eapath, maparam->spipath);
-	// printf("fcolor = %d,%d,%d\n", maparam->fcolor[0], maparam->fcolor[1], maparam->fcolor[2]);
-	// printf("ccolor = %d,%d,%d\n", maparam->ccolor[0], maparam->ccolor[1], maparam->ccolor[2]);
-	// printf("COUNT = %d\n", maparam->paramcount);
-	// printf("Height = %d\nWidth = %d\n", maparam->height, maparam->width);
+	fill_spaces(param, '\0', ' ');
+	check_horizontal(param->map, param->height);
+	check_vertical(param);
+	fill_spaces(param, ' ', '1');
 	return (0);
 }

@@ -11,7 +11,7 @@
 
 #include	"mlx_int.h"
 
-extern int	(*(mlx_int_param_event[]))();
+extern int	(*(mlx_int_maparam_event[]))();
 
 
 int		mlx_loop(t_xvar *xvar)
@@ -34,7 +34,7 @@ int		mlx_loop(t_xvar *xvar)
 				if (ev.type == ClientMessage && (Atom)ev.xclient.data.l[0] == xvar->wm_delete_window)
 					XDestroyWindow(xvar->display, win->window);
 				if (win->hooks[ev.type].hook)
-					mlx_int_param_event[ev.type](xvar, &ev, win);
+					mlx_int_maparam_event[ev.type](xvar, &ev, win);
 			}
 		}
 		xvar->loop_hook(xvar->loop_param);

@@ -6,7 +6,7 @@
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 13:47:43 by lyphmeno          #+#    #+#             */
-/*   Updated: 2021/06/09 12:12:36 by lyphmeno         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:42:15 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ int		check_horizontal(char **map, int count)
 	return (0);
 }
 
-int		init_new_map(t_maparam *maparam, t_maparam *rotate)
+int		init_new_map(t_maparam *param, t_maparam *rotate)
 {
 	rotate->fcolor = (int *)ft_calloc(sizeof(int *), 3);
 	rotate->ccolor = (int *)ft_calloc(sizeof(int *), 3);
 	ft_memset(rotate, 0, sizeof(rotate));
-	rotate->map = (char **)ft_newarray(maparam->height + 1, maparam->width, sizeof(char));
+	rotate->map = (char **)ft_newarray(param->height + 1, param->width, sizeof(char));
 	return (0);
 }
 
-int		check_vertical(t_maparam *maparam)
+int		check_vertical(t_maparam *param)
 {
 	int			x;
 	int			y;
@@ -79,32 +79,22 @@ int		check_vertical(t_maparam *maparam)
 
 	if (!(rotate = (t_maparam *)ft_calloc(1, sizeof(t_maparam))))
 		return (-1);
-	init_new_map(maparam, rotate);
+	init_new_map(param, rotate);
 	y = -1;
-	while (++y < maparam->height)
+	while (++y < param->height)
 	{
 		x = -1;
-		while (++x < maparam->width)
+		while (++x < param->width)
 		{
-			// if (is_charset(maparam->map[y][x], "NSEW"))
-			// {
-			// 	maparam->player_x = x;
-			// 	maparam->player_y = y;
-			// }
-			rotate->map[maparam->width - x - 1][y] = maparam->map[y][x] ;
+			if (is_charset(param->map[y][x], "NSEW"))
+			{
+				param->player_x = x;
+				param->player_y = y;
+				param->spawn = param->map[y][x];
+			}
+			rotate->map[param->width - x - 1][y] = param->map[y][x] ;
 		}
 	}
-	// AFFICHAGE DE LA MAP
-	rotate->height = maparam->width;
-	rotate->tmpheight = 1;
-	rotate->width = maparam->height;
-	printf("Height = %d\nWidth = %d\n", rotate->height, rotate->width);
-	while (rotate->tmpheight < rotate->height)
-	{
-	 	printf("RMAP = |%s|\n", rotate->map[rotate->tmpheight]);
-	 	rotate->tmpheight++;
-	}
-	// AFFICHAGE DE LA MAP
 	if (check_horizontal(rotate->map, rotate->width) == -1)
 	{
 		free_r(rotate);

@@ -6,7 +6,7 @@
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:46:40 by lyphmeno          #+#    #+#             */
-/*   Updated: 2021/05/07 12:38:39 by lyphmeno         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:35:41 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,44 @@ int		is_map(char *line) // Fonction qui check si map ou non
 	return (2);
 }
 
-int		get_size(char *map, t_maparam *maparam) // Recuperation de la height et width de la map
+int		get_size(char *map, t_maparam *param) // Recuperation de la height et width de la map
 {
 	char	*tmpline;
 
-	if ((maparam->fd = open(map, O_RDONLY)) == -1)
+	if ((param->fd = open(map, O_RDONLY)) == -1)
 		return (-1);
-	while (get_next_line(maparam->fd, &tmpline))
+	while (get_next_line(param->fd, &tmpline))
 	{
 		if (is_map(tmpline) == 2 && ft_strlen(tmpline) != 0)
 		{
-			if (ft_strlen(tmpline) > maparam->width) // Recuperation de la largeur
-				maparam->width = ft_strlen(tmpline);
-			maparam->height++; // Recuperation de la longueur
+			if (ft_strlen(tmpline) > param->width) // Recuperation de la largeur
+				param->width = ft_strlen(tmpline);
+			param->height++; // Recuperation de la longueur
 		}
 		free(tmpline);
 		tmpline = NULL;
 	}
-	maparam->height += 2;
-	maparam->width += 2;
-	maparam->tmpheight = 1;
+	param->height += 2;
+	param->width += 2;
+	param->tmpheight = 1;
 	free(tmpline);
-	close(maparam->fd);
+	close(param->fd);
 	return (0);
 }
 
-void	fill_spaces(t_maparam *maparam) // fill map with space
+void	fill_spaces(t_maparam *param, char c, char d) // fill map with space
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (i < maparam->height)
+	while (i < param->height)
 	{
-		while (j < maparam->width - 1)
+		while (j < param->width - 1)
 		{
-			if (maparam->map[i][j] == '\0')
-				maparam->map[i][j] = ' ';
+			if (param->map[i][j] == c)
+				param->map[i][j] = d;
 			j++;
 		}
 		j = 0;

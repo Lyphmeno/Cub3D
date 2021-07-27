@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyphmeno <lyphmeno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 12:33:35 by hlevi             #+#    #+#             */
-/*   Updated: 2021/06/10 11:36:00 by lyphmeno         ###   ########.fr       */
+/*   Created: 2021/06/10 11:26:54 by lyphmeno          #+#    #+#             */
+/*   Updated: 2021/06/10 12:09:59 by lyphmeno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include "libft/libft.h"
-# include <limits.h>
+#include "../lib/cub3dlib/cub3dlib.h"
 
-
-int		get_next_line(int fd, char **line);
-int		ft_strlen(char *str);
-void	ft_strcpyn(char *dst, char *src);
-void	ft_strcatn(char *dst, char *src);
-#endif
+void    init_data(t_data *game, t_maparam *param)
+{
+    game->block = 64;
+    game->fov = 60;
+    game->player_x = (param->player_x * 64 + 32);
+    game->player_y = (param->player_y * 64 + 32);
+}
