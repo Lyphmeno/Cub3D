@@ -1,7 +1,8 @@
 NAME	=	cub3d
 
 SRCS	=	./srcs/*.c\
-			./lib/*.c
+			./lib/gnl/*.c\
+			./lib/libasic/*.c
 
 HEADERS	=	./headers/*.h
 
