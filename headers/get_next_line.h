@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 11:34:51 by hlevi             #+#    #+#             */
-/*   Updated: 2022/07/16 11:36:21 by hlevi            ###   ########.fr       */
+/*   Created: 2022/07/16 11:23:23 by hlevi             #+#    #+#             */
+/*   Updated: 2022/07/16 11:23:38 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/lib.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include "lib.h"
 
-int	ft_strlen(char *str)
-{
-	int	i;
+static size_t	ft_strlen_nl(char *s);
+static char		*ft_strjoin_gnl(char *s1, char *s2);
+static char		*ft_strdup_gnl(char *s);
+int				get_next_line(int fd, char **line);
 
-	i = 0;
-	if (str)
-		while (str[i])
-			i++;
-	return (i);
-}
+#endif
