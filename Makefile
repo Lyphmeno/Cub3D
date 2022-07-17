@@ -1,6 +1,7 @@
 NAME	=	cub3d
 
 SRCS	=	./srcs/*.c\
+			./srcs/parsing/*.c\
 			./lib/gnl/*.c\
 			./lib/libasic/*.c
 
