@@ -6,11 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:46:10 by hlevi             #+#    #+#             */
-/*   Updated: 2022/07/16 16:46:43 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/04 16:11:21 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libasic.h"
+#include "libasic.h"
 
 char	*ft_strchr(const char *s, int c)
 {

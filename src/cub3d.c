@@ -6,13 +6,13 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/02 14:50:23 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:40:23 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// DONT FORGET THAT ERROR MUST BE PRECEDED BY ERROR\n  !!!!
+// DONT FORGET THAT ERROR MUST BE PRECEDED BY "Error :"\n  !!!!
 
 int	main(int ac, char **av)
 {

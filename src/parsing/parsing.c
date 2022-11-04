@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/10/21 13:16:12 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:52:42 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	parsing_base(t_data *data)
 		- Might fill spaces with 1 to avoid issues
 		- Check for spaces that are next to 0 (all four directions)
 	*/
+	(void)data;
 	return (0);
 }

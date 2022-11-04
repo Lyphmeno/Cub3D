@@ -6,11 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:53:29 by hlevi             #+#    #+#             */
-/*   Updated: 2022/07/16 16:36:05 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/04 16:11:06 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libasic.h"
+#include "libasic.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

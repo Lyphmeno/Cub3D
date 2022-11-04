@@ -6,11 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:34:51 by hlevi             #+#    #+#             */
-/*   Updated: 2022/07/16 16:36:01 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/04 16:11:24 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libasic.h"
+#include "libasic.h"
 
 int	ft_strlen(char *str)
 {

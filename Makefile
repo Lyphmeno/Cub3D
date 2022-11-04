@@ -30,7 +30,9 @@ all: $(NAME)
 
 $(NAME):	$(OBJDIR) $(OBJS) $(HEADERS) Makefile
 			@echo -ne '\033c$(E_BAR)\n'
-			$(CC) $(CFLAGS $(MLXFLAGS) -o $(NAME) $(OBJS) 
+			@mv $(SRCDIR)/*.$(OBJEXT) $(OBJDIR)
+			@mv $(SRCDIR)/*/*.$(OBJEXT) $(OBJDIR)
+			$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) 
 
 $(OBJDIR):
 			@mkdir $(OBJDIR)
@@ -39,7 +41,6 @@ $(OBJDIR):
 $(OBJDIR)/%.$(OBJEXT) : 	$(SRCDIR)/%.$(SRCEXT)
 							@echo -ne '\033c$(E_BAR)\n'
 							@$(CC) $(CFLAGS) $(MLXFLAGS) -c $< -o $(<:.$(SRCEXT)=.$(OBJEXT)) -I $(INCDIR)
-							@mv $(SRCDIR)/*.$(OBJEXT) $@
 							@$(eval $(call update_bar))
 
 .PHONY: re

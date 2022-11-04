@@ -6,11 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:44:17 by hlevi             #+#    #+#             */
-/*   Updated: 2022/07/16 16:36:08 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/04 16:11:14 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libasic.h"
+#include "libasic.h"
 
 void	*ft_memset(void	*pointer, int value, size_t len)
 {
