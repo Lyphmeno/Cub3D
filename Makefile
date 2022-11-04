@@ -1,38 +1,75 @@
-NAME	=	cub3d
+NAME		:=	cub3d
 
-SRCS	=	./srcs/*.c\
-			./srcs/parsing/*.c\
-			./lib/gnl/*.c\
-			./lib/libasic/*.c
+CC			:=	gcc
+CFLAGS		:=	-Wall -Wextra -Werror
+MLXFLAGS	:=	-Imlx_linux
 
-HEADERS	=	./headers/*.h
+SRCDIR		:=	src
+SRCEXT		:=	c
+SRC			:=	./src/cub3d.c\
+				./src/parsing/mapfile.c\
+				./src/parsing/parsing.c\
+				./src/libasic/ft_memmove.c\
+				./src/libasic/ft_strlen.c\
+				./src/libasic/ft_bzero.c\
+				./src/libasic/ft_memset.c\
+				./src/libasic/ft_strchr.c\
 
-CC		=	gcc
+INCDIR		:=	inc
+INCEXT		:=	h
+HEADERS		:=	./inc/cub3d.h\
+				./inc/libasic.h\
+				./MLX42/include/MLX42/MLX42.h\
 
-CFLAGS		=	-Werror -Wextra -Wall
+OBJDIR		:=	objs
+OBJEXT		:=	o
+OBJS		:=	$(subst $(SRCDIR),$(OBJDIR),$(SRC:.$(SRCEXT)=.$(OBJEXT)))
 
-LIX_LIB		=	-lm -lX11 -lXext
+.PHONY: all
+all: $(NAME)
 
-LIX_MLX		=	./lib/MLX42/libmlx42.a
+$(NAME):	$(OBJDIR) $(OBJS) $(HEADERS) Makefile
+			@echo -ne '\033c$(E_BAR)\n'
+			$(CC) $(CFLAGS $(MLXFLAGS) -o $(NAME) $(OBJS) 
 
-OBJ			=	$(SRCS:.c=.o)
+$(OBJDIR):
+			@mkdir $(OBJDIR)
+			@$(eval $(call update_bar))
 
-.PHONY:		all
-all:		$(NAME)
+$(OBJDIR)/%.$(OBJEXT) : 	$(SRCDIR)/%.$(SRCEXT)
+							@echo -ne '\033c$(E_BAR)\n'
+							@$(CC) $(CFLAGS) $(MLXFLAGS) -c $< -o $(<:.$(SRCEXT)=.$(OBJEXT)) -I $(INCDIR)
+							@mv $(SRCDIR)/*.$(OBJEXT) $@
+							@$(eval $(call update_bar))
 
-%.o:%.c
-			$(CC) -g -c -o $@ $< $c $(CFLAGS)
+.PHONY: re
+re: fclean all
 
-$(NAME):	$(OBJ) $(HEADER)
-			$(CC) -o $(NAME) $(SRCS) $(LIX_MLX) $(LIX_LIB) $(CFLAGS)
-
-.PHONY:		clean
+.PHONY: clean
 clean:
-			$(RM) $(OBJ)
+		@$(RM) -rf $(OBJDIR)
 
-.PHONY:		fclean
-fclean:		clean
-			$(RM) $(NAME)
+.PHONY: fclean
+fclean: clean
+		@$(RM) -rf $(NAME)
 
-.PHONY:		re
-re:			fclean all
+#  ---------- PROGRESS BAR ----------  #
+_STOP		:=	\e[0m
+_PINK		:=	\033[38;5;223m\e[1m
+_ORANGE		:=	\033[38;5;209m\e[1m
+VAL			:=	76
+_CREAM		:=	\033[38;5;${VAL}m\e[1m
+INDEX		:=	1
+BUILD_SIZE	:=	$(shell find . -type f -name "*.c" | wc -l)
+PRC			:=	$(shell echo "$(INDEX) / $(BUILD_SIZE) * 100" | bc -l)
+progress	:=	$(shell echo "$(INDEX) / ($(BUILD_SIZE) / 20)" | bc -l)
+
+define update_bar =
+    E_BAR		:=	$(_PINK)-->$(_ORANGE)[$(_STOP)$(_CREAM)$(shell python -c 'print("█" * int($(progress)))')$(shell python -c 'print(" " * (20 - int($(progress))))')$(_ORANGE)]$(_PINK)<--$(_ORANGE)[$(_CREAM)$(shell echo $(PRC) / 1 | bc)%$(_ORANGE)]$(_STOP)
+	INDEX		:=	$(shell echo $(INDEX) + 1 | bc -l)
+    progress	:=	$(shell echo "$(INDEX) / ($(BUILD_SIZE) / 20)" | bc -l)
+	PRC			:=	$(shell echo "$(INDEX) / $(BUILD_SIZE) * 100" | bc -l)
+	VAL			:=	$(shell echo $(VAL) + 1 | bc -l)
+	_CREAM		:=	\033[38;5;${VAL}m\e[1m
+endef
+#  ---------- PROGRESS BAR ----------  #

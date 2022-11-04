@@ -6,11 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/07/17 15:54:58 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/02 14:50:23 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "cub3d.h"
 
 // DONT FORGET THAT ERROR MUST BE PRECEDED BY ERROR\n  !!!!
 
@@ -33,7 +33,7 @@ int	main(int ac, char **av)
 	}
 	if (parsing_base(data))
 	{
-		printf("Parsing has foudn errors in the param, left program\n");
+		printf("Parsing has found errors in the params, left program\n");
 		free(data);
 		return (-1);
 	}

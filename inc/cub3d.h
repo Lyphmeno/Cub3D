@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapfile.c                                          :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 18:07:21 by hlevi             #+#    #+#             */
-/*   Updated: 2022/07/17 15:59:34 by hlevi            ###   ########.fr       */
+/*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
+/*   Updated: 2022/11/01 14:23:08 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-int	mapfile_check(t_data *data, char *path)
+# include "libasic.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+
+typedef struct s_data
 {
-	char	tmpbuffer[1];
+	char	**map;
+	char	(*txr)[4];
+	int		sky;
+	int		flr;
+	int		fd;
+}			t_data;
 
-	data->fd = open(path, O_RDONLY);
-	if (data->fd == -1)
-	{
-		printf("Invalid map file\n");
-		return (-1);
-	}
-	if (read(data->fd, tmpbuffer, 0) == -1)
-	{
-		printf("Can't use a directory as a map ???\n");
-		return (-1);
-	}
-	return (0);
-}
+//	MAP FILE CHECK
+int		mapfile_check(t_data *data, char *path);
+//	PARSING MAP
+int	parsing_base(t_data *data);
+
+
+#endif
