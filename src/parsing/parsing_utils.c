@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapfile.c                                          :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 18:07:21 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/07 14:13:57 by hlevi            ###   ########.fr       */
+/*   Created: 2022/11/07 13:59:09 by hlevi             #+#    #+#             */
+/*   Updated: 2022/11/07 14:00:37 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	mapfile_check(t_data *data, char *path)
+int	print_err(char *str, int exit_code)
 {
-	char	tmpbuffer[1];
-
-	data->fd = open(path, O_RDONLY);
-	if (data->fd == -1) // Check if exist
-		return (print_err("Invalid map file", -1));
-	if (read(data->fd, tmpbuffer, 0) == -1) // Check if directory
-		return (print_err("Unable to read file", -1));
-	return (0);
+	printf("Error : %s\n", str);
+	return (exit_code);
 }
