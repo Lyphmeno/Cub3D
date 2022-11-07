@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/04 15:52:42 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/07 12:56:37 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	parsing_base(t_data *data)
 	/* My way to do the parsing :
 		Txt :
 		- Skip empty lines
-		- Check first word to see what it si (NO, SO...)
+		- Check first word to see what it is (NO, SO...)
 		- Use spaces as dlmtr to find values if not then comma
 		- Check that I got all 6 values before the map is here
 		- Send right errors iof values ain't all here
