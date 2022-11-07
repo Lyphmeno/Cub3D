@@ -22,6 +22,7 @@ HEADERS		:=	./inc/cub3d.h\
 				./MLX42/include/MLX42/MLX42.h\
 
 OBJDIR		:=	objs
+OBJSUBDIR	:=	$(shell find $(SRCDIR) -type d | cut -d/ -f2 | awk 'NR>1')
 OBJEXT		:=	o
 OBJS		:=	$(subst $(SRCDIR),$(OBJDIR),$(SRC:.$(SRCEXT)=.$(OBJEXT)))
 
@@ -30,17 +31,16 @@ all: $(NAME)
 
 $(NAME):	$(OBJDIR) $(OBJS) $(HEADERS) Makefile
 			@echo -ne '\033c$(E_BAR)\n'
-			@mv $(SRCDIR)/*.$(OBJEXT) $(OBJDIR)
-			@mv $(SRCDIR)/*/*.$(OBJEXT) $(OBJDIR)
-			$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) 
+			@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS)
 
 $(OBJDIR):
-			@mkdir $(OBJDIR)
+			@mkdir -p $(OBJDIR) $(OBJSUBDIR)
+			@mv -f $(OBJSUBDIR) $(OBJDIR)
 			@$(eval $(call update_bar))
 
 $(OBJDIR)/%.$(OBJEXT) : 	$(SRCDIR)/%.$(SRCEXT)
 							@echo -ne '\033c$(E_BAR)\n'
-							@$(CC) $(CFLAGS) $(MLXFLAGS) -c $< -o $(<:.$(SRCEXT)=.$(OBJEXT)) -I $(INCDIR)
+							$(CC) $(CFLAGS) $(MLXFLAGS) -c -o $@ $<  -I $(INCDIR)
 							@$(eval $(call update_bar))
 
 .PHONY: re
@@ -61,7 +61,7 @@ _ORANGE		:=	\033[38;5;209m\e[1m
 VAL			:=	76
 _CREAM		:=	\033[38;5;${VAL}m\e[1m
 INDEX		:=	1
-BUILD_SIZE	:=	$(shell find . -type f -name "*.c" | wc -l)
+BUILD_SIZE	:=	$(shell find $(SRCDIR) -type f -name "*.c" | wc -l)
 PRC			:=	$(shell echo "$(INDEX) / $(BUILD_SIZE) * 100" | bc -l)
 progress	:=	$(shell echo "$(INDEX) / ($(BUILD_SIZE) / 20)" | bc -l)
 
