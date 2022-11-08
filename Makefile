@@ -6,24 +6,25 @@ MLXFLAGS	:=	-Imlx_linux
 
 SRCDIR		:=	src
 SRCEXT		:=	c
-SRC			:=	./src/cub3d.c\
+SRC			:=	\
+				./src/cub3d.c\
 				./src/parsing/mapfile.c\
 				./src/parsing/parsing_utils.c\
 				./src/parsing/parsing.c\
-				./src/libasic/ft_memmove.c\
-				./src/libasic/ft_strlen.c\
 				./src/libasic/ft_bzero.c\
+				./src/libasic/ft_memmove.c\
 				./src/libasic/ft_memset.c\
+				./src/libasic/ft_new_arr.c\
+				./src/libasic/ft_split.c\
 				./src/libasic/ft_strchr.c\
-				./src/libasic/get_next_line.c\
-				./src/libasic/get_next_line_utils.c\
+				./src/libasic/ft_strlen.c\
 
 INCDIR		:=	inc
 INCEXT		:=	h
-HEADERS		:=	./inc/cub3d.h\
+HEADERS		:=	\
+				./inc/cub3d.h\
 				./inc/libasic.h\
-				./inc/get_next_line.h\
-				./MLX42/include/MLX42/MLX42.h\
+				./MLX42/mlx.h\
 
 OBJDIR		:=	objs
 OBJSUBDIR	:=	$(shell find $(SRCDIR) -type d | cut -d/ -f2 | awk 'NR>1')
