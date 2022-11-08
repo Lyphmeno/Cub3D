@@ -14,4 +14,5 @@ void	*ft_memset(void	*pointer, int value, size_t len);
 char	*ft_strchr(const char *s, int c);
 int		ft_strlen(char *str);
 
+
 #endif
