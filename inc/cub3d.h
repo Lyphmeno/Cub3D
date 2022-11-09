@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/08 16:21:21 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/09 11:09:13 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include "libasic.h"
 # include "../MLX42/mlx.h"
+
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
 
 typedef struct s_data
 {
