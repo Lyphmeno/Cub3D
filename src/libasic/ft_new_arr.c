@@ -6,34 +6,34 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:50:39 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/08 16:15:25 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/09 15:51:38 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasic.h"
 
-void	**ft_new_arr(size_t row, size_t col, size_t type)
+void	**ft_new_arr(size_t row, size_t col, size_t size)
 {
 	void	**arr_ptr;
-	int		*arr_byte;
+	int 	*arr_byte;
 	size_t	total_size;
-	size_t	i;
+	size_t	y;
 
-	i = 0;
-	if (!row || !col || !type)
+	if (row == 0 || col == 0 || size == 0)
 		return (NULL);
-	total_size = row * sizeof(void *) + (row * col * type);
-	if ((total_size - row * sizeof(void *)) != (row * col * type))
+	total_size = (col * sizeof(void*)) + (row * col * size);
+	if ((total_size - col * sizeof(void*)) != (row * col * size))
 		return (NULL);
-	arr_ptr = (void **)malloc(total_size);
+	arr_ptr = (void**)malloc(total_size);
 	if (arr_ptr == NULL)
 		return (NULL);
 	ft_bzero(arr_ptr, total_size);
-	arr_byte = (int *)arr_ptr + col * sizeof(void *);
-	while (i < col)
+	arr_byte = (int *)arr_ptr + col * sizeof(void*);
+	y = 0;
+	while (y < col) 
 	{
-		arr_ptr[i] = arr_byte + (i * (row * type));
-		i++;
+		arr_ptr[y] = arr_byte + (y * (row * size));
+		y++;
 	}
 	return (arr_ptr);
 }
