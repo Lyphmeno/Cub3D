@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:50:39 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/09 15:51:38 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/10 15:03:01 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	**ft_new_arr(size_t row, size_t col, size_t size)
 {
 	void	**arr_ptr;
-	int 	*arr_byte;
+	char 	*arr_byte;
 	size_t	total_size;
 	size_t	y;
 
@@ -28,7 +28,7 @@ void	**ft_new_arr(size_t row, size_t col, size_t size)
 	if (arr_ptr == NULL)
 		return (NULL);
 	ft_bzero(arr_ptr, total_size);
-	arr_byte = (int *)arr_ptr + col * sizeof(void*);
+	arr_byte = (char *)arr_ptr + col * sizeof(void*);
 	y = 0;
 	while (y < col) 
 	{
