@@ -1,7 +1,7 @@
 NAME		:=	cub3d
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror
+CFLAGS		:=	-Wall -Wextra -Werror -g
 MLXFLAGS	:=	-Imlx_linux
 
 SRCDIR		:=	src
@@ -16,9 +16,15 @@ SRC			:=	\
 				./src/libasic/ft_memset.c\
 				./src/libasic/ft_new_arr.c\
 				./src/libasic/ft_printab.c\
+				./src/libasic/ft_readline.c\
 				./src/libasic/ft_split.c\
 				./src/libasic/ft_strchr.c\
+				./src/libasic/ft_strdup.c\
+				./src/libasic/ft_strjoin.c\
+				./src/libasic/ft_strlcat.c\
+				./src/libasic/ft_strlcpy.c\
 				./src/libasic/ft_strlen.c\
+				./src/libasic/ft_substr.c\
 
 INCDIR		:=	inc
 INCEXT		:=	h
