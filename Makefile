@@ -70,7 +70,7 @@ fclean: clean
 _STOP		:=	\e[0m
 _PINK		:=	\033[38;5;223m\e[1m
 _ORANGE		:=	\033[38;5;209m\e[1m
-VAL			:=	76
+VAL			:=	66
 _CREAM		:=	\033[38;5;${VAL}m\e[1m
 INDEX		:=	1
 BUILD_SIZE	:=	$(shell find $(SRCDIR) -type f -name "*.c" | wc -l)

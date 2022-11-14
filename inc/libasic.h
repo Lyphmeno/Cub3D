@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 12:09:51 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/13 18:04:48 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/14 10:28:06 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdint.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
