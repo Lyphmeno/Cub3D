@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:22:18 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/14 10:05:12 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:10:36 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	get_word_len(char *str)
 			tmp = 0;
 			while (str[i] && str[i] > 32)
 			{
-				i++;	
+				i++;
 				tmp++;
 			}
 			if (tmp > res)

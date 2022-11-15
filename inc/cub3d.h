@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/13 14:54:43 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:12:18 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "libasic.h"
+# include "get_next_line.h"
 # include "../MLX42/mlx.h"
 
 # define NO 0
@@ -23,11 +24,11 @@
 
 typedef struct s_data
 {
-	char	**map; // Map Array
-	char	(*txr)[4]; // Texture Fixed Array
-	int		sky; // int for skt color trgb
-	int		flr; // int for floor color trgb
-	int		fd; // int for fd
+	char	**map;
+	char	(*txr)[4];
+	int		sky;
+	int		flr;
+	int		fd;
 }			t_data;
 
 //	PASRING

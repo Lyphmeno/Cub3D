@@ -6,12 +6,12 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 12:09:51 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/14 10:28:06 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:11:41 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
-# define LIB_H
+#ifndef LIBASIC_H
+# define LIBASIC_H
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>

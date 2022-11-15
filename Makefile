@@ -16,7 +16,6 @@ SRC			:=	\
 				./src/libasic/ft_memset.c\
 				./src/libasic/ft_new_arr.c\
 				./src/libasic/ft_printab.c\
-				./src/libasic/ft_readline.c\
 				./src/libasic/ft_split.c\
 				./src/libasic/ft_strchr.c\
 				./src/libasic/ft_strdup.c\
@@ -25,12 +24,15 @@ SRC			:=	\
 				./src/libasic/ft_strlcpy.c\
 				./src/libasic/ft_strlen.c\
 				./src/libasic/ft_substr.c\
+				./src/libasic/get_next_line.c\
+				./src/libasic/get_next_line_utils.c\
 
 INCDIR		:=	inc
 INCEXT		:=	h
 HEADERS		:=	\
 				./inc/cub3d.h\
 				./inc/libasic.h\
+				./inc/get_next_line.h\
 				./MLX42/mlx.h\
 
 OBJDIR		:=	objs

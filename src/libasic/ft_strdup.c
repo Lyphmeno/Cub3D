@@ -6,17 +6,17 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:04:05 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/13 18:04:16 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:10:51 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasic.h"
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	size_t size;
-	size_t i;
-	char *ptr;
+	size_t	size;
+	size_t	i;
+	char	*ptr;
 
 	if (!s1)
 		return (NULL);

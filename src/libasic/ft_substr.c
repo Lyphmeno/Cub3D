@@ -6,16 +6,16 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:03:33 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/13 18:03:47 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:08:30 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasic.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *sstr;
-	size_t strlen;
+	char	*sstr;
+	size_t	strlen;
 
 	if (s == NULL)
 		return (NULL);

@@ -6,17 +6,17 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:35:37 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/13 18:05:35 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:10:21 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasic.h"
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *ccat;
-	int len_s1;
-	int len_s2;
+	char	*ccat;
+	int		len_s1;
+	int		len_s2;
 
 	if (!s1 || !s2)
 		return (NULL);

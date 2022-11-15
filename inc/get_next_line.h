@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 16:46:10 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:09:52 by hlevi            ###   ########.fr       */
+/*   Created: 2022/11/14 11:39:02 by hlevi             #+#    #+#             */
+/*   Updated: 2022/11/15 14:02:35 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasic.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strchr(char *s, int c)
-{
-	int	i;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	return (0);
-}
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <fcntl.h>
+
+//	UTILS
+size_t	gnl_strlen(char *s);
+char	*gnl_strchr(char *s, int c);
+char	*gnl_strjoin(char *s1, char *s2);
+
+//	BASE
+char	*get_next_line(int fd);
+
+#endif
