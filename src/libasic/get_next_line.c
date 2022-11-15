@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:35:00 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:00:03 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:53:43 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = get_line(buffer[fd]);
 	buffer[fd] = buf_reset(buffer[fd]);
+	printf("line = %s\n", line);
 	return (line);
 }

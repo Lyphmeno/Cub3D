@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:05:56 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:57:12 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	parse_info(t_data *data) // Parsing of the text above the map
 {
+	char	*tmp_line;
 	char	**tmp_array;
 
-	tmp_array = ft_split(ft_readline(data->fd));
+	tmp_line = get_next_line(data->fd);
+	tmp_array = ft_split(tmp_line);
 	free(tmp_array);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:50:39 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:10:58 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:47:11 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	**ft_new_arr(size_t row, size_t col, size_t size)
 	total_size = (col * sizeof(void *)) + (row * col * size);
 	if ((total_size - col * sizeof(void *)) != (row * col * size))
 		return (NULL);
-	arr_ptr = (void && str[i] > 32)
-			{
-				i++;	**)malloc(total_size);
+	arr_ptr = (void **)malloc(total_size);
 	if (arr_ptr == NULL)
 		return (NULL);
 	ft_bzero(arr_ptr, total_size);
