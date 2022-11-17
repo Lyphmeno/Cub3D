@@ -6,11 +6,17 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:57:12 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:02:08 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// int	parse_fill_info(t_data *data, char **arr)
+// {
+// 	void(data
+// 	return (0);
+// }
 
 int	parse_info(t_data *data) // Parsing of the text above the map
 {
@@ -18,8 +24,18 @@ int	parse_info(t_data *data) // Parsing of the text above the map
 	char	**tmp_array;
 
 	tmp_line = get_next_line(data->fd);
-	tmp_array = ft_split(tmp_line);
-	free(tmp_array);
+	while (tmp_line != NULL)
+	{	
+		tmp_array = ft_split(tmp_line);
+		free(tmp_line);
+		// if (parsing_add_info(data, tmp_array))
+		// {
+		// 	free(tmp_array);
+		// 	return (-1);
+		// }
+		tmp_line = get_next_line(data->fd);
+		free(tmp_array);
+	}
 	return (0);
 }
 

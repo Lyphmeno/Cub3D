@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:35:00 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:53:43 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:24:38 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ static char	*get_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	i--;
-	str = (char *)malloc(sizeof(char) * (i + 1));
+	str = (char *)malloc(sizeof(char) * (i + 2));
 	if (!str)
 		return (NULL);
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
+	{
+		str[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] == '\n')
 	{
 		str[i] = buffer[i];
 		i++;
@@ -67,7 +71,7 @@ static char	*buf_read(int fd, char *buffer)
 	char	*tmp_buf;
 	int		bytes;
 
-	tmp_buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	tmp_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!tmp_buf)
 		return (NULL);
 	bytes = 1;
@@ -98,6 +102,5 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = get_line(buffer[fd]);
 	buffer[fd] = buf_reset(buffer[fd]);
-	printf("line = %s\n", line);
 	return (line);
 }

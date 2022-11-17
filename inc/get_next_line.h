@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:39:02 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:52:54 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:19:42 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 10000000
 # endif
 
 # include <unistd.h>

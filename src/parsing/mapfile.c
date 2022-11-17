@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:07:21 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:56:57 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:18:42 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	mapfile_info_check(t_data *data)
 int	mapfile_check(t_data *data, char *path)
 {
 	char	tmpbuffer[1];
-	char	*line;
 
 	data->fd = open(path, O_RDONLY);
 	if (data->fd == -1) // Check if exist
