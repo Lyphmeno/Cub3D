@@ -6,11 +6,19 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:54:38 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:32:01 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_data(t_data *data)
+{
+	free(data->txr[0]);
+	free(data->txr[1]);
+	free(data->txr[2]);
+	free(data->txr[3]);
+}
 
 int	main(int ac, char **av)
 {
@@ -30,6 +38,7 @@ int	main(int ac, char **av)
 		free(data);
 		return (print_err("Inavlid map", -1));
 	}
+	free_data(data);
 	free(data);
 	return (0);
 }

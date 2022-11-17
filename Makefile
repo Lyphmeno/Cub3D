@@ -23,6 +23,7 @@ SRC			:=	\
 				./src/libasic/ft_strlcat.c\
 				./src/libasic/ft_strlcpy.c\
 				./src/libasic/ft_strlen.c\
+				./src/libasic/ft_strncmp.c\
 				./src/libasic/ft_substr.c\
 				./src/libasic/get_next_line.c\
 				./src/libasic/get_next_line_utils.c\

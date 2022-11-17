@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/15 14:12:18 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:20:02 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef struct s_data
 {
 	char	**map;
-	char	(*txr)[4];
+	char	*txr[4];
 	int		sky;
 	int		flr;
 	int		fd;
@@ -36,6 +36,7 @@ typedef struct s_data
 int	mapfile_info_check(t_data *data);
 int	mapfile_check(t_data *data, char *path);
 //		Parsing
+int	parse_fill_info(t_data *data, char **arr);
 int	parse_info(t_data *data);
 int	parsing_base(t_data *data);
 //		Parsing_utils
