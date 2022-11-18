@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/17 18:20:02 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/11/18 16:42:50 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct s_data
 
 //	PASRING
 //		Mapfile
-int	mapfile_info_check(t_data *data);
 int	mapfile_check(t_data *data, char *path);
 //		Parsing
+int	parse_check_info(t_data *data);
 int	parse_fill_info(t_data *data, char **arr);
 int	parse_info(t_data *data);
 int	parsing_base(t_data *data);
