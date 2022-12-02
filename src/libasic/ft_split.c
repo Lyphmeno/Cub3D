@@ -12,7 +12,21 @@
 
 #include "../../inc/libasic.h"
 
-static int	get_nb_words(char *str)
+static int	is_charset(char *charset, char c)
+{
+	int	i;
+
+	i = 0;
+	while (charset[i])
+	{
+		if (charset[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	get_nb_words(char *str, char *charset)
 {
 	int	i;
 	int	res;
@@ -21,11 +35,11 @@ static int	get_nb_words(char *str)
 	res = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] >= 0 && str[i] <= 32)
+		while (str[i] && is_charset(charset, str[i]))
 			i++;
-		if (str[i] && str[i] > 32)
+		if (str[i] && !is_charset(charset, str[i]))
 		{
-			while (str[i] && str[i] > 32)
+			while (str[i] && !is_charset(charset, str[i]))
 				i++;
 			res++;
 		}
@@ -33,7 +47,7 @@ static int	get_nb_words(char *str)
 	return (res);
 }
 
-static int	get_word_len(char *str)
+static int	get_word_len(char *str, char *charset)
 {
 	int	i;
 	int	tmp;
@@ -44,12 +58,12 @@ static int	get_word_len(char *str)
 	res = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] >= 0 && str[i] <= 32)
+		while (str[i] && is_charset(charset, str[i]))
 			i++;
-		if (str[i] && str[i] > 32)
+		if (str[i] && !is_charset(charset, str[i]))
 		{
 			tmp = 0;
-			while (str[i] && str[i] > 32)
+			while (str[i] && !is_charset(charset, str[i]))
 			{
 				i++;
 				tmp++;
@@ -61,7 +75,7 @@ static int	get_word_len(char *str)
 	return (res);
 }
 
-static void	fill_array(char **new_arr, char *str)
+static void	fill_array(char **new_arr, char *str, char *charset)
 {
 	int	i;
 	int	x;
@@ -72,12 +86,12 @@ static void	fill_array(char **new_arr, char *str)
 	y = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] >= 0 && str[i] <= 32)
+		while (str[i] && is_charset(charset, str[i]))
 			i++;
-		if (str[i] && str[i] > 32)
+		if (str[i] && !is_charset(charset, str[i]))
 		{
 			y = 0;
-			while (str[i] && str[i] > 32)
+			while (str[i] && !is_charset(charset, str[i]))
 			{
 				new_arr[x][y] = str[i];
 				i++;
@@ -89,7 +103,7 @@ static void	fill_array(char **new_arr, char *str)
 	}
 }
 
-char	**ft_split(char *str)
+char	**ft_split(char *str, char *charset)
 {
 	int		nb_words;
 	int		words_len;
@@ -99,14 +113,14 @@ char	**ft_split(char *str)
 	words_len = 0;
 	if (!str)
 		return (NULL);
-	nb_words = get_nb_words(str);
-	words_len = get_word_len(str);
+	nb_words = get_nb_words(str, charset);
+	words_len = get_word_len(str, charset);
 	if (!nb_words || !words_len)
 		return (NULL);
 	new_arr = (char **)ft_new_arr(words_len + 1, nb_words + 1, sizeof(char));
 	if (!new_arr)
 		return (NULL);
-	fill_array(new_arr, str);
+	fill_array(new_arr, str, charset);
 	new_arr[nb_words] = NULL;
 	ft_printab_chars(new_arr, nb_words);
 	return (new_arr);

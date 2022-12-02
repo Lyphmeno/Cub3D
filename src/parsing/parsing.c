@@ -31,7 +31,8 @@ int	parse_check_info(t_data *data)
 
 /*
 I should replace parse_check_isfull function with a var that will tell me if
-one of my param is in double in my file, then the program will return and print an error msg
+one of my param is in double in my file, then the program will return and print
+an error msg
 */
 
 int	parse_check_isfull(t_data *data)
@@ -110,7 +111,7 @@ int	parse_info(t_data *data) // Parsing of the text above the map
 	if the map is full but still contains double params or some stuff*/
 	while (tmp_line != NULL && parse_check_isfull(data))
 	{	
-		tmp_array = ft_split(tmp_line);
+		tmp_array = ft_split_whitespaces(tmp_line);
 		free(tmp_line);
 		if (parse_fill_info(data, tmp_array))
 		{
@@ -131,7 +132,7 @@ int	parse_info(t_data *data) // Parsing of the text above the map
 
 int	parsing_base(t_data *data) // Base of the parsing
 {
-	/* My way to do the parsing :  Need not to forget to put function as static as much as possbile
+	/* My way to do the parsing :
 		Txt and Colors : 
 		- Skip empty lines ✅ 
 		- Check first word to see what it is (NO, SO...) ✅ 

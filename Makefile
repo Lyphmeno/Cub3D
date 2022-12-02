@@ -17,6 +17,7 @@ SRC			:=	\
 				./src/libasic/ft_new_arr.c\
 				./src/libasic/ft_printab.c\
 				./src/libasic/ft_split.c\
+				./src/libasic/ft_split_whitespaces.c\
 				./src/libasic/ft_strchr.c\
 				./src/libasic/ft_strdup.c\
 				./src/libasic/ft_strjoin.c\
