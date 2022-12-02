@@ -15,7 +15,7 @@
 
 # include "libasic.h"
 # include "get_next_line.h"
-# include "../minilibx-linux/mlx.h"
+# include "../MLX42/mlx.h"
 
 # define NO 0
 # define SO 1

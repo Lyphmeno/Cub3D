@@ -34,7 +34,7 @@ HEADERS		:=	\
 				./inc/cub3d.h\
 				./inc/libasic.h\
 				./inc/get_next_line.h\
-				./minilibx-linux/mlx.h\
+				./MLX42/mlx.h\
 
 OBJDIR		:=	objs
 OBJSUBDIR	:=	$(shell find $(SRCDIR) -type d | cut -d/ -f2 | awk 'NR>1')
