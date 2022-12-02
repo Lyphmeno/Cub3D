@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasic.h"
+#include "../../inc/libasic.h"
 
 void	ft_printab_char(char *new_arr, int nb_row)
 {

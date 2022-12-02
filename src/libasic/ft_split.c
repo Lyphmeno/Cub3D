@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasic.h"
+#include "../../inc/libasic.h"
 
 static int	get_nb_words(char *str)
 {

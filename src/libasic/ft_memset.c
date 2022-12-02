@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasic.h"
+#include "../../inc/libasic.h"
 
 void	*ft_memset(void	*pointer, int value, size_t len)
 {

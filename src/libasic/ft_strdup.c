@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasic.h"
+#include "../../inc/libasic.h"
 
 char	*ft_strdup(const char *s1)
 {

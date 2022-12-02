@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasic.h"
+#include "../../inc/libasic.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {

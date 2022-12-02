@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../inc/get_next_line.h"
 
 static char	*get_line(char *buffer)
 {

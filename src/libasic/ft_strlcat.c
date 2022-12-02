@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasic.h"
+#include "../../inc/libasic.h"
 
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	parse_check_info(t_data *data)
 {
