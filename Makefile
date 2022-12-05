@@ -9,6 +9,7 @@ SRCEXT		:=	c
 SRC			:=	\
 				./src/cub3d.c\
 				./src/parsing/mapfile.c\
+				./src/parsing/parse_info_error.c\
 				./src/parsing/parsing_utils.c\
 				./src/parsing/parsing.c\
 				./src/libasic/ft_bzero.c\
