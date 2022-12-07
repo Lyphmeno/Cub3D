@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/05 12:09:08 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/07 11:00:59 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,6 @@ static int	parse_check_isfull(t_data *data)
 		return (-1);
 	return (0);
 }
-
-/*
-int	parse_colors(t_data *data, char *str, int x) x will tell me if i need to fill sky or floor in struct
-{
-	char	**color_array:
-	int	i;
-	
-	i = 0;
-	color_array = ft_split(str, ",");
-	// Still don't know if I should convert before or after make the double array one might be better than the other 
-	if (!color_array OR !color_array[0] OR !color_array[1] OR !the color_array[2] OR color_array[3])
-		return (-1);
-	while (color_array[i] != NULL)
-	{
-		if (ft_atoi(color[i]) < 0 OR ft_atoi(color[i]) > 255)
-			return (print_err("Color value impossible", -1));
-		i++;
-	}
-	if (!x)
-		data->sky = fillcolorfunction(color_array);
-	else
-		data->flr = fillcolorfunction(color_array);
-	free(color_array);
-	return (0);
-}
-*/
 
 static int	parse_fill_info(t_data *data, char **arr)
 {
@@ -116,8 +90,6 @@ int	parsing_base(t_data *data) // Base of the parsing
 		Txt and Colors : 
 		- Skip empty lines ✅ 
 		- Check first word to see what it is (NO, SO...) ✅ 
-		- NEED to change the split into charset separator !!!!!
-		- Use spaces as dlmtr to find values if not then comma 
 		- Check that I got all 6 values before the map is here ✅ 
 		- Send right errors if values ain't all here ✅ 
 		If text not valid just don't check map !

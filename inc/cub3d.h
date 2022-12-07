@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/05 11:42:28 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/07 10:56:01 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define EA 3
 # define SKY 4
 # define FLR 5
+# define MAPSYM "NSEW10"
 
 typedef struct s_data
 {
@@ -43,5 +44,10 @@ int	print_err(char *str, int exit_code);
 //		Parsing info errors
 int fill_info(t_data *data, int x, char *info);
 int parse_info_miss(t_data *data);
+//		Colors
+int get_red(int rgb);
+int get_green(int rgb);
+int get_blue(int rgb);
+int create_rgb(int red, int green, int blue);
 
 #endif

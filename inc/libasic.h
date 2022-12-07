@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 12:09:51 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/17 18:08:17 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/07 11:09:40 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define BUFFER_SIZE 1
 # endif
 
+int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t len);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void	*pointer, int value, size_t len);
