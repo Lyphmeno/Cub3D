@@ -13,6 +13,7 @@ SRC			:=	\
 				./src/parsing/parsing_utils.c\
 				./src/parsing/parsing.c\
 				./src/parsing/colors.c\
+				./src/parsing/parse_colors.c\
 				./src/libasic/ft_atoi.c\
 				./src/libasic/ft_bzero.c\
 				./src/libasic/ft_memmove.c\

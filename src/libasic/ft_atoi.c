@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:04:43 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/07 11:08:44 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/07 12:31:21 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 int	ft_atoi(const char *str)
 {
 	int	i;
-	long	res;
-	int minus;
+	int	res;
 
 	i = 0;
 	res = 0;
-	minus = 1;
 	while (str[i])
 	{
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
-	return ((int)res * minus);
+	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/07 11:00:59 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/07 13:04:42 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ static int	parse_fill_info(t_data *data, char **arr)
 		return (fill_info(data, WE, arr[1]));
 	else if (!ft_strncmp(arr[0], "EA", ft_strlen(arr[0])))
 		return (fill_info(data, EA, arr[1]));
-	else if (!ft_strncmp(arr[0], "C", ft_strlen(arr[0]))) // Need to take care of colors and try not to forget about T in TRGB
+	else if (!ft_strncmp(arr[0], "C", ft_strlen(arr[0])))
 		return (fill_info(data, SKY, arr[1]));
 	else if (!ft_strncmp(arr[0], "F", ft_strlen(arr[0])))
 		return (fill_info(data, FLR, arr[1]));
 	else
-		return (print_err("Wrong entry", -1)); // Need to add specific error msg (Wrong entry ??)
+		return (print_err("Wrong entry", -1));
 	return (0);
 }
 

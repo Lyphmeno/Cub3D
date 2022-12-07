@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:13:41 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/05 11:59:13 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/07 12:55:18 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int fill_info(t_data *data, int x, char *info)
 	if (x <= EA)
 		data->txr[x] = ft_strdup(info);
 	if (x == SKY)
-		data->sky = 1;
+		return (parse_colors(data, info, 0));
 	if (x == FLR)
-		data->flr = 1;
+		return (parse_colors(data, info, 1));
 	return (0);
 }
 

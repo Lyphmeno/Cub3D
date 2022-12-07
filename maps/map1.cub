@@ -6,7 +6,7 @@ WE  ../txr/sand_end.webp
 
 EA  ../txr/sand_stone.webp 
 
-F   200,100,0
+F   200,100,255
 
 C   225,30,0
 

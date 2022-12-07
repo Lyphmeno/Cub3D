@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:39:02 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/17 17:19:42 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/07 13:12:44 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #  define BUFFER_SIZE 10000000
 # endif
 
+# include "libasic.h" 
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
