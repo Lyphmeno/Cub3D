@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/08 10:34:44 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/08 11:07:16 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_data
 {
 	char	**map;
 	char	*txr[4];
-	int		sky : 24;
-	int		flr : 24;
+	int		sky;
+	int		flr;
 	int		fd;
 }			t_data;
 
