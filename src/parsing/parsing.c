@@ -6,12 +6,14 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/08 10:14:50 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/08 11:53:30 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 static int	parse_check_isfull(t_data *data)
 {
@@ -56,6 +58,7 @@ static int	parse_fill_info(t_data *data, char **arr)
 static int	parse_info(t_data *data) // Parsing of the text above the map
 {
 	char	*tmp_line;
+	char	*tmp_linecpy;
 	char	**tmp_array;
 
 	tmp_line = get_next_line(data->fd);
@@ -67,20 +70,35 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 		free(tmp_line);
 		if (parse_fill_info(data, tmp_array))
 		{
+			while (tmp_line != NULL)
+			{
+				tmp_line = get_next_line(data->fd);
+				free(tmp_line);
+			}
 			free(tmp_array);
 			return (-1);
 		}
 		tmp_line = get_next_line(data->fd);
 		free(tmp_array);
 	}
-	if (tmp_line)
+	tmp_linecpy = ft_strdup("");
+	while (tmp_line != NULL)
+	{
+		tmp_linecpy = gnl_strjoin(tmp_linecpy, tmp_line);
 		free(tmp_line);
+		tmp_line = get_next_line(data->fd);
+		printf("tmpline =\n%s", tmp_line);
+	}
+	data->map = ft_split(tmp_linecpy, "\n");
 	printf("data.txr[0] = %s\n", data->txr[0]);
 	printf("data.txr[1] = %s\n", data->txr[1]);
 	printf("data.txr[2] = %s\n", data->txr[2]);
 	printf("data.txr[3] = %s\n", data->txr[3]);
 	printf("data.sky = %d\n", data->sky);
 	printf("data.flr = %d\n", data->flr);
+	free(tmp_line);
+	free(tmp_linecpy);
+	close(data->fd);
 	return (parse_info_miss(data));
 }
 

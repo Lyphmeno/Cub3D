@@ -6,11 +6,12 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/07 12:41:03 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/08 11:37:58 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include <stdlib.h>
 
 void	free_data(t_data *data)
 {
@@ -18,6 +19,7 @@ void	free_data(t_data *data)
 	free(data->txr[SO]);
 	free(data->txr[WE]);
 	free(data->txr[EA]);
+	free(data->map);
 	free(data);
 }
 
