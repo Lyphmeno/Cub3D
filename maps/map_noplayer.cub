@@ -1,0 +1,16 @@
+NO  ../txr/sand_basic.webp
+
+SO  ../txr/sand_clean.webp
+
+WE  ../txr/sand_end.webp 
+
+EA  ../txr/sand_stone.webp 
+
+F   200,100,255
+
+C   225,30,0
+
+1111111111
+1000000001
+1000000001
+1111111111
