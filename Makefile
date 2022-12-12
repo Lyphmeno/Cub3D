@@ -8,12 +8,6 @@ SRCDIR		:=	src
 SRCEXT		:=	c
 SRC			:=	\
 				./src/cub3d.c\
-				./src/parsing/mapfile.c\
-				./src/parsing/parse_info_error.c\
-				./src/parsing/parsing_utils.c\
-				./src/parsing/parsing.c\
-				./src/parsing/colors.c\
-				./src/parsing/parse_colors.c\
 				./src/libasic/ft_atoi.c\
 				./src/libasic/ft_bzero.c\
 				./src/libasic/ft_memmove.c\
@@ -32,6 +26,12 @@ SRC			:=	\
 				./src/libasic/ft_substr.c\
 				./src/libasic/get_next_line.c\
 				./src/libasic/get_next_line_utils.c\
+				./src/parsing/colors.c\
+				./src/parsing/mapfile.c\
+				./src/parsing/parse_colors.c\
+				./src/parsing/parse_info_error.c\
+				./src/parsing/parsing.c\
+				./src/parsing/parsing_utils.c\
 
 INCDIR		:=	inc
 INCEXT		:=	h

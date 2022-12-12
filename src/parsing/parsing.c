@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/08 15:14:21 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/12 09:20:47 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,6 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 		free(tmp_line);
 		if (parse_fill_info(data, tmp_array))
 		{
-			while (tmp_line != NULL)
-			{
-				tmp_line = get_next_line(data->fd);
-				free(tmp_line);
-			}
 			free(tmp_array);
 			return (-1);
 		}
@@ -82,13 +77,6 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 		free(tmp_array);
 	}
 	tmp_linecpy = ft_strdup("");
-	while (tmp_line != NULL)
-	{
-		tmp_linecpy = gnl_strjoin(tmp_linecpy, tmp_line);
-		free(tmp_line);
-		tmp_line = get_next_line(data->fd);
-	}
-	data->map = ft_split(tmp_linecpy, "\n");
 	printf("data.txr[0] = %s\n", data->txr[0]);
 	printf("data.txr[1] = %s\n", data->txr[1]);
 	printf("data.txr[2] = %s\n", data->txr[2]);

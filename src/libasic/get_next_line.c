@@ -5,102 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 11:35:00 by hlevi             #+#    #+#             */
-/*   Updated: 2022/11/17 17:24:38 by hlevi            ###   ########.fr       */
+/*   Created: 2022/12/12 09:42:58 by hlevi             #+#    #+#             */
+/*   Updated: 2022/12/12 09:44:00 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/get_next_line.h"
 
-static char	*get_line(char *buffer)
+static char	*getline_from_buffer(char *buffer, char **line)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!buffer[i])
-		return (NULL);
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-	{
-		str[i] = buffer[i];
-		i++;
-	}
-	if (buffer[i] == '\n')
-	{
-		str[i] = buffer[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	*line = gnl_strdup(buffer, '\n');
+	gnl_memmove(buffer, buffer + gnl_strlen(buffer, '\n'),
+		gnl_strlen(buffer, '\0') - gnl_strlen(buffer, '\n') + 1);
+	return (*line);
 }
 
-static char	*buf_reset(char *buffer)
+static char	*getline_from_read(char *buffer, char **line)
 {
-	int		i;
-	int		j;
-	char	*str;
+	char	*tmp;
 
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	if (!buffer[i])
-	{
-		free(buffer);
-		return (NULL);
-	}
-	str = (char *)malloc(sizeof(char) * (gnl_strlen(buffer) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
-	j = 0;
-	while (buffer[i])
-		str[j++] = buffer[i++];
-	str[j] = '\0';
-	free(buffer);
-	return (str);
+	tmp = *line;
+	*line = gnl_strjoin(*line, buffer, '\n');
+	gnl_memmove(buffer, buffer + gnl_strlen(buffer, '\n'),
+		gnl_strlen(buffer, '\0') - gnl_strlen(buffer, '\n') + 1);
+	if (tmp != NULL)
+		free(tmp);
+	return (*line);
 }
 
-static char	*buf_read(int fd, char *buffer)
+static void	clear_buffer(char *buffer, char **line)
 {
-	char	*tmp_buf;
-	int		bytes;
+	char	*tmp;
 
-	tmp_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!tmp_buf)
-		return (NULL);
-	bytes = 1;
-	while (!gnl_strchr(buffer, '\n') && bytes != 0)
-	{
-		bytes = read(fd, tmp_buf, BUFFER_SIZE);
-		if (bytes == -1)
-		{
-			free(tmp_buf);
-			return (NULL);
-		}
-		tmp_buf[bytes] = '\0';
-		buffer = gnl_strjoin(buffer, tmp_buf);
-	}
-	free(tmp_buf);
-	return (buffer);
+	tmp = *line;
+	*line = gnl_strjoin(*line, buffer, '\0');
+	if (tmp != NULL)
+		free(tmp);
+	buffer[0] = '\0';
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[4096];
+	int			ret;
 	char		*line;
+	static char	buffer[BUFFER_SIZE + 1];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	line = NULL;
+	if (buffer[0] != '\0')
+	{
+		if (gnl_is_newline(buffer) == 1)
+			return (getline_from_buffer(buffer, &line));
+		line = gnl_strdup(buffer, '\0');
+		buffer[0] = '\0';
+	}
+	ret = read(fd, buffer, BUFFER_SIZE);
+	while (ret > 0)
+	{
+		buffer[ret] = '\0';
+		if (gnl_is_newline(buffer) == 1)
+			return (getline_from_read(buffer, &line));
+		clear_buffer(buffer, &line);
+		ret = read(fd, buffer, BUFFER_SIZE);
+	}
+	if ((ret == 0 && buffer[0] == '\0' && line == NULL) || ret == -1)
 		return (NULL);
-	buffer[fd] = buf_read(fd, buffer[fd]);
-	if (!buffer[fd])
-		return (NULL);
-	line = get_line(buffer[fd]);
-	buffer[fd] = buf_reset(buffer[fd]);
 	return (line);
 }
