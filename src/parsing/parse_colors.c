@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:30:38 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/07 12:56:41 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/12 13:01:49 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,17 @@ int	parse_colors(t_data *data, char *str, int x)
 	color_array = ft_split(str, ",");
 	if (!color_array || !color_array[0] || !color_array[1]
 		|| !color_array[2] || color_array[3])
-		return (-1);
+	{
+		free(color_array);
+		return (print_err("Wrong color entry", -1));
+	}
 	while (color_array[i] != NULL)
 	{
 		if (ft_atoi(color_array[i]) < 0 || ft_atoi(color_array[i]) > 255)
+		{
+			free(color_array);
 			return (print_err("Color value impossible", -1));
+		}
 		i++;
 	}
 	if (!x)

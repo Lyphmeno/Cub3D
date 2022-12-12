@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/12 09:20:47 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/12 13:29:36 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	parse_fill_info(t_data *data, char **arr)
 	if (!arr)
 		return (0);
 	if (!arr[0] || !arr[1] || arr[2]) // I might want to make a function that check weather a tab as n number of row ??
-		return (print_err("Wrong entry", -1)); // Need to add specific error msg (Wrong entry ??)
+		return (print_err("SWrong entry", -1)); // Need to add specific error msg (Wrong entry ??)
 	if (!ft_strncmp(arr[0], "NO", ft_strlen(arr[0])))
 		return (fill_info(data, NO, arr[1]));	
 	else if (!ft_strncmp(arr[0], "SO", ft_strlen(arr[0])))
@@ -55,17 +55,74 @@ static int	parse_fill_info(t_data *data, char **arr)
 	return (0);
 }
 
+static char	*parse_split_info(char	*tmp_line)
+{
+	int		i;
+	int		j;
+	int		cnum;
+	int		ccom;
+	char	*new_line;
+
+	i = 0;
+	j = 0;
+	cnum = 0;
+	ccom = 0;
+	if (!tmp_line)
+		return (NULL);
+	new_line = (char *)malloc(sizeof(char) * (ft_strlen(tmp_line) + 1));
+	if (!new_line)
+		return (NULL);
+	ft_memset(new_line, 0, ft_strlen(new_line));
+	while (tmp_line[i] && tmp_line[i] >= 0 && tmp_line[i] <= 32)
+		i++;
+	while (tmp_line[i] && tmp_line[i] > 32)
+		new_line[j++] = tmp_line[i++];
+	while (tmp_line[i] && tmp_line[i] >= 0 && tmp_line[i] <= 32)
+		new_line[j++] = tmp_line[i++];
+	if (new_line[0] != 'C' && new_line[0] != 'F')
+		while (tmp_line[i])
+			new_line[j++] = tmp_line[i++];
+	else
+	{
+		while (tmp_line[i])
+		{
+			if (tmp_line[i] && tmp_line[i] >= '0' && tmp_line[i] <= '9')
+				cnum++;
+			while (tmp_line[i] && tmp_line[i] >= '0' && tmp_line[i] <= '9')
+				new_line[j++] = tmp_line[i++];
+			while (tmp_line[i] && tmp_line[i] >= 0 && tmp_line[i] <= 32)
+				i++;
+			if (tmp_line[i] == ',')
+			{
+				ccom++;
+				new_line[j++] = tmp_line[i++];
+			}
+		}
+		if (cnum > 3 || ccom != 2)
+		{
+			free(new_line);
+			free(tmp_line);
+			return (NULL);
+		}
+	}
+	free(tmp_line);
+	printf("%s\n", new_line);
+	return (new_line);
+}
+
 static int	parse_info(t_data *data) // Parsing of the text above the map
 {
 	char	*tmp_line;
-	char	*tmp_linecpy;
 	char	**tmp_array;
 
 	tmp_line = get_next_line(data->fd);
 	/* Not so sure about parse_check_isfulll, might cause some issues 
 	if the map is full but still contains double params or some stuff*/
 	while (tmp_line != NULL && parse_check_isfull(data))
-	{	
+	{
+		tmp_line = parse_split_info(tmp_line);
+		if (!tmp_line)
+			return (print_err("Wrong entry", -1));
 		tmp_array = ft_split_whitespaces(tmp_line);
 		free(tmp_line);
 		if (parse_fill_info(data, tmp_array))
@@ -76,7 +133,6 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 		tmp_line = get_next_line(data->fd);
 		free(tmp_array);
 	}
-	tmp_linecpy = ft_strdup("");
 	printf("data.txr[0] = %s\n", data->txr[0]);
 	printf("data.txr[1] = %s\n", data->txr[1]);
 	printf("data.txr[2] = %s\n", data->txr[2]);
@@ -84,7 +140,6 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 	printf("data.sky = %d\n", data->sky);
 	printf("data.flr = %d\n", data->flr);
 	free(tmp_line);
-	free(tmp_linecpy);
 	close(data->fd);
 	return (parse_info_miss(data));
 }
