@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/08 11:07:16 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/12 14:38:15 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ int get_red(int rgb);
 int get_green(int rgb);
 int get_blue(int rgb);
 int create_rgb(int red, int green, int blue);
-//		parse_colors 
+//		Parse_colors 
 int	fill_colors(char **color_arr);
 int	parse_colors(t_data *data, char *str, int x);
-
+//		Pasre_split_info
+int parse_split_info(char	*tmp_line);
 #endif
