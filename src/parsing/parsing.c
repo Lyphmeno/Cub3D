@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/12 15:24:05 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/13 15:15:34 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 	if the map is full but still contains double params or some stuff*/
 	while (tmp_line != NULL && parse_check_isfull(data))
 	{
-		if (parse_split_info(tmp_line))
+		if (parse_split_info(&tmp_line))
 			return (print_err("Wrong entry", -1));
 		tmp_array = ft_split_whitespaces(tmp_line);
 		free(tmp_line);

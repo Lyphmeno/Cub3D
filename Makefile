@@ -10,6 +10,7 @@ SRC			:=	\
 				./src/cub3d.c\
 				./src/libasic/ft_atoi.c\
 				./src/libasic/ft_bzero.c\
+				./src/libasic/ft_calloc.c\
 				./src/libasic/ft_memmove.c\
 				./src/libasic/ft_memset.c\
 				./src/libasic/ft_new_arr.c\

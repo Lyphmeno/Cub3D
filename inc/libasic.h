@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 12:09:51 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/08 11:23:41 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/13 17:26:18 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # endif
 
 int		ft_atoi(const char *str);
+void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t len);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void	*pointer, int value, size_t len);
