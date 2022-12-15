@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/13 15:15:34 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 16:37:33 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ static int	parse_fill_info(t_data *data, char **arr)
 
 static int	parse_info(t_data *data) // Parsing of the text above the map
 {
+	int		ret;
 	char	*tmp_line;
 	char	**tmp_array;
 
+	ret = 0;
 	tmp_line = get_next_line(data->fd);
-	/* Not so sure about parse_check_isfulll, might cause some issues 
-	if the map is full but still contains double params or some stuff*/
 	while (tmp_line != NULL && parse_check_isfull(data))
 	{
 		if (parse_split_info(&tmp_line))
@@ -76,6 +76,7 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 		}
 		tmp_line = get_next_line(data->fd);
 		free(tmp_array);
+		ret++;
 	}
 	printf("data.txr[0] = %s\n", data->txr[0]);
 	printf("data.txr[1] = %s\n", data->txr[1]);
@@ -85,11 +86,15 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 	printf("data.flr = %d\n", data->flr);
 	free(tmp_line);
 	close(data->fd);
-	return (parse_info_miss(data));
+	if (parse_info_miss(data))
+		return (-1);
+	return (ret);
 }
 
 int	parsing_base(t_data *data) // Base of the parsing
 {
+	int		lineval;
+
 	/* My way to do the parsing :
 		Txt and Colors : 
 		- Skip empty lines ✅ 
@@ -102,10 +107,12 @@ int	parsing_base(t_data *data) // Base of the parsing
 		Map :
 		- Check that there is only "10" and only on of "NSEW"
 		- Check that the map is well closed
-		- Might fill spaces with 1 to avoid issues
+
+- Might fill spaces with 1 to avoid issues
 		- Check for spaces that are next to 0 (all four directions)
 	*/
-	if (parse_info(data))
+	lineval = parse_info(data);
+	if (lineval <= 0)
 		return (-1);
 	return (0);
 }

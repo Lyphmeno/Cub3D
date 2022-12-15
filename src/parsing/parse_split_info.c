@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:14:25 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/15 15:06:24 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 16:31:46 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,12 @@ static char *colorsplit(char *tmp, int i)
 		return (NULL);
 	new_line = get_spaceless_color(tmp, len, i);
 	printf("newline = %s\n", new_line);
-	if (!new_line)
-		return (NULL);
 	return (new_line);
 }
 
 int	parse_split_info(char	**tmp)
 {
 	char	*first;
-	char	*new_line;
 	
 	first = first_word(*tmp);
 	if (!first)
@@ -116,12 +113,14 @@ int	parse_split_info(char	**tmp)
 	if (!ft_strncmp(first, "C", ft_strlen(first))
 		|| !ft_strncmp(first, "F", ft_strlen(first)))
 	{
-		new_line = ft_strjoin(first, " ");
-		new_line = ft_strfjoin(new_line, colorsplit(*tmp, ft_strlen(first)), 0);
-		*tmp = ft_strdup(new_line);
+		first = ft_strfjoin(first, " ", 1);
+		printf("first = %s\n", first);
+		first = ft_strfjoin(first, colorsplit(*tmp, ft_strlen(first)), 0);
+		printf("first2 = %s\n", first);
+		*tmp = ft_strdup(first);
 	}
 	printf("tmpline2 = %s\n\n", *tmp);
-	free(new_line);
-	free(first);
+	if (first)
+		free(first);
 	return (0);
 }
