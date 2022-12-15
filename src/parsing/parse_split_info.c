@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:14:25 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/13 17:26:18 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 15:06:24 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,114 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char	*first_word(char *tmp_line)
+static char	*first_word(char *tmp)
 {
 	int		start;
 	int		len;
 	char	*word;
 
 	start = 0;
-	if (!tmp_line)
+	if (!tmp)
 		return (NULL);
-	while (tmp_line[start] && tmp_line[start] >= 0 && tmp_line[start] <= 32)
+	while (tmp[start] && tmp[start] >= 0 && tmp[start] <= 32)
 		start++;
 	len = start;
-	while (tmp_line[len] && tmp_line[len] > 32)
+	while (tmp[len] && tmp[len] > 32)
 		len++;
 	word = ft_calloc(sizeof(char), (len - start + 1));
 	if (!word)
 		return (0);
-	ft_strlcpy(word, &tmp_line[start], len - start + 1);
-	printf("word =|%s|\n", word);
+	ft_strlcpy(word, &tmp[start], len - start + 1);
 	return (word);
 }
 
-static char *parse_split_colors(char *tmp_line, int i)
+static char	*get_spaceless_color(char *tmp, int len, int i)
 {
-	int		j;
-	char	*new_line;
+	int 	j;
+	char	*cpy;
 
 	j = 0;
-	if (!tmp_line)
+	cpy = ft_calloc(sizeof(char), len + 1);
+	if (!cpy)
 		return (NULL);
-	while (tmp_line[i] && tmp_line[i] >= 0 && tmp_line[i] <= 32)
-		i++;
-	while (tmp_line[i])
+	while (tmp[i])
 	{
-		while (tmp_line[i] && tmp_line[i] > 32)
-			new_line[j++] = tmp_line[i++];
-		while (tmp_line[i] && tmp_line[i] >= 0 && tmp_line[i] <= 32)
-			i++;
-		if (tmp_line[i] != ',' && !(tmp_line[i] >= '0' && tmp_line[i] <= '9'))
+		while (tmp[i] && !(tmp[i] >= 0 && tmp[i] <= 32))
+			cpy[j++] = tmp[i++];
+		i++;
 	}
+	return (cpy);
+}
+
+static int	get_len_colors(char *tmp, int i)
+{
+	int		j;
+	int		len;
+
+	len = 0;
+	while (tmp[i] && (tmp[i] >= 0 && tmp[i] <= 32))
+		i++;
+	j = i;
+	while (tmp[i])
+	{
+		if (tmp[i] && (tmp[i] >= '0' && tmp[i] <= '9'))
+			while (tmp[i] && (tmp[i] >= '0' && tmp[i] <= '9'))
+				i++;
+		else
+			return (0);
+		while (tmp[i] && (tmp[i] >= 0 && tmp[i] <= 32))
+		{
+			len++;
+			i++;
+		}
+		if (tmp[i] && (tmp[i] >= '0' && tmp[i] <= '9'))
+			return (0);
+		if (tmp[i] && tmp[i] == ',')
+			i++;
+		while (tmp[i] && (tmp[i] >= 0 && tmp[i] <= 32))
+		{
+			len++;
+			i++;
+		}
+	}
+	len = i - j - len;
+	printf("len = %d\n", len);
+	return (len);
+}
+
+static char *colorsplit(char *tmp, int i)
+{
+	int		len;
+	char	*new_line;
+
+	len = get_len_colors(tmp, i);
+	if (len <= 0)
+		return (NULL);
+	new_line = get_spaceless_color(tmp, len, i);
+	printf("newline = %s\n", new_line);
+	if (!new_line)
+		return (NULL);
 	return (new_line);
 }
 
-int	parse_split_info(char	**tmp_line)
+int	parse_split_info(char	**tmp)
 {
 	char	*first;
 	char	*new_line;
-	char	*tmp;
 	
-	first = first_word(*tmp_line);
-	printf("first = %s\n", first);
-	printf("line = %s\n", *tmp_line);
+	first = first_word(*tmp);
+	if (!first)
+		return (0);
+	printf("tmpline1 = %s", *tmp);
 	if (!ft_strncmp(first, "C", ft_strlen(first))
 		|| !ft_strncmp(first, "F", ft_strlen(first)))
-		new_line = parse_split_colors(tmp_line, ft_strlen(first) + 1);
+	{
+		new_line = ft_strjoin(first, " ");
+		new_line = ft_strfjoin(new_line, colorsplit(*tmp, ft_strlen(first)), 0);
+		*tmp = ft_strdup(new_line);
+	}
+	printf("tmpline2 = %s\n\n", *tmp);
+	free(new_line);
 	free(first);
 	return (0);
 }

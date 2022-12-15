@@ -19,6 +19,7 @@ SRC			:=	\
 				./src/libasic/ft_split_whitespaces.c\
 				./src/libasic/ft_strchr.c\
 				./src/libasic/ft_strdup.c\
+				./src/libasic/ft_strfjoin.c\
 				./src/libasic/ft_strjoin.c\
 				./src/libasic/ft_strlcat.c\
 				./src/libasic/ft_strlcpy.c\

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 12:09:51 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/13 17:26:18 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 14:44:45 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strfjoin(char *s1, char *s2, int x);
 char	*ft_strjoin(char *s1, char *s2);
 void	**ft_new_arr(size_t row, size_t col, size_t type);
 void	ft_printab_char(char *new_arr, int nb_row);
