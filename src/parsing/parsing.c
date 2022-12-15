@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/15 16:37:33 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 16:44:05 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,12 @@ int	parsing_base(t_data *data) // Base of the parsing
 		- Check first word to see what it is (NO, SO...) ✅ 
 		- Check that I got all 6 values before the map is here ✅ 
 		- Send right errors if values ain't all here ✅ 
-		- I just need to make a new gnl 
 		If text not valid just don't check map !
 		Text cannot be in/or after the map
 		Map :
 		- Check that there is only "10" and only on of "NSEW"
 		- Check that the map is well closed
-
-- Might fill spaces with 1 to avoid issues
+		- Might fill spaces with 1 to avoid issues
 		- Check for spaces that are next to 0 (all four directions)
 	*/
 	lineval = parse_info(data);
