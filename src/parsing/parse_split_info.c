@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:14:25 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/15 16:31:46 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 16:51:43 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static int	get_len_colors(char *tmp, int i)
 		}
 	}
 	len = i - j - len;
-	printf("len = %d\n", len);
 	return (len);
 }
 
@@ -98,7 +97,6 @@ static char *colorsplit(char *tmp, int i)
 	if (len <= 0)
 		return (NULL);
 	new_line = get_spaceless_color(tmp, len, i);
-	printf("newline = %s\n", new_line);
 	return (new_line);
 }
 
@@ -109,17 +107,13 @@ int	parse_split_info(char	**tmp)
 	first = first_word(*tmp);
 	if (!first)
 		return (0);
-	printf("tmpline1 = %s", *tmp);
 	if (!ft_strncmp(first, "C", ft_strlen(first))
 		|| !ft_strncmp(first, "F", ft_strlen(first)))
 	{
 		first = ft_strfjoin(first, " ", 1);
-		printf("first = %s\n", first);
 		first = ft_strfjoin(first, colorsplit(*tmp, ft_strlen(first)), 0);
-		printf("first2 = %s\n", first);
 		*tmp = ft_strdup(first);
 	}
-	printf("tmpline2 = %s\n\n", *tmp);
 	if (first)
 		free(first);
 	return (0);

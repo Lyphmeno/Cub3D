@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/08 11:37:58 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 16:50:53 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	free_data(t_data *data)
 
 static void	init_data(t_data *data)
 {
-	ft_memset(data, 0, sizeof(data)); // Setting all to 0	
-	ft_memset(data->txr, 0, sizeof(char *)); // Setting txr to zero
 	data->txr[0] = NULL;
 	data->txr[1] = NULL;
 	data->txr[2] = NULL;
@@ -41,7 +39,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2) // Testing number of argument send to the program
 		return (print_err("Invalid number of arguments", -1));
-	data = malloc(sizeof(t_data) * 1); // Creating the struct
+	data = ft_calloc(sizeof(t_data), 1); // Creating the struct
 	init_data(data);
 	if (mapfile_check(data, av[1])) // Checking the file send in
 	{

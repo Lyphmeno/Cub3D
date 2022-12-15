@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/15 16:44:05 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/15 16:48:44 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	parsing_base(t_data *data) // Base of the parsing
 		- Check for spaces that are next to 0 (all four directions)
 	*/
 	lineval = parse_info(data);
+	printf("lineval = %d\n", lineval);
 	if (lineval <= 0)
 		return (-1);
 	return (0);
