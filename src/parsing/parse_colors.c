@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:30:38 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/12 13:01:49 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:20:40 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	fill_colors(char **color_arr)
 {
-	int red;
-	int green;
-	int blue;
+	int	red;
+	int	green;
+	int	blue;
 	int	rgb;
 
 	red = ft_atoi(color_arr[0]);
@@ -30,8 +30,8 @@ int	fill_colors(char **color_arr)
 int	parse_colors(t_data *data, char *str, int x)
 {
 	char	**color_array;
-	int	i;
-	
+	int		i;
+
 	i = 0;
 	color_array = ft_split(str, ",");
 	if (!color_array || !color_array[0] || !color_array[1]

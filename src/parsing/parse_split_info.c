@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:14:25 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/15 16:51:43 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:17:25 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*first_word(char *tmp)
 
 static char	*get_spaceless_color(char *tmp, int len, int i)
 {
-	int 	j;
+	int		j;
 	char	*cpy;
 
 	j = 0;
@@ -88,7 +88,7 @@ static int	get_len_colors(char *tmp, int i)
 	return (len);
 }
 
-static char *colorsplit(char *tmp, int i)
+static char	*colorsplit(char *tmp, int i)
 {
 	int		len;
 	char	*new_line;
@@ -103,7 +103,7 @@ static char *colorsplit(char *tmp, int i)
 int	parse_split_info(char	**tmp)
 {
 	char	*first;
-	
+
 	first = first_word(*tmp);
 	if (!first)
 		return (0);

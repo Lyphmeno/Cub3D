@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:13:41 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/08 10:34:44 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:23:04 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	parse_info_double(t_data *data, int x)
 }
 
 // Check if info doesn't already exist before filling (doubles not allowed) 
-int fill_info(t_data *data, int x, char *info)
+int	fill_info(t_data *data, int x, char *info)
 {
 	if (parse_info_double(data, x))
 		return (-1);
@@ -59,4 +59,3 @@ int	parse_info_miss(t_data *data)
 		return (print_err("Missing FLOOR texture", -1));
 	return (0);
 }
-

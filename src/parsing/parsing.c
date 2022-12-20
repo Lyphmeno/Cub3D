@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:04:48 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:22:37 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static int	parse_fill_info(t_data *data, char **arr)
 {
 	if (!arr)
 		return (0);
-	if (!arr[0] || !arr[1] || arr[2]) // I might want to make a function that check weather a tab as n number of row ??
-		return (print_err("Wrong entry", -1)); // Need to add specific error msg (Wrong entry ??)
+	if (!arr[0] || !arr[1] || arr[2])
+		return (print_err("Wrong entry", -1));
 	if (!ft_strncmp(arr[0], "NO", ft_strlen(arr[0])))
-		return (fill_info(data, NO, arr[1]));	
+		return (fill_info(data, NO, arr[1]));
 	else if (!ft_strncmp(arr[0], "SO", ft_strlen(arr[0])))
 		return (fill_info(data, SO, arr[1]));
 	else if (!ft_strncmp(arr[0], "WE", ft_strlen(arr[0])))
@@ -55,7 +55,7 @@ static int	parse_fill_info(t_data *data, char **arr)
 	return (0);
 }
 
-static int	get_map(t_data *data, char *tmp_line) // Parsing of the text above the map
+static int	get_map(t_data *data, char *tmp_line)
 {
 	char	*tmp_map;
 
@@ -78,7 +78,7 @@ static int	get_map(t_data *data, char *tmp_line) // Parsing of the text above th
 	return (parse_info_miss(data));
 }
 
-static int	parse_info(t_data *data) // Parsing of the text above the map
+static int	parse_info(t_data *data)
 {
 	int		ret;
 	char	*tmp_line;
