@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:07:08 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:14:45 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ static int	parse_map_char(t_data *data)
 	return (0);
 }
 
+static int	parse_map_zero(t_data *data, int i, int j)
+{
+	if (j == 0 || !data->map.arr[i][j + 1])
+		return (-1);
+	if (data->map.arr[i][j - 1] == ' '
+		|| data->map.arr[i][j + 1] == ' ')
+		return (-1);
+	if (!data->map.arr[i + 1] || data->map.arr[i + 1][j] == ' ')
+		return (-1);
+	if (i > 0 && data->map.arr[i - 1][j] == ' ')
+		return (-1);
+	return (0);
+}
+
 static int	parse_map_close(t_data *data)
 {
 	int	i;
@@ -62,15 +76,8 @@ static int	parse_map_close(t_data *data)
 		{
 			if (data->map.arr[i][j] == '0')
 			{
-				if (j == 0 || !data->map.arr[i][j + 1])
+				if (parse_map_zero(data, i, j))
 					return (-1);
-				if (data->map.arr[i][j - 1] == ' '
-					|| data->map.arr[i][j + 1] == ' ')
-					return (-1);
-				if (!data->map.arr[i + 1] || data->map.arr[i + 1][j] == ' ')
-						return (-1);
-				if (i > 0 && data->map.arr[i - 1][j] == ' ')
-						return (-1);
 			}
 			j++;
 		}
