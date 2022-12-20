@@ -33,6 +33,7 @@ SRC			:=	\
 				./src/parsing/parse_colors.c\
 				./src/parsing/parse_info_error.c\
 				./src/parsing/parse_split_info.c\
+				./src/parsing/parse_map.c\
 				./src/parsing/parsing.c\
 				./src/parsing/parsing_utils.c\
 

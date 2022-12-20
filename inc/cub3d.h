@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/13 15:15:34 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:04:09 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,22 @@
 # define EA 3
 # define SKY 4
 # define FLR 5
-# define MAPSYM "NSEW210"
+# define MAPP "NSEW"
+# define MAPSYM "NSEW10 "
+
+typedef struct s_map
+{
+	char	**arr;
+	int		player;
+	int		px;
+	int		py;
+	int		height;
+	int		width;
+}			t_map;
 
 typedef struct s_data
 {
-	char	**map;
+	t_map	map;
 	char	*txr[4];
 	int		sky;
 	int		flr;
@@ -54,4 +65,6 @@ int	fill_colors(char **color_arr);
 int	parse_colors(t_data *data, char *str, int x);
 //		Pasre_split_info
 int parse_split_info(char	**tmp_line);
+//		Parse_map
+int	parse_map(t_data *data);
 #endif

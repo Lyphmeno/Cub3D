@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/15 16:48:44 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:04:48 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,29 @@ static int	parse_fill_info(t_data *data, char **arr)
 	return (0);
 }
 
+static int	get_map(t_data *data, char *tmp_line) // Parsing of the text above the map
+{
+	char	*tmp_map;
+
+	tmp_map = ft_strdup("");
+	while (tmp_line != NULL)
+	{
+		tmp_map = ft_strfjoin(tmp_map, tmp_line, 0);
+		tmp_line = get_next_line(data->fd);
+	}
+	printf("data.txr[0] = %s\n", data->txr[0]);
+	printf("data.txr[1] = %s\n", data->txr[1]);
+	printf("data.txr[2] = %s\n", data->txr[2]);
+	printf("data.txr[3] = %s\n", data->txr[3]);
+	printf("data.sky = %d\n", data->sky);
+	printf("data.flr = %d\n", data->flr);
+	data->map.arr = ft_split(tmp_map, "\n");
+	free(tmp_line);
+	free(tmp_map);
+	close(data->fd);
+	return (parse_info_miss(data));
+}
+
 static int	parse_info(t_data *data) // Parsing of the text above the map
 {
 	int		ret;
@@ -78,23 +101,13 @@ static int	parse_info(t_data *data) // Parsing of the text above the map
 		free(tmp_array);
 		ret++;
 	}
-	printf("data.txr[0] = %s\n", data->txr[0]);
-	printf("data.txr[1] = %s\n", data->txr[1]);
-	printf("data.txr[2] = %s\n", data->txr[2]);
-	printf("data.txr[3] = %s\n", data->txr[3]);
-	printf("data.sky = %d\n", data->sky);
-	printf("data.flr = %d\n", data->flr);
-	free(tmp_line);
-	close(data->fd);
-	if (parse_info_miss(data))
-		return (-1);
-	return (ret);
+	if (get_map(data, tmp_line))
+		return (print_err("Impossible to get the map", -1));
+	return (parse_info_miss(data));
 }
 
 int	parsing_base(t_data *data) // Base of the parsing
 {
-	int		lineval;
-
 	/* My way to do the parsing :
 		Txt and Colors : 
 		- Skip empty lines ✅ 
@@ -104,14 +117,14 @@ int	parsing_base(t_data *data) // Base of the parsing
 		If text not valid just don't check map !
 		Text cannot be in/or after the map
 		Map :
-		- Check that there is only "10" and only on of "NSEW"
+		- Check that there is only MAPSYM
 		- Check that the map is well closed
 		- Might fill spaces with 1 to avoid issues
 		- Check for spaces that are next to 0 (all four directions)
 	*/
-	lineval = parse_info(data);
-	printf("lineval = %d\n", lineval);
-	if (lineval <= 0)
+	if (parse_info(data))
+		return (-1);
+	if (parse_map(data))
 		return (-1);
 	return (0);
 }

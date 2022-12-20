@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/15 16:50:53 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:04:41 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_data(t_data *data)
 	free(data->txr[SO]);
 	free(data->txr[WE]);
 	free(data->txr[EA]);
-	free(data->map);
+	free(data->map.arr);
 	free(data);
 }
 
@@ -29,6 +29,11 @@ static void	init_data(t_data *data)
 	data->txr[1] = NULL;
 	data->txr[2] = NULL;
 	data->txr[3] = NULL;
+	data->map.width = 0;
+	data->map.height = 0;
+	data->map.px = -1;
+	data->map.py = -1;
+	data->map.player = -1;
 	data->sky = -1;
 	data->flr = -1;
 }
