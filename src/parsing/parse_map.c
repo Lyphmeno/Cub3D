@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:31:23 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:58:11 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,8 @@ static int	parse_map_close(t_data *data)
 		while (data->map.arr[i][j])
 		{
 			if (data->map.arr[i][j] == '0')
-			{
 				if (parse_map_zero(data, i, j))
 					return (-1);
-			}
 			j++;
 		}
 		i++;
