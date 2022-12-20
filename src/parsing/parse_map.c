@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:14:45 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:31:23 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ static int	parse_map_zero(t_data *data, int i, int j)
 	if (!data->map.arr[i + 1] || data->map.arr[i + 1][j] == ' ')
 		return (-1);
 	if (i > 0 && data->map.arr[i - 1][j] == ' ')
+		return (-1);
+	if (!data->map.arr[i - 1][j - 1] || data->map.arr[i - 1][j - 1] == ' ')
+		return (-1);
+	if (!data->map.arr[i - 1][j + 1] || data->map.arr[i - 1][j + 1] == ' ')
+		return (-1);
+	if (!data->map.arr[i + 1][j - 1] || data->map.arr[i + 1][j - 1] == ' ')
+		return (-1);
+	if (!data->map.arr[i + 1][j + 1] || data->map.arr[i + 1][j + 1] == ' ')
 		return (-1);
 	return (0);
 }
