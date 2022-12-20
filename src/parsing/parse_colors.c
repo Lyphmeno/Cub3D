@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:30:38 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:20:40 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 15:00:37 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,29 @@ int	fill_colors(char **color_arr)
 
 int	parse_colors(t_data *data, char *str, int x)
 {
-	char	**color_array;
+	char	**arr;
 	int		i;
 
 	i = 0;
-	color_array = ft_split(str, ",");
-	if (!color_array || !color_array[0] || !color_array[1]
-		|| !color_array[2] || color_array[3])
+	arr = ft_split(str, ",");
+	if (!arr || !arr[0] || !arr[1] || !arr[2] || arr[3])
 	{
-		free(color_array);
+		free(arr);
 		return (print_err("Wrong color entry", -1));
 	}
-	while (color_array[i] != NULL)
+	while (arr[i] != NULL)
 	{
-		if (ft_atoi(color_array[i]) < 0 || ft_atoi(color_array[i]) > 255)
+		if (ft_atoi(arr[i]) < 0 || ft_atoi(arr[i]) > 255)
 		{
-			free(color_array);
+			free(arr);
 			return (print_err("Color value impossible", -1));
 		}
 		i++;
 	}
 	if (!x)
-		data->sky = fill_colors(color_array);
+		data->sky = fill_colors(arr);
 	else
-		data->flr = fill_colors(color_array);
-	free(color_array);
+		data->flr = fill_colors(arr);
+	free(arr);
 	return (0);
 }

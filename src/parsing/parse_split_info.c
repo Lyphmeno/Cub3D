@@ -6,34 +6,13 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:14:25 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:17:25 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 15:20:18 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-static char	*first_word(char *tmp)
-{
-	int		start;
-	int		len;
-	char	*word;
-
-	start = 0;
-	if (!tmp)
-		return (NULL);
-	while (tmp[start] && tmp[start] >= 0 && tmp[start] <= 32)
-		start++;
-	len = start;
-	while (tmp[len] && tmp[len] > 32)
-		len++;
-	word = ft_calloc(sizeof(char), (len - start + 1));
-	if (!word)
-		return (0);
-	ft_strlcpy(word, &tmp[start], len - start + 1);
-	return (word);
-}
 
 static char	*get_spaceless_color(char *tmp, int len, int i)
 {
@@ -53,6 +32,16 @@ static char	*get_spaceless_color(char *tmp, int len, int i)
 	return (cpy);
 }
 
+static int	colornormlen(char *tmp, int i)
+{
+	int	j;
+
+	j = i;
+	while (tmp[i] && (tmp[i] >= 0 && tmp[i] <= 32))
+		i++;
+	return (i - j);
+}
+
 static int	get_len_colors(char *tmp, int i)
 {
 	int		j;
@@ -64,25 +53,19 @@ static int	get_len_colors(char *tmp, int i)
 	j = i;
 	while (tmp[i])
 	{
-		if (tmp[i] && (tmp[i] >= '0' && tmp[i] <= '9'))
+		if (tmp[i] >= '0' && tmp[i] <= '9')
 			while (tmp[i] && (tmp[i] >= '0' && tmp[i] <= '9'))
 				i++;
 		else
 			return (0);
-		while (tmp[i] && (tmp[i] >= 0 && tmp[i] <= 32))
-		{
-			len++;
-			i++;
-		}
-		if (tmp[i] && (tmp[i] >= '0' && tmp[i] <= '9'))
+		len += colornormlen(tmp, i);
+		i += colornormlen(tmp, i);
+		if (tmp[i] >= '0' && tmp[i] <= '9')
 			return (0);
-		if (tmp[i] && tmp[i] == ',')
+		if (tmp[i] == ',')
 			i++;
-		while (tmp[i] && (tmp[i] >= 0 && tmp[i] <= 32))
-		{
-			len++;
-			i++;
-		}
+		len += colornormlen(tmp, i);
+		i += colornormlen(tmp, i);
 	}
 	len = i - j - len;
 	return (len);
@@ -112,9 +95,9 @@ int	parse_split_info(char	**tmp)
 	{
 		first = ft_strfjoin(first, " ", 1);
 		first = ft_strfjoin(first, colorsplit(*tmp, ft_strlen(first)), 0);
+		free(*tmp);
 		*tmp = ft_strdup(first);
 	}
-	if (first)
-		free(first);
+	free(first);
 	return (0);
 }

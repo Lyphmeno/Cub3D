@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:49:52 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 15:22:42 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,11 @@ static int	get_map(t_data *data, char *tmp_line)
 			free(tmp_line);
 			free(tmp_map);
 			close(data->fd);
-			return (print_err("No empty line allowed in map", -1));
+			return (print_err("Empty line or wrong line after info", -1));
 		}
 		tmp_map = ft_strfjoin(tmp_map, tmp_line, 0);
 		tmp_line = get_next_line(data->fd);
 	}
-	printf("data.txr[0] = %s\n", data->txr[0]);
-	printf("data.txr[1] = %s\n", data->txr[1]);
-	printf("data.txr[2] = %s\n", data->txr[2]);
-	printf("data.txr[3] = %s\n", data->txr[3]);
-	printf("data.sky = %d\n", data->sky);
-	printf("data.flr = %d\n", data->flr);
 	data->map.arr = ft_split(tmp_map, "\n");
 	free(tmp_line);
 	free(tmp_map);
@@ -100,8 +94,9 @@ static int	parse_info(t_data *data)
 	tmp_line = get_next_line(data->fd);
 	while (tmp_line != NULL && parse_check_isfull(data))
 	{
-		if (parse_split_info(&tmp_line))
-			return (print_err("Wrong entry", -1));
+		if (ft_strncmp("\n", tmp_line, 1))
+			if (parse_split_info(&tmp_line))
+				return (print_err("Wrong entry", -1));
 		tmp_array = ft_split_whitespaces(tmp_line);
 		free(tmp_line);
 		if (parse_fill_info(data, tmp_array))
@@ -138,5 +133,11 @@ int	parsing_base(t_data *data) // Base of the parsing
 		return (-1);
 	if (parse_map(data))
 		return (-1);
+	printf("data.txr[0] = %s\n", data->txr[0]);
+	printf("data.txr[1] = %s\n", data->txr[1]);
+	printf("data.txr[2] = %s\n", data->txr[2]);
+	printf("data.txr[3] = %s\n", data->txr[3]);
+	printf("data.sky = %d\n", data->sky);
+	printf("data.flr = %d\n", data->flr);
 	return (0);
 }
