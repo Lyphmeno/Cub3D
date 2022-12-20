@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:22:37 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:49:52 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,20 @@ static int	get_map(t_data *data, char *tmp_line)
 	char	*tmp_map;
 
 	tmp_map = ft_strdup("");
+	while (!ft_strncmp("\n", tmp_line, 1) || !tmp_line)
+	{
+		free(tmp_line);
+		tmp_line = get_next_line(data->fd);
+	}
 	while (tmp_line != NULL)
 	{
+		if (!ft_strncmp("\n", tmp_line, 1))
+		{
+			free(tmp_line);
+			free(tmp_map);
+			close(data->fd);
+			return (print_err("No empty line allowed in map", -1));
+		}
 		tmp_map = ft_strfjoin(tmp_map, tmp_line, 0);
 		tmp_line = get_next_line(data->fd);
 	}
@@ -102,7 +114,7 @@ static int	parse_info(t_data *data)
 		ret++;
 	}
 	if (get_map(data, tmp_line))
-		return (print_err("Impossible to get the map", -1));
+		return (-1);
 	return (parse_info_miss(data));
 }
 
