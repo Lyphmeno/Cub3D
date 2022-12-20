@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 13:07:53 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 13:12:44 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	parse_map(t_data *data)
 		return (print_err("Map can only have a single player spawn", -1));
 	if (parse_map_close(data))
 		return (print_err("Map not closed", -1));
-	printf("h = %d\nw = %d\n", data->map.height, data->map.width);
-	printf("px = %d\npy = %d\n", data->map.px, data->map.py);
+	printf("map res	= %dx%d\n", data->map.height, data->map.width);
+	printf("player	= [%d,%d]\n", data->map.px, data->map.py);
 	return (0);
 }
