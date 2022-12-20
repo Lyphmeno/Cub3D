@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:14:25 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 15:20:18 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 15:26:32 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*get_spaceless_color(char *tmp, int len, int i)
 	return (cpy);
 }
 
-static int	colornormlen(char *tmp, int i)
+static int	is_whitespace(char *tmp, int i)
 {
 	int	j;
 
@@ -48,8 +48,7 @@ static int	get_len_colors(char *tmp, int i)
 	int		len;
 
 	len = 0;
-	while (tmp[i] && (tmp[i] >= 0 && tmp[i] <= 32))
-		i++;
+	i += is_whitespace(tmp, i);
 	j = i;
 	while (tmp[i])
 	{
@@ -58,14 +57,14 @@ static int	get_len_colors(char *tmp, int i)
 				i++;
 		else
 			return (0);
-		len += colornormlen(tmp, i);
-		i += colornormlen(tmp, i);
+		len += is_whitespace(tmp, i);
+		i += is_whitespace(tmp, i);
 		if (tmp[i] >= '0' && tmp[i] <= '9')
 			return (0);
 		if (tmp[i] == ',')
 			i++;
-		len += colornormlen(tmp, i);
-		i += colornormlen(tmp, i);
+		len += is_whitespace(tmp, i);
+		i += is_whitespace(tmp, i);
 	}
 	len = i - j - len;
 	return (len);
