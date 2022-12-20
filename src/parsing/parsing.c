@@ -6,14 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 15:22:42 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:03:07 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 static int	parse_check_isfull(t_data *data)
 {
@@ -113,22 +110,8 @@ static int	parse_info(t_data *data)
 	return (parse_info_miss(data));
 }
 
-int	parsing_base(t_data *data) // Base of the parsing
+int	parsing_base(t_data *data)
 {
-	/* My way to do the parsing :
-		Txt and Colors : 
-		- Skip empty lines ✅ 
-		- Check first word to see what it is (NO, SO...) ✅ 
-		- Check that I got all 6 values before the map is here ✅ 
-		- Send right errors if values ain't all here ✅ 
-		If text not valid just don't check map !
-		Text cannot be in/or after the map
-		Map :
-		- Check that there is only MAPSYM
-		- Check that the map is well closed
-		- Might fill spaces with 1 to avoid issues
-		- Check for spaces that are next to 0 (all four directions)
-	*/
 	if (parse_info(data))
 		return (-1);
 	if (parse_map(data))
