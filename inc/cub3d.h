@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 11:12:39 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 14:28:06 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "get_next_line.h"
 # include "../MLX42/mlx.h"
 
+// Parsing
 # define NO 0
 # define SO 1
 # define WE 2
@@ -25,6 +26,19 @@
 # define FLR 5
 # define MAPP "NSEW"
 # define MAPSYM "NSEW10 "
+
+// MLX
+# define WINW 720
+# define WINH 480
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		length;
+	int		endian;
+}				t_img;
 
 typedef struct s_map
 {
@@ -38,13 +52,17 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	t_map	map;
+	t_map	*map;
+	t_img	*img;
+	void	*mlx;
+	void	*mlx_win;
 	char	*txr[4];
 	int		sky;
 	int		flr;
 	int		fd;
 }			t_data;
 
+void	free_data(t_data *data);
 //	PASRING
 //		Mapfile
 int		mapfile_check(t_data *data, char *path);
@@ -68,4 +86,9 @@ int		parse_colors(t_data *data, char *str, int x);
 int		parse_split_info(char	**tmp_line);
 //		Parse_map
 int		parse_map(t_data *data);
+
+//	MLX
+int		escape(t_data *data);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int		image_loop(t_data *data);
 #endif

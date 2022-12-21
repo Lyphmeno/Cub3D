@@ -6,12 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 10:21:50 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 14:55:58 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <stdlib.h>
 
 void	free_data(t_data *data)
 {
@@ -19,7 +18,7 @@ void	free_data(t_data *data)
 	free(data->txr[SO]);
 	free(data->txr[WE]);
 	free(data->txr[EA]);
-	free(data->map.arr);
+	free(data->map->arr);
 	free(data);
 }
 
@@ -29,25 +28,23 @@ static void	init_data(t_data *data)
 	data->txr[1] = NULL;
 	data->txr[2] = NULL;
 	data->txr[3] = NULL;
-	data->map.width = 0;
-	data->map.height = 0;
-	data->map.px = -1;
-	data->map.py = -1;
-	data->map.player = -1;
+	data->map = ft_calloc(sizeof(t_map), 1);
+	if (!data->map)
+		return ;
+	data->map->width = 0;
+	data->map->height = 0;
+	data->map->px = -1;
+	data->map->py = -1;
+	data->map->player = -1;
 	data->sky = -1;
 	data->flr = -1;
 }
 
-int	main(int ac, char **av)
+static int	parse_all(t_data *data, int ac, char *path)
 {
-	t_data	*data;
-	void	*mlx;
-
 	if (ac != 2)
 		return (print_err("Invalid number of arguments", -1));
-	data = ft_calloc(sizeof(t_data), 1);
-	init_data(data);
-	if (mapfile_check(data, av[1]))
+	if (mapfile_check(data, path))
 	{
 		free(data);
 		return (-1);
@@ -57,9 +54,26 @@ int	main(int ac, char **av)
 		free_data(data);
 		return (-1);
 	}
-	mlx = mlx_init();
-	mlx_new_window(mlx, 1920, 1080, "CUB3D");
-	mlx_loop(mlx);
-	free_data(data);
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_data	*data;
+
+	data = ft_calloc(sizeof(t_data), 1);
+	if (!data)
+		return (-1);
+	init_data(data);
+	if (parse_all(data, ac, av[1]))
+		return (-1);
+	data->mlx = mlx_init();
+	data->mlx_win = mlx_new_window(data->mlx, WINW, WINH, "CUB3D");
+	data->img = ft_calloc(sizeof(t_img), 1);
+	mlx_hook(data->mlx_win, 2, 27, escape, &data);
+	mlx_hook(data->mlx_win, 33, 1L << 17, escape, &data);
+	image_loop(data);
+	mlx_loop_hook(data->mlx, image_loop, data);
+	mlx_loop(data->mlx);
 	return (0);
 }

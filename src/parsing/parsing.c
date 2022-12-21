@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 16:03:07 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 14:35:47 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	get_map(t_data *data, char *tmp_line)
 		tmp_map = ft_strfjoin(tmp_map, tmp_line, 0);
 		tmp_line = get_next_line(data->fd);
 	}
-	data->map.arr = ft_split(tmp_map, "\n");
+	data->map->arr = ft_split(tmp_map, "\n");
 	free(tmp_line);
 	free(tmp_map);
 	close(data->fd);

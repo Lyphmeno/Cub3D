@@ -31,6 +31,7 @@ SRC			:=	\
 				./src/libasic/ft_substr.c\
 				./src/libasic/get_next_line.c\
 				./src/libasic/get_next_line_utils.c\
+				./src/mlx/mlx_base.c\
 				./src/parsing/colors.c\
 				./src/parsing/mapfile.c\
 				./src/parsing/parse_colors.c\
