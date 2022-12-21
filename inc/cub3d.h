@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 14:28:06 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 15:18:50 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int		parse_map(t_data *data);
 
 //	MLX
 int		escape(t_data *data);
+int		handle_key(int keycode, t_data *data);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		image_loop(t_data *data);
 #endif

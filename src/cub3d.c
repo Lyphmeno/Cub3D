@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 14:55:58 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 15:31:10 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	free_data(t_data *data)
 	free(data->txr[WE]);
 	free(data->txr[EA]);
 	free(data->map->arr);
+	free(data->map);
+	free(data->mlx);
+	free(data->img);
 	free(data);
 }
 
@@ -70,9 +73,9 @@ int	main(int ac, char **av)
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, WINW, WINH, "CUB3D");
 	data->img = ft_calloc(sizeof(t_img), 1);
-	mlx_hook(data->mlx_win, 2, 27, escape, &data);
-	mlx_hook(data->mlx_win, 33, 1L << 17, escape, &data);
 	image_loop(data);
+	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key, data);
+	mlx_hook(data->mlx_win, 33, 1L << 17, escape, data);
 	mlx_loop_hook(data->mlx, image_loop, data);
 	mlx_loop(data->mlx);
 	return (0);

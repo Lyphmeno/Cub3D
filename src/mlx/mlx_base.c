@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 14:52:17 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 15:35:21 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@ int	escape(t_data *data)
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	free_data(data);
-	printf("EXIT");
+	exit(0);
+	return (0);
+}
+
+int	handle_key(int keycode, t_data *data)
+{
+	if (keycode == 65307)
+		escape(data);
 	return (0);
 }
 

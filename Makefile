@@ -5,7 +5,7 @@ CFLAGS		:=	-Wall -Wextra -Werror -g
 
 MLXDIR		:=	MLX42
 MLXPATH		:=	${MLXDIR}/libmlx.a
-MLXFLAGS	:=	-ldl -lmlx -L${MLXDIR} -lm -lXext -lX11
+MLXFLAGS	:=	-ldl -lmlx -L${MLXDIR} -lm -lXext -lX11 -Imlx 
 
 SRCDIR		:=	src
 SRCEXT		:=	c
