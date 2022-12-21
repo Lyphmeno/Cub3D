@@ -2,7 +2,10 @@ NAME		:=	cub3d
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror -g
-MLXFLAGS	:=	-Imlx_linux
+
+MLXDIR		:=	MLX42
+MLXPATH		:=	${MLXDIR}/libmlx.a
+MLXFLAGS	:=	-ldl -lmlx -L${MLXDIR} -lm -lXext -lX11
 
 SRCDIR		:=	src
 SRCEXT		:=	c
@@ -51,11 +54,14 @@ OBJEXT		:=	o
 OBJS		:=	$(subst $(SRCDIR),$(OBJDIR),$(SRC:.$(SRCEXT)=.$(OBJEXT)))
 
 .PHONY: all
-all: $(NAME)
+all: minilibx $(NAME)
+
+minilibx:
+			@make -C ./MLX42/
 
 $(NAME):	$(OBJDIR) $(OBJS) $(HEADERS) Makefile
 			@echo -ne '\033c$(E_BAR)\n'
-			@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS)
+			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLXFLAGS)
 
 $(OBJDIR):
 			@mkdir -p $(OBJDIR) $(OBJSUBDIR)
@@ -64,7 +70,7 @@ $(OBJDIR):
 
 $(OBJDIR)/%.$(OBJEXT) : 	$(SRCDIR)/%.$(SRCEXT)
 							@echo -ne '\033c$(E_BAR)\n'
-							$(CC) $(CFLAGS) $(MLXFLAGS) -c -o $@ $<  -I $(INCDIR)
+							$(CC) $(CFLAGS) -c -o $@ $<  -I $(INCDIR) $(MLXFLAGS)
 							@$(eval $(call update_bar))
 
 .PHONY: re

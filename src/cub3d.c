@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 16:03:36 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 10:21:50 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	init_data(t_data *data)
 int	main(int ac, char **av)
 {
 	t_data	*data;
+	void	*mlx;
 
 	if (ac != 2)
 		return (print_err("Invalid number of arguments", -1));
@@ -56,6 +57,9 @@ int	main(int ac, char **av)
 		free_data(data);
 		return (-1);
 	}
+	mlx = mlx_init();
+	mlx_new_window(mlx, 1920, 1080, "CUB3D");
+	mlx_loop(mlx);
 	free_data(data);
 	return (0);
 }
