@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 15:35:21 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 15:41:27 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	image_loop(t_data *data)
 	data->img->img = mlx_new_image(data->mlx, WINW, WINH);
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 			&data->img->length, &data->img->endian);
-	my_mlx_pixel_put(data->img, 5, 5, 0x00FF0000);
+	my_mlx_pixel_put(data->img, data->map->px, data->map->py, 0x00FF0000);
 	//render(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img->img);
