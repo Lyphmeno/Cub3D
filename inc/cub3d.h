@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 15:18:50 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/21 15:46:29 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define MAPSYM "NSEW10 "
 
 // MLX
-# define WINW 720
-# define WINH 480
+# define WINW 1920/2
+# define WINH 1080/2
 
 typedef struct s_img
 {
