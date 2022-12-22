@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 11:35:23 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 11:55:33 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,31 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	draw_player(t_data *data, int size)
+{
+	int	i;
+	int	j;
+
+	i = size / -2;
+	while (i != size / 2)
+	{
+		j = size / -2;
+		while (j != size / 2)
+		{
+			my_mlx_pixel_put(data->img, data->player->posx + i,
+			  data->player->posy + j, data->map->sky);
+			j++;
+		}
+		i++;
+	}
+}
+
 int	image_loop(t_data *data)
 {
 	data->img->img = mlx_new_image(data->mlx, WINW, WINH);
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 			&data->img->length, &data->img->endian);
-	my_mlx_pixel_put(data->img, data->player->posx,
-		data->player->posy, data->map->sky);
+	draw_player(data, 15);
 	//render(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img->img);
