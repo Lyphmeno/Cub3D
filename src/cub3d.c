@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:26:41 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:34:10 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	main(int ac, char **av)
 	data = ft_calloc(sizeof(t_data), 1);
 	if (!data)
 		return (print_err("Data init failed", -1));
-	init_data(data);
+	if (init_data(data))
+		return (-1);
 	if (parse_all(data, ac, av[1]))
 		return (-1);
 	data->mlx = mlx_init();

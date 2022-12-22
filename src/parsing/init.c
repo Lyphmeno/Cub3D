@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:28:52 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:33:50 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	init_map(t_data *data)
 
 int	init_data(t_data *data)
 {
-	init_player(data);
-	init_map(data);
+	if (init_player(data) || init_map(data))
+		return (-1);
 	return (0);
 }
