@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:34:10 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 14:35:16 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 	if (parse_all(data, ac, av[1]))
 		return (-1);
 	data->mlx = mlx_init();
-	data->mlx_win = mlx_new_window(data->mlx, WINW, WINH, "CUB3D");
+	data->mlx_win = mlx_new_window(data->mlx, WINH, WINW, "CUB3D");
 	data->img = ft_calloc(sizeof(t_img), 1);
 	image_loop(data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key, data);

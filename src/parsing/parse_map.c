@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:54:53 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 14:41:47 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static int	parse_map_char(t_data *data, int i, int j)
 				return (print_err("Inavlid char on map", -1));
 			if (is_charset(data->map->arr[i][j], MAPP))
 			{
-				data->player->posx = i;
-				data->player->posy = j;
+				data->player->posx = j;
+				data->player->posy = i;
 				data->player->player++;
 				data->player->dir = data->map->arr[i][j];
 			}
