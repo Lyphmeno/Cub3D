@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:21:45 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:26:41 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	free_data(t_data *data)
 {
-	free(data->txr[NO]);
-	free(data->txr[SO]);
-	free(data->txr[WE]);
-	free(data->txr[EA]);
+	free(data->map->txr[NO]);
+	free(data->map->txr[SO]);
+	free(data->map->txr[WE]);
+	free(data->map->txr[EA]);
 	free(data->player);
 	free(data->map->arr);
 	free(data->map);

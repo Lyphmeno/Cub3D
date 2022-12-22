@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:19:48 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:25:40 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef struct s_map
 	char	**arr;
 	int		height;
 	int		width;
+	char	*txr[4];
+	int		sky;
+	int		flr;
 }			t_map;
 
 typedef struct s_data
@@ -61,9 +64,6 @@ typedef struct s_data
 	t_pr	*player;
 	void	*mlx;
 	void	*mlx_win;
-	char	*txr[4];
-	int		sky;
-	int		flr;
 	int		fd;
 }			t_data;
 

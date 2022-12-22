@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:30:38 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 15:00:37 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:26:51 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	parse_colors(t_data *data, char *str, int x)
 		i++;
 	}
 	if (!x)
-		data->sky = fill_colors(arr);
+		data->map->sky = fill_colors(arr);
 	else
-		data->flr = fill_colors(arr);
+		data->map->flr = fill_colors(arr);
 	free(arr);
 	return (0);
 }

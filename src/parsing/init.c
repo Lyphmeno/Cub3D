@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:21:01 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:26:24 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ static int init_map(t_data *data)
 		return (print_err("Map init failed", -1));
 	data->map->width = 0;
 	data->map->height = 0;
+	data->map->txr[0] = NULL;
+	data->map->txr[1] = NULL;
+	data->map->txr[2] = NULL;
+	data->map->txr[3] = NULL;
+	data->map->sky = -1;
+	data->map->flr = -1;
 	return (0);
 }
 
 int	init_data(t_data *data)
 {
-	data->txr[0] = NULL;
-	data->txr[1] = NULL;
-	data->txr[2] = NULL;
-	data->txr[3] = NULL;
-	data->sky = -1;
-	data->flr = -1;
 	init_player(data);
 	init_map(data);
 	return (0);
