@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:25:40 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:44:07 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_pr
 	int		player;
 	int		posx;
 	int		posy;
+	int		dir;
 }			t_pr;
 
 typedef struct s_map
