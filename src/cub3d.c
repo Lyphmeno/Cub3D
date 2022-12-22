@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 15:31:10 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:21:45 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,12 @@ void	free_data(t_data *data)
 	free(data->txr[SO]);
 	free(data->txr[WE]);
 	free(data->txr[EA]);
+	free(data->player);
 	free(data->map->arr);
 	free(data->map);
 	free(data->mlx);
 	free(data->img);
 	free(data);
-}
-
-static void	init_data(t_data *data)
-{
-	data->txr[0] = NULL;
-	data->txr[1] = NULL;
-	data->txr[2] = NULL;
-	data->txr[3] = NULL;
-	data->map = ft_calloc(sizeof(t_map), 1);
-	if (!data->map)
-		return ;
-	data->map->width = 0;
-	data->map->height = 0;
-	data->map->px = -1;
-	data->map->py = -1;
-	data->map->player = -1;
-	data->sky = -1;
-	data->flr = -1;
 }
 
 static int	parse_all(t_data *data, int ac, char *path)
@@ -66,7 +49,7 @@ int	main(int ac, char **av)
 
 	data = ft_calloc(sizeof(t_data), 1);
 	if (!data)
-		return (-1);
+		return (print_err("Data init failed", -1));
 	init_data(data);
 	if (parse_all(data, ac, av[1]))
 		return (-1);

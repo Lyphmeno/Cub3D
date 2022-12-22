@@ -33,6 +33,7 @@ SRC			:=	\
 				./src/libasic/get_next_line_utils.c\
 				./src/mlx/mlx_base.c\
 				./src/parsing/colors.c\
+				./src/parsing/init.c\
 				./src/parsing/mapfile.c\
 				./src/parsing/parse_colors.c\
 				./src/parsing/parse_info_error.c\

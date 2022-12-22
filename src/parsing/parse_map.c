@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 14:30:46 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:05:41 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int	parse_map_char(t_data *data)
 				return (print_err("Inavlid char on map", -1));
 			if (is_charset(data->map->arr[i][j], MAPP))
 			{
-				data->map->px = i;
-				data->map->py = j;
-				data->map->player++;
+				data->player->posx = i;
+				data->player->posy = j;
+				data->player->player++;
 			}
 			j++;
 		}
@@ -98,13 +98,13 @@ int	parse_map(t_data *data)
 		return (-1);
 	if (data->map->width < 3 || data->map->height < 3)
 		return (print_err("Map too small", -1));
-	if (data->map->px < 0 || data->map->py < 0)
+	if (data->player->posx < 0 || data->player->posy < 0)
 		return (print_err("Map has no player spawn", -1));
-	if (data->map->player)
+	if (data->player->player)
 		return (print_err("Map can only have a single player spawn", -1));
 	if (parse_map_close(data))
 		return (print_err("Map not closed", -1));
 	printf("map res	= %dx%d\n", data->map->height, data->map->width);
-	printf("player	= [%d,%d]\n", data->map->px, data->map->py);
+	printf("player	= [%d,%d]\n", data->player->posx, data->player->posy);
 	return (0);
 }
