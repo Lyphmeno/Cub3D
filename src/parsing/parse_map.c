@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:52:11 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:54:53 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ static int	is_charset(char c, char *str)
 	return (0);
 }
 
-static int	parse_map_char(t_data *data, int i)
+static int	parse_map_char(t_data *data, int i, int j)
 {
-	int	j;
-
 	while (data->map->arr[i])
 	{
 		j = 0;
@@ -93,7 +91,7 @@ static int	parse_map_close(t_data *data)
 
 int	parse_map(t_data *data)
 {
-	if (parse_map_char(data, 0))
+	if (parse_map_char(data, 0, 0))
 		return (-1);
 	if (data->map->width < 3 || data->map->height < 3)
 		return (print_err("Map too small", -1));
