@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:07:26 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 11:35:23 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ int	escape(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free_data(data);
 	exit(0);
-	return (0);
-}
-
-int	handle_key(int keycode, t_data *data)
-{
-	if (keycode == 65307)
-		escape(data);
 	return (0);
 }
 
@@ -43,7 +36,7 @@ int	image_loop(t_data *data)
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 			&data->img->length, &data->img->endian);
 	my_mlx_pixel_put(data->img, data->player->posx,
-		data->player->posy, 0x00FF0000);
+		data->player->posy, data->map->sky);
 	//render(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img->img);

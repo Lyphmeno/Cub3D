@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:44:07 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 11:29:06 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 // MLX
 # define WINW 1920/2
 # define WINH 1080/2
+# define KUP	119
+# define KDOWN	115
+# define KLEFT	97
+# define KRIGHT	100
 
 typedef struct s_img
 {
@@ -96,8 +100,10 @@ char	*first_word(char *tmp);
 int		print_err(char *str, int exit_code);
 
 //	MLX
-int		escape(t_data *data);
+//		Handle key
 int		handle_key(int keycode, t_data *data);
+//		MLX base
+int		escape(t_data *data);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		image_loop(t_data *data);
 #endif
