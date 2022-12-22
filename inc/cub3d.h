@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 11:29:06 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 11:37:24 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define MAPSYM "NSEW10 "
 
 // MLX
-# define WINW 1920/2
-# define WINH 1080/2
+# define WINW 1920/4
+# define WINH 1080/4
 # define KUP	119
 # define KDOWN	115
 # define KLEFT	97
