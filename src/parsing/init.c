@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 10:26:24 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:28:52 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	init_player(t_data *data)
 	return (0);
 }
 
-static int init_map(t_data *data)
+static int	init_map(t_data *data)
 {
 	data->map = ft_calloc(sizeof(t_map), 1);
 	if (!data->map)

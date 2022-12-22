@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/21 14:35:47 by hlevi            ###   ########.fr       */
+/*   Updated: 2022/12/22 10:28:30 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static int	parse_check_isfull(t_data *data)
 {
-	if (!data->txr[0])
+	if (!data->map->txr[0])
 		return (-1);
-	if (!data->txr[1])
+	if (!data->map->txr[1])
 		return (-1);
-	if (!data->txr[2])
+	if (!data->map->txr[2])
 		return (-1);
-	if (!data->txr[3])
+	if (!data->map->txr[3])
 		return (-1);
-	if (data->sky == -1)
+	if (data->map->sky == -1)
 		return (-1);
-	if (data->flr == -1)
+	if (data->map->flr == -1)
 		return (-1);
 	return (0);
 }
@@ -116,11 +116,11 @@ int	parsing_base(t_data *data)
 		return (-1);
 	if (parse_map(data))
 		return (-1);
-	printf("data.txr[0] = %s\n", data->txr[0]);
-	printf("data.txr[1] = %s\n", data->txr[1]);
-	printf("data.txr[2] = %s\n", data->txr[2]);
-	printf("data.txr[3] = %s\n", data->txr[3]);
-	printf("data.sky = %d\n", data->sky);
-	printf("data.flr = %d\n", data->flr);
+	printf("data.txr[0] = %s\n", data->map->txr[0]);
+	printf("data.txr[1] = %s\n", data->map->txr[1]);
+	printf("data.txr[2] = %s\n", data->map->txr[2]);
+	printf("data.txr[3] = %s\n", data->map->txr[3]);
+	printf("data.sky = %d\n", data->map->sky);
+	printf("data.flr = %d\n", data->map->flr);
 	return (0);
 }
