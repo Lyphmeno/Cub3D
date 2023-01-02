@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/02 14:55:50 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/02 16:59:52 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // MLX
 # define WINW 1080
 # define WINH 720
-# define MINIMAP 2
+# define MINIMAP 0.6
 
 typedef struct s_img
 {
@@ -44,8 +44,8 @@ typedef struct s_img
 typedef struct s_pr
 {
 	int		player;
-	int		posx;
-	int		posy;
+	double	posx;
+	double	posy;
 	int		dir;
 }			t_pr;
 
@@ -100,6 +100,8 @@ int		print_err(char *str, int exit_code);
 //	MLX
 //		Handle key
 int		handle_key(int keycode, t_data *data);
+//		Minimap
+void	draw_minimap(t_data *data);
 //		MLX base
 int		escape(t_data *data);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);

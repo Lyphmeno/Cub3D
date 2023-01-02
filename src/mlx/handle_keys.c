@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 11:18:54 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 14:40:15 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/02 17:01:27 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	handle_key(int keycode, t_data *data)
 	if (keycode == 65307)
 		escape(data);
 	if (keycode == KUP)
-		data->player->posy -= 1;
+		data->player->posy -= 0.1;
 	if (keycode == KDOWN)
-		data->player->posy += 1;
+		data->player->posy += 0.1;
 	if (keycode == KLEFT)
-		data->player->posx -= 1;
+		data->player->posx -= 0.1;
 	if (keycode == KRIGHT)
-		data->player->posx += 1;
+		data->player->posx += 0.1;
 	return (0);
 }

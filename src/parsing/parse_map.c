@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/02 14:52:38 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/02 15:49:53 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	parse_map(t_data *data)
 	if (parse_map_close(data))
 		return (print_err("Map not closed", -1));
 	printf("map res	= [%dx%d]\n", data->map->height, data->map->width);
-	printf("player	= [%d,%d]\n", data->player->posx, data->player->posy);
+	printf("player	= [%f,%f]\n", data->player->posx, data->player->posy);
 	printf("dir	= [%c]\n", data->player->dir);
 	return (0);
 }
