@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/22 14:35:16 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/02 14:55:50 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 # define MAPSYM "NSEW10 "
 
 // MLX
-# define WINH 1920
 # define WINW 1080
+# define WINH 720
+# define MINIMAP 2
 
 typedef struct s_img
 {
@@ -92,6 +93,7 @@ int		parse_map(t_data *data);
 //		Parsing
 int		parsing_base(t_data *data);
 //		Parsing_utils
+int		is_charset(char c, char *str);
 char	*first_word(char *tmp);
 int		print_err(char *str, int exit_code);
 

@@ -6,11 +6,19 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:59:09 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 15:20:16 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/02 14:53:40 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	is_charset(char c, char *str)
+{
+	while (*str)
+		if (c == *str++)
+			return (1);
+	return (0);
+}
 
 char	*first_word(char *tmp)
 {
