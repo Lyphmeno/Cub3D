@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/02 16:59:52 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/03 13:06:49 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ typedef struct s_pr
 	int		player;
 	double	posx;
 	double	posy;
-	int		dir;
+	double	dir;
+	int		px;
+	int		py;
 }			t_pr;
 
 typedef struct s_map
@@ -98,6 +100,10 @@ char	*first_word(char *tmp);
 int		print_err(char *str, int exit_code);
 
 //	MLX
+//		Draw_form
+void	draw_circle(t_data *data, int x, int y, int color);
+void	draw_rectangle(t_data *data, int x, int y, int color);
+void	draw_line(t_data *data, int x, int y, int color);
 //		Handle key
 int		handle_key(int keycode, t_data *data);
 //		Minimap

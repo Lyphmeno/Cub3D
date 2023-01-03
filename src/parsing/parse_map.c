@@ -6,11 +6,12 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/02 15:49:53 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/03 11:27:51 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+#include <math.h>
 
 static int	parse_map_char(t_data *data, int i, int j)
 {
@@ -81,6 +82,18 @@ static int	parse_map_close(t_data *data)
 	return (0);
 }
 
+static void	get_dir(t_data *data)
+{
+	if (data->player->dir == 'N')
+		data->player->dir = -M_PI / 2;
+	if (data->player->dir == 'S')
+		data->player->dir = M_PI / 2;
+	if (data->player->dir == 'E')
+		data->player->dir = 0;
+	if (data->player->dir == 'W')
+		data->player->dir = M_PI;
+}
+
 int	parse_map(t_data *data)
 {
 	if (parse_map_char(data, 0, 0))
@@ -93,8 +106,9 @@ int	parse_map(t_data *data)
 		return (print_err("Map can only have a single player spawn", -1));
 	if (parse_map_close(data))
 		return (print_err("Map not closed", -1));
+	get_dir(data);
 	printf("map res	= [%dx%d]\n", data->map->height, data->map->width);
 	printf("player	= [%f,%f]\n", data->player->posx, data->player->posy);
-	printf("dir	= [%c]\n", data->player->dir);
+	printf("dir	= [%f]\n", data->player->dir);
 	return (0);
 }

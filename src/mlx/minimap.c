@@ -6,57 +6,12 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/02 16:59:30 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/03 13:10:19 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-static void	draw_circle(t_data *data, int x, int y, int color)
-{
-	int	i;
-	int	j;
-	int	siz;
-
-	siz = (WINH / data->map->height * MINIMAP) / 5;
-	i = x - siz;
-	while (i <= x + siz)
-	{
-		j = y - siz;
-		while (j <= y + siz)
-		{
-			if ((i - x) * (i - x) + (j - y) * (j - y) <= siz * siz)
-				my_mlx_pixel_put(data->img, i, j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	draw_rectangle(t_data *data, int x, int y, int color)
-{
-	int	i;
-	int	j;
-	int	siz;
-	int	offset;
-
-	i = y;
-	siz = WINH / data->map->height * MINIMAP;
-	while (i < y + siz)
-	{
-		j = x;
-		while (j < x + siz)
-		{
-			offset = i * data->img->length + j * (data->img->bpp / 8);
-			if (i < y + siz - 1 && j < x + siz - 1)
-				*(int *)(data->img->addr + offset) = color;
-			else
-				*(int *)(data->img->addr + offset) = color >> 16;
-			j++;
-		}
-		i++;
-	}
-}
+#include <math.h>
 
 static void	draw_map(t_data *data)
 {
@@ -100,6 +55,11 @@ static void	draw_player(t_data *data)
 	px = x + data->player->posx * siz + siz / (double)2;
 	py = y + data->player->posy * siz + siz / (double)2;
 	draw_circle(data, px, py, 0x0000FF);
+	data->player->px = px;
+	data->player->py = py;
+	x = data->player->px + cos(data->player->dir) * 100;
+	y = data->player->py + sin(data->player->dir) * 100;
+	draw_line(data, x, y, 0xFF0000);
 }
 
 void	draw_minimap(t_data *data)

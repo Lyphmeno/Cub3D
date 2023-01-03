@@ -31,6 +31,7 @@ SRC			:=	\
 				./src/libasic/ft_substr.c\
 				./src/libasic/get_next_line.c\
 				./src/libasic/get_next_line_utils.c\
+				./src/mlx/draw_form.c\
 				./src/mlx/handle_keys.c\
 				./src/mlx/minimap.c\
 				./src/mlx/mlx_base.c\
