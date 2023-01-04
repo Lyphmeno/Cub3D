@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/03 13:10:19 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 11:24:12 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	draw_player(t_data *data)
 	y = (WINH - siz * data->map->height) - siz;
 	px = x + data->player->posx * siz + siz / (double)2;
 	py = y + data->player->posy * siz + siz / (double)2;
-	draw_circle(data, px, py, 0x0000FF);
+	draw_circle(data, px, py, 0x00FF00);
 	data->player->px = px;
 	data->player->py = py;
 	x = data->player->px + cos(data->player->dir) * 100;

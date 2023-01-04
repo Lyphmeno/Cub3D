@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/03 13:06:49 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 13:00:14 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,26 @@ typedef struct s_map
 	int		flr;
 }			t_map;
 
+typedef struct s_keys
+{
+	int	kup;
+	int	kdown;
+	int	kright;
+	int	kleft;
+	int	kdirr;
+	int	kdirl;
+} 		t_keys;
+
 typedef struct s_data
 {
+	t_keys	*keys;
 	t_map	*map;
 	t_img	*img;
 	t_pr	*player;
 	void	*mlx;
 	void	*mlx_win;
 	int		fd;
+	int		mousex;
 }			t_data;
 
 void	free_data(t_data *data);
@@ -105,6 +117,9 @@ void	draw_circle(t_data *data, int x, int y, int color);
 void	draw_rectangle(t_data *data, int x, int y, int color);
 void	draw_line(t_data *data, int x, int y, int color);
 //		Handle key
+void	move(t_data *data);
+int		release_key(int keycode, t_data *data);
+int		handle_mouse(int x, int y, t_data *data);
 int		handle_key(int keycode, t_data *data);
 //		Minimap
 void	draw_minimap(t_data *data);

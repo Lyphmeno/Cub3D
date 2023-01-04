@@ -6,11 +6,25 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/03 13:06:49 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 12:39:04 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+static int	init_keys(t_data *data)
+{
+	data->keys = ft_calloc(sizeof(t_keys), 1);
+	if (!data->keys)
+		return (-1);
+	data->keys->kup = 0;
+	data->keys->kdown = 0;
+	data->keys->kright = 0;
+	data->keys->kleft = 0;
+	data->keys->kdirr = 0;
+	data->keys->kdirl = 0;
+	return (0);
+}
 
 static int	init_player(t_data *data)
 {
@@ -23,6 +37,7 @@ static int	init_player(t_data *data)
 	data->player->dir = -1;
 	data->player->px = -1;
 	data->player->py = -1;
+	data->mousex = -1;
 	return (0);
 }
 
@@ -44,7 +59,7 @@ static int	init_map(t_data *data)
 
 int	init_data(t_data *data)
 {
-	if (init_player(data) || init_map(data))
+	if (init_player(data) || init_map(data) || init_keys(data))
 		return (-1);
 	return (0);
 }
