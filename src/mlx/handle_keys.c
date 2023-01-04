@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 11:18:54 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/04 15:26:37 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:39:51 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	handle_mouse(int x, int y, t_data *data)
 
 int	handle_key(int keycode, t_data *data)
 {
+	printf("[%d]\n", keycode);
 	if (keycode == 65307)
 		escape(data);
 	handle_press(keycode, data);

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/04 15:24:35 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:38:48 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 // MLX
 # define WINW 1080
 # define WINH 720
-# define MINIMAP 0.3
 
 typedef struct s_img
 {
@@ -59,6 +58,7 @@ typedef struct s_map
 	char	*txr[4];
 	int		sky;
 	int		flr;
+	double	size;
 }			t_map;
 
 typedef struct s_keys

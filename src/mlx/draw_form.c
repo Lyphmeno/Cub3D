@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:39:05 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/04 15:15:31 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:41:02 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_circle(t_data *data, int x, int y, int color)
 	int	j;
 	int	siz;
 
-	siz = (WINH / data->map->height * MINIMAP) / 5;
+	siz = (WINH / data->map->height * data->map->size) / 5;
 	i = x - siz;
 	while (i <= x + siz)
 	{
@@ -41,7 +41,7 @@ void	draw_rectangle(t_data *data, int x, int y, int color)
 	int	offset;
 
 	i = y;
-	siz = WINH / data->map->height * MINIMAP;
+	siz = WINH / data->map->height * data->map->size;
 	while (i < y + siz)
 	{
 		j = x;
