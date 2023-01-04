@@ -35,6 +35,7 @@ SRC			:=	\
 				./src/mlx/handle_keys.c\
 				./src/mlx/minimap.c\
 				./src/mlx/mlx_base.c\
+				./src/mlx/move.c\
 				./src/parsing/colors.c\
 				./src/parsing/init.c\
 				./src/parsing/mapfile.c\

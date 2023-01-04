@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/04 13:01:24 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:27:32 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (y * img->length + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
+	if (x < WINW && y < WINH)
+	{
+		dst = img->addr + (y * img->length + x * (img->bpp / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
 int	image_loop(t_data *data)
@@ -35,6 +38,7 @@ int	image_loop(t_data *data)
 	data->img->img = mlx_new_image(data->mlx, WINW, WINH);
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 			&data->img->length, &data->img->endian);
+//	mlx_mouse_hide(data->mlx, data->mlx_win);
 	draw_minimap(data);
 	move(data);
 	//render(data);

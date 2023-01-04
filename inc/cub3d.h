@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/04 13:00:14 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:24:35 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // MLX
 # define WINW 1080
 # define WINH 720
-# define MINIMAP 0.6
+# define MINIMAP 0.3
 
 typedef struct s_img
 {
@@ -116,8 +116,9 @@ int		print_err(char *str, int exit_code);
 void	draw_circle(t_data *data, int x, int y, int color);
 void	draw_rectangle(t_data *data, int x, int y, int color);
 void	draw_line(t_data *data, int x, int y, int color);
-//		Handle key
+//		Move
 void	move(t_data *data);
+//		Handle key
 int		release_key(int keycode, t_data *data);
 int		handle_mouse(int x, int y, t_data *data);
 int		handle_key(int keycode, t_data *data);
