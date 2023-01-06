@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/06 10:59:05 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/06 13:19:22 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_map
 	char	*txr[4];
 	int		sky;
 	int		flr;
+	int		show;
 	double	size;
 }			t_map;
 
@@ -69,6 +70,7 @@ typedef struct s_keys
 	int	kleft;
 	int	kdirr;
 	int	kdirl;
+	int	km;
 }		t_keys;
 
 typedef struct s_data

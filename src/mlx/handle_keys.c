@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 11:18:54 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/06 10:54:56 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/06 13:25:19 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@
 #define KRIGHT 100
 #define RLEFT 65363
 #define RRIGHT 65361
+#define KM 109
 
 static void	handle_press(int keycode, t_data *data)
 {
+	if (keycode == KM)
+	{
+		data->keys->km = 1;
+		if (data->map->show)
+			data->map->show = 0;
+		else if (!data->map->show)
+			data->map->show = 1;
+	}
 	if (keycode == KUP)
 		data->keys->kup = 1;
 	if (keycode == KDOWN)
@@ -38,6 +47,8 @@ static void	handle_press(int keycode, t_data *data)
 
 int	release_key(int keycode, t_data *data)
 {
+	if (keycode == KM)
+		data->keys->km = 0;
 	if (keycode == KUP)
 		data->keys->kup = 0;
 	if (keycode == KDOWN)

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/05 12:48:30 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/06 13:19:36 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	init_keys(t_data *data)
 	data->keys->kleft = 0;
 	data->keys->kdirr = 0;
 	data->keys->kdirl = 0;
+	data->keys->km = 0;
 	return (0);
 }
 
@@ -54,6 +55,7 @@ static int	init_map(t_data *data)
 	data->map->txr[3] = NULL;
 	data->map->sky = -1;
 	data->map->flr = -1;
+	data->map->show = 1;
 	data->map->size = 0.3;
 	return (0);
 }
