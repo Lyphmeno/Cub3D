@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/04 15:40:48 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/06 10:53:10 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	draw_map(t_data *data)
 
 	i = 0;
 	j = 0;
-	siz = WINH / data->map->height * data->map->size;
+	siz = (double)WINH / data->map->height * data->map->size;
 	x = (WINW - siz * data->map->width) - siz;
 	y = (WINH - siz * data->map->height) - siz;
 	while (i < data->map->height)
@@ -49,7 +49,7 @@ static void	draw_player(t_data *data)
 	int		y;
 	int		siz;
 
-	siz = WINH / data->map->height * data->map->size;
+	siz = (double)WINH / data->map->height * data->map->size;
 	x = (WINW - siz * data->map->width) - siz;
 	y = (WINH - siz * data->map->height) - siz;
 	px = x + data->player->posx * siz + siz / (double)2;

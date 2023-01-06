@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:44:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/05 12:45:05 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/06 10:58:45 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 #include <math.h>
 
 #define SPEED 0.05
-
-static int	check_col(t_data *data, int x, int y)
-{
-	printf("col = %d,%d\n", x, y);
-	if (data->map->arr[y][x] == '1')
-		return (1);
-	return (0);
-}
 
 static void	move_up(t_data *data)
 {
@@ -35,16 +27,16 @@ static void	move_up(t_data *data)
 	posy = data->player->posy;
 	incx = cos(data->player->dir) * SPEED;
 	incy = sin(data->player->dir) * SPEED;
-	dist = sqrt(incx * incx +incy * incy);
+	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
 		posx += incx;
 		posy += incy;
-		if (check_col(data, posx, posy))
+		if (data->map->arr[(int)posy][(int)posx] == '1')
 		{
 			posx -= incx;
 			posy -= incy;
-			break;
+			break ;
 		}
 		dist -= SPEED;
 	}
@@ -64,16 +56,16 @@ static void	move_down(t_data *data)
 	posy = data->player->posy;
 	incx = cos(data->player->dir) * SPEED;
 	incy = sin(data->player->dir) * SPEED;
-	dist = sqrt(incx * incx +incy * incy);
+	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
 		posx -= incx;
 		posy -= incy;
-		if (check_col(data, posx, posy))
+		if (data->map->arr[(int)posy][(int)posx] == '1')
 		{
 			posx += incx;
 			posy += incy;
-			break;
+			break ;
 		}
 		dist -= SPEED;
 	}
@@ -93,16 +85,16 @@ static void	move_left(t_data *data)
 	posy = data->player->posy;
 	incx = cos(data->player->dir + M_PI / 2) * SPEED;
 	incy = sin(data->player->dir + M_PI / 2) * SPEED;
-	dist = sqrt(incx * incx +incy * incy);
+	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
 		posx -= incx;
 		posy -= incy;
-		if (check_col(data, posx, posy))
+		if (data->map->arr[(int)posy][(int)posx] == '1')
 		{
 			posx += incx;
 			posy += incy;
-			break;
+			break ;
 		}
 		dist -= SPEED;
 	}
@@ -122,16 +114,16 @@ static void	move_right(t_data *data)
 	posy = data->player->posy;
 	incx = cos(data->player->dir + M_PI / 2) * SPEED;
 	incy = sin(data->player->dir + M_PI / 2) * SPEED;
-	dist = sqrt(incx * incx +incy * incy);
+	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
 		posx += incx;
 		posy += incy;
-		if (check_col(data, posx, posy))
+		if (data->map->arr[(int)posy][(int)posx] == '1')
 		{
 			posx -= incx;
 			posy -= incy;
-			break;
+			break ;
 		}
 		dist -= SPEED;
 	}
