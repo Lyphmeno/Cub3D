@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 11:18:54 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/04 15:45:04 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/05 12:47:01 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,20 @@ int	release_key(int keycode, t_data *data)
 
 int	handle_mouse(int x, int y, t_data *data)
 {
-	int		oldx;
-	double	speed;
+	int		delta_x;
+    double	speed;
 
-	(void)y;
-	speed = 0.02;
-	oldx = data->mousex;
-	if (data->mousex == -1)
-	{
-		data->mousex = x;
-		return (0);
-	}
-	data->mousex = x;
-	if (data->mousex == oldx)
-		return (0);
-	if (data->mousex > oldx)
-		data->player->dir += speed;
-	if (data->mousex < oldx)
-		data->player->dir -= speed;
-	data->mousex = x;
-	return (0);
+    (void)y;
+    speed = 0.02;
+    delta_x = x - data->mousex;
+    data->player->dir += delta_x * speed;
+    data->mousex = x;
+    return 0;
+
 }
 
 int	handle_key(int keycode, t_data *data)
 {
-	printf("[%d]\n", keycode);
 	if (keycode == 65307)
 		escape(data);
 	if (keycode == 65365)
