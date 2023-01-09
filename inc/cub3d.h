@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/06 13:19:22 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/09 15:15:00 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // MLX
 # define WINW 1080
 # define WINH 720
+# define FOV 0.66
 
 typedef struct s_img
 {
@@ -43,22 +44,23 @@ typedef struct s_img
 typedef struct s_pr
 {
 	int		player;
+	int		px;
+	int		py;
+	double	fov;
 	double	posx;
 	double	posy;
 	double	dir;
-	int		px;
-	int		py;
 }			t_pr;
 
 typedef struct s_map
 {
-	char	**arr;
 	int		height;
 	int		width;
-	char	*txr[4];
 	int		sky;
 	int		flr;
 	int		show;
+	char	**arr;
+	char	*txr[4];
 	double	size;
 }			t_map;
 
@@ -130,4 +132,6 @@ void	draw_minimap(t_data *data);
 int		escape(t_data *data);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		image_loop(t_data *data);
+//		Raycasting
+double	get_ray(t_data *data);
 #endif
