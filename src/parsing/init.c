@@ -6,11 +6,32 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/06 13:19:36 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/10 17:03:53 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+static int	init_ray(t_data *data)
+{
+	data->ray = ft_calloc(sizeof(t_ray), 1);
+	if (!data->ray)
+		return (-1);
+	data->ray->camera = 0;
+	data->ray->hit = 0;
+	data->ray->stepx = 0;
+	data->ray->stepy = 0;
+	data->ray->mapx = 0;
+	data->ray->mapy = 0;
+	data->ray->dirx = 0;
+	data->ray->diry = 0;
+	data->ray->sidistx = 0;
+	data->ray->sidisty = 0;
+	data->ray->deltax = 0;
+	data->ray->deltay = 0;
+	data->ray->wdist = 0;
+	return (0);
+}
 
 static int	init_keys(t_data *data)
 {
@@ -62,7 +83,14 @@ static int	init_map(t_data *data)
 
 int	init_data(t_data *data)
 {
-	if (init_player(data) || init_map(data) || init_keys(data))
+	if (init_player(data) || init_map(data)
+		|| init_keys(data) || init_ray(data))
 		return (-1);
+	data->cub = ft_calloc(sizeof(t_cub), 1);
+	if (!data->cub)
+		return (-1);
+	data->cub->lheight = 0;
+	data->cub->sdraw = 0;
+	data->cub->edraw = 0;
 	return (0);
 }

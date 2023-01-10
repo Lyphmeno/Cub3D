@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/10 15:00:37 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/10 16:58:30 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,39 @@ typedef struct s_keys
 	int	km;
 }		t_keys;
 
+typedef struct s_ray
+{
+	int		hit;
+	int		side;
+	int		stepx;
+	int		stepy;
+	int		mapx;
+	int		mapy;
+	double	camera;
+	double	dirx;
+	double	diry;
+	double	sidistx;
+	double	sidisty;
+	double	deltax;
+	double	deltay;
+	double	wdist;
+}			t_ray;
+
+typedef struct s_cub
+{
+	int		lheight;
+	int		sdraw;
+	int		edraw;
+}			t_cub;
+
 typedef struct s_data
 {
 	t_keys	*keys;
 	t_map	*map;
 	t_img	*img;
 	t_pr	*player;
+	t_ray	*ray;
+	t_cub	*cub;
 	void	*mlx;
 	void	*mlx_win;
 	int		fd;
@@ -129,11 +156,11 @@ int		handle_mouse(int x, int y, t_data *data);
 int		handle_key(int keycode, t_data *data);
 //		Minimap
 void	draw_player(t_data *data, double dist);
-void	draw_minimap(t_data *data);
+void	draw_map(t_data *data);
 //		MLX base
 int		escape(t_data *data);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		image_loop(t_data *data);
 //		Raycasting
-void	get_ray(t_data *data);
+void	raycasting(t_data *data);
 #endif
