@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/09 15:15:00 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/10 15:00:37 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // MLX
 # define WINW 1080
 # define WINH 720
-# define FOV 0.66
+# define FOV 0.67
 
 typedef struct s_img
 {
@@ -46,6 +46,7 @@ typedef struct s_pr
 	int		player;
 	int		px;
 	int		py;
+	double	rayc;
 	double	fov;
 	double	posx;
 	double	posy;
@@ -127,11 +128,12 @@ int		release_key(int keycode, t_data *data);
 int		handle_mouse(int x, int y, t_data *data);
 int		handle_key(int keycode, t_data *data);
 //		Minimap
+void	draw_player(t_data *data, double dist);
 void	draw_minimap(t_data *data);
 //		MLX base
 int		escape(t_data *data);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		image_loop(t_data *data);
 //		Raycasting
-double	get_ray(t_data *data);
+void	get_ray(t_data *data);
 #endif

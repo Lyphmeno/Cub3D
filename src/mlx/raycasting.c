@@ -6,17 +6,20 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:45:17 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/09 15:23:15 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/10 15:04:36 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-double	get_ray(t_data *data)
+void	get_ray(t_data *data)
 {
+	data->player->rayc = -1 * (FOV / 2);
+	while (data->player->rayc <= FOV / 2)
+	{
 		double cameraX = 2/ FOV - 1; //x-coordinate in camera space
-		double rayDirX = (cos(data->player->dir)) * cameraX;
-		double rayDirY = (sin(data->player->dir)) * cameraX;
+		double rayDirX = (cos(data->player->dir + data->player->rayc)) * cameraX;
+		double rayDirY = (sin(data->player->dir + data->player->rayc)) * cameraX;
 
 		//which box of the map we're in
 		int mapX = (int)data->player->posx;
@@ -76,16 +79,16 @@ double	get_ray(t_data *data)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			printf("x = %d, y = %d\n", mapX, mapY);
 			if (data->map->arr[mapY][mapX] == '1')
 				hit = 1;
-			printf("hit = %d\n", hit);
 		}
 		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
 		if (side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
 		else
 			perpWallDist = (sideDistY - deltaDistY);
-		printf("dist = %f\n",perpWallDist);
-		return (perpWallDist);
+		if (data->map->show)
+			draw_player(data, perpWallDist);
+		data->player->rayc += 0.01;
+	}
 }

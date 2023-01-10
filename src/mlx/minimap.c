@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/09 15:25:21 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/10 15:02:48 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,19 @@ static void	draw_map(t_data *data)
 	}
 }
 
-static void	draw_dir(t_data *data, int px, int py, int len)
+static void	draw_dir(t_data *data, int px, int py, double len)
 {
 	int		x;
 	int		y;
-	double	count;
 
-	count = -1 * (FOV / 2);
-	while (count <= FOV / 2)
-	{
-		data->player->py = py;
-		data->player->px = px;
-		x = px + cos(data->player->dir + count) * len;
-		y = py + sin(data->player->dir + count) * len;
-		draw_line(data, x, y, 0xFF0000);
-		count += 0.01;;
-	}
+	data->player->py = py;
+	data->player->px = px;
+	x = px + cos(data->player->dir + data->player->rayc) * len;
+	y = py + sin(data->player->dir + data->player->rayc) * len;
+	draw_line(data, x, y, 0xFF0000);
 }
 
-static void	draw_player(t_data *data)
+void	draw_player(t_data *data, double dist)
 {
 	double	px;
 	double	py;
@@ -72,12 +66,11 @@ static void	draw_player(t_data *data)
 	y = (WINH - siz * data->map->height) - siz;
 	px = x + data->player->posx * siz + siz / (double)2;
 	py = y + data->player->posy * siz + siz / (double)2;
+	draw_dir(data, px, py, dist * siz);
 	draw_circle(data, px, py, 0x00FF00);
-	draw_dir(data, px, py, get_ray(data) * siz);
 }
 
 void	draw_minimap(t_data *data)
 {
 	draw_map(data);
-	draw_player(data);
 }
