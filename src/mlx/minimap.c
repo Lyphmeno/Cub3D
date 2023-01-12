@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 16:14:06 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:32:04 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ void	draw_map(t_data *data)
 		while (j < data->map->width)
 		{
 			if (data->map->arr[i][j] == '1')
-				draw_rectangle(data, x + j * data->map->siz, y + i * data->map->siz, 0xFFFFFF);
+				draw_rectangle(data, x + j * data->map->siz,
+					y + i * data->map->siz, 0xFFFFFF);
 			else if (is_charset(data->map->arr[i][j], "NSEW0"))
-				draw_rectangle(data, x + j * data->map->siz, y + i * data->map->siz, 0x7D7D7D);
+				draw_rectangle(data, x + j * data->map->siz,
+					y + i * data->map->siz, 0x7D7D7D);
 			j++;
 		}
 		i++;

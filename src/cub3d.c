@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 12:18:50 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:18:58 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	parse_all(t_data *data, int ac, char *path)
 		return (print_err("Invalid number of arguments", -1));
 	if (mapfile_check(data, path))
 	{
-		free(data);
+		free_data(data);
 		return (-1);
 	}
 	if (parsing_base(data))
@@ -54,7 +54,10 @@ int	main(int ac, char **av)
 	if (!data)
 		return (print_err("Data init failed", -1));
 	if (init_data(data))
+	{
+		free_data(data);
 		return (print_err("Data init failed", -1));
+	}
 	if (parse_all(data, ac, av[1]))
 		return (-1);
 	data->mlx = mlx_init();

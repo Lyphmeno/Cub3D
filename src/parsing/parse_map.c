@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 16:13:32 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:33:02 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,13 @@ int	parse_map(t_data *data)
 	if (parse_map_close(data))
 		return (print_err("Map not closed", -1));
 	get_dir(data);
-	data->map->siz = (double)WINH / data->map->height * data->map->size;
-	data->player->x = data->player->posx * data->map->siz + data->map->siz / (double)2;
-	data->player->y = data->player->posy * data->map->siz + data->map->siz / (double)2;
-	printf("map res	= [%dx%d]%f\n", data->map->height, data->map->width, data->map->size);
+	data->map->siz = (double)WINH
+		/ data->map->height * data->map->size;
+	data->player->x = data->player->posx
+		* data->map->siz + data->map->siz / (double)2;
+	data->player->y = data->player->posy
+		* data->map->siz + data->map->siz / (double)2;
+	printf("map res	= [%dx%d]\n", data->map->height, data->map->width);
 	printf("player	= [%f,%f]\n", data->player->posx, data->player->posy);
 	printf("dir	= [%f]\n", data->player->dir);
 	return (0);
