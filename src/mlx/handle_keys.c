@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 11:18:54 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/06 13:25:19 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:17:56 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,17 @@ int	handle_key(int keycode, t_data *data)
 	if (keycode == 65307)
 		escape(data);
 	if (keycode == 65365)
+	{
 		if (data->map->size <= 0.5)
 			data->map->size += 0.05;
+		data->map->siz = (double)WINH / data->map->height * data->map->size;
+	}
 	if (keycode == 65366)
+	{
 		if (data->map->size >= 0.2)
 			data->map->size -= 0.05;
+		data->map->siz = (double)WINH / data->map->height * data->map->size;
+	}
 	handle_press(keycode, data);
 	return (0);
 }

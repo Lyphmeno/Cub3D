@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/10 17:03:53 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:13:12 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static int	init_map(t_data *data)
 	data->map->flr = -1;
 	data->map->show = 1;
 	data->map->size = 0.3;
+	data->map->siz = 0;
 	return (0);
 }
 

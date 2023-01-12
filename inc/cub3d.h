@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/10 16:58:30 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 14:58:44 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // MLX
 # define WINW 1080
 # define WINH 720
-# define FOV 0.67
+# define FOV 0.66
 
 typedef struct s_img
 {
@@ -59,6 +59,7 @@ typedef struct s_map
 	int		width;
 	int		sky;
 	int		flr;
+	int		siz;
 	int		show;
 	char	**arr;
 	char	*txr[4];
@@ -155,7 +156,8 @@ int		release_key(int keycode, t_data *data);
 int		handle_mouse(int x, int y, t_data *data);
 int		handle_key(int keycode, t_data *data);
 //		Minimap
-void	draw_player(t_data *data, double dist);
+void	draw_dir(t_data *data, int px, int py, double len);
+void	draw_player(t_data *data);
 void	draw_map(t_data *data);
 //		MLX base
 int		escape(t_data *data);

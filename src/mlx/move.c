@@ -6,14 +6,14 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:44:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/06 12:41:11 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:01:53 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include <math.h>
 
-#define SPEED 0.05
+#define SPEED 0.1
 
 static void	move_up(t_data *data)
 {

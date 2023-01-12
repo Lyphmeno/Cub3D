@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/05 11:53:59 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 12:18:50 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_data(t_data *data)
 	free(data->mlx);
 	free(data->img);
 	free(data->keys);
+	free(data->ray);
+	free(data->cub);
 	free(data);
 }
 
@@ -52,7 +54,7 @@ int	main(int ac, char **av)
 	if (!data)
 		return (print_err("Data init failed", -1));
 	if (init_data(data))
-		return (-1);
+		return (print_err("Data init failed", -1));
 	if (parse_all(data, ac, av[1]))
 		return (-1);
 	data->mlx = mlx_init();
