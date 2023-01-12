@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 15:13:12 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:14:06 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	draw_player(t_data *data)
 
 	x = (WINW - data->map->siz * data->map->width) - data->map->siz;
 	y = (WINH - data->map->siz * data->map->height) - data->map->siz;
-	px = x + data->player->posx * data->map->siz + data->map->siz / (double)2;
-	py = y + data->player->posy * data->map->siz + data->map->siz / (double)2;
+	px = x + data->player->x;
+	py = y + data->player->y;
 	draw_circle(data, px, py, 0x00FF00);
 }
 

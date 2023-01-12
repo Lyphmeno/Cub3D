@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 14:58:44 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:09:28 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_pr
 	int		player;
 	int		px;
 	int		py;
+	double	x;
+	double	y;
 	double	rayc;
 	double	fov;
 	double	posx;

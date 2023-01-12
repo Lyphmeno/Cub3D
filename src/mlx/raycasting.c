@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:45:17 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 15:22:51 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:13:32 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,12 @@ static void	cast_ray(t_data *data)
 
 void	raycasting(t_data *data)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	data->player->rayc = -1 * (FOV / 2);
 	int x = (WINW - data->map->siz * data->map->width) - data->map->siz;
 	int y = (WINH - data->map->siz * data->map->height) - data->map->siz;
-	//while (data->player->rayc <= FOV / 2)
 	while (i < WINW)
 	{
 		i++;
@@ -87,10 +88,13 @@ void	raycasting(t_data *data)
 				/ (data->ray->dirx * data->ray->dirx));
 		data->ray->deltay = sqrt(1 + (data->ray->dirx * data->ray->dirx)
 				/ (data->ray->diry * data->ray->diry));
+		data->player->x = data->player->posx * data->map->siz + data->map->siz / (double)2;
+		data->player->y = data->player->posy * data->map->siz + data->map->siz / (double)2;
 		get_sidist(data);
 		cast_ray(data);
 		if (data->map->show)
-				draw_dir(data, x + data->player->posx * data->map->siz + data->map->siz / (double)2, y + data->player->posy * data->map->siz + data->map->siz / (double)2, data->ray->wdist * data->map->siz);
+				draw_dir(data, x + data->player->x, y + data->player->y
+			 		, data->ray->wdist * data->map->siz);
 		// Beginning of drawing
 		data->cub->lheight = (int)(WINH / data->ray->wdist);
 		data->cub->sdraw = -data->cub->lheight / 2 + WINH / 2;

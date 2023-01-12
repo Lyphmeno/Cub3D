@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 15:13:12 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:10:57 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int	init_player(t_data *data)
 	data->player->dir = -1;
 	data->player->px = -1;
 	data->player->py = -1;
+	data->player->x = 0;
+	data->player->y = 0;
 	data->mousex = -1;
 	return (0);
 }
