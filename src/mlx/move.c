@@ -6,14 +6,12 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:44:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 15:01:53 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:08:23 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include <math.h>
-
-#define SPEED 0.1
 
 static void	move_up(t_data *data)
 {
@@ -25,8 +23,8 @@ static void	move_up(t_data *data)
 
 	posx = data->player->posx;
 	posy = data->player->posy;
-	incx = cos(data->player->dir) * SPEED * data->map->size;
-	incy = sin(data->player->dir) * SPEED * data->map->size;
+	incx = cos(data->player->dir) * SPEED;
+	incy = sin(data->player->dir) * SPEED;
 	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
@@ -54,8 +52,8 @@ static void	move_down(t_data *data)
 
 	posx = data->player->posx;
 	posy = data->player->posy;
-	incx = cos(data->player->dir) * SPEED * data->map->size;
-	incy = sin(data->player->dir) * SPEED * data->map->size;
+	incx = cos(data->player->dir) * SPEED;
+	incy = sin(data->player->dir) * SPEED;
 	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
@@ -83,8 +81,8 @@ static void	move_left(t_data *data)
 
 	posx = data->player->posx;
 	posy = data->player->posy;
-	incx = cos(data->player->dir + M_PI / 2) * SPEED * data->map->size;
-	incy = sin(data->player->dir + M_PI / 2) * SPEED * data->map->size;
+	incx = cos(data->player->dir + M_PI / 2) * SPEED;
+	incy = sin(data->player->dir + M_PI / 2) * SPEED;
 	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
@@ -112,8 +110,8 @@ static void	move_right(t_data *data)
 
 	posx = data->player->posx;
 	posy = data->player->posy;
-	incx = cos(data->player->dir + M_PI / 2) * SPEED * data->map->size;
-	incy = sin(data->player->dir + M_PI / 2) * SPEED * data->map->size;
+	incx = cos(data->player->dir + M_PI / 2) * SPEED;
+	incy = sin(data->player->dir + M_PI / 2) * SPEED;
 	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
@@ -142,7 +140,7 @@ void	move(t_data *data)
 	if (data->keys->kright)
 		move_right(data);
 	if (data->keys->kdirr)
-		data->player->dir -= SPEED * data->map->size;
+		data->player->dir -= SPEED;
 	if (data->keys->kdirl)
-		data->player->dir += SPEED * data->map->size;
+		data->player->dir += SPEED;
 }

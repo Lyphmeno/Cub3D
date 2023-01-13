@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 16:09:28 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:09:44 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define WINW 1080
 # define WINH 720
 # define FOV 0.66
+# define SPEED 0.05
 
 typedef struct s_img
 {

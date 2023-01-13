@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 16:32:04 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:11:16 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void	draw_dir(t_data *data, int px, int py, double len)
 	data->player->px = px;
 	x = px + cos(data->player->dir + data->player->rayc) * len;
 	y = py + sin(data->player->dir + data->player->rayc) * len;
+	if (data->player->px - x > 0)
+		x += data->map->size * 2;
+	else
+		x -= data->map->size * 2;
+	if (data->player->py - y > 0)
+		y += data->map->size * 2;
+	else
+		y -= data->map->size * 2;
 	draw_line(data, x, y, 0xFF0000);
 }
 
