@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 13:06:05 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 13:14:10 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	if (x < WINW && y < WINH)
 	{
 		dst = img->addr + (y * img->length + x * (img->bpp / 8));
-		*(unsigned int *)dst = color;
+		if (*(int *)dst != color)
+			*(unsigned int *)dst = color;
 	}
 }
 
