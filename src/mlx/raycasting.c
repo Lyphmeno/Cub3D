@@ -6,13 +6,13 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:45:17 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 11:50:22 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:57:25 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static void	get_sidist(t_data *data)
+void	get_sidist(t_data *data)
 {
 	if (data->ray->dirx < 0)
 	{
@@ -40,7 +40,7 @@ static void	get_sidist(t_data *data)
 	}
 }
 
-static void	cast_ray(t_data *data)
+void	cast_rays(t_data *data)
 {
 	while (data->ray->hit == 0)
 	{
@@ -65,7 +65,7 @@ static void	cast_ray(t_data *data)
 		data->ray->wdist = (data->ray->sidisty - data->ray->deltay);
 }
 
-static void	init_ray(t_data *data, int i)
+void	init_rays(t_data *data, int i)
 {
 	data->ray->hit = 0;
 	data->ray->camera = 2 * i / FOV - 1;
@@ -86,24 +86,19 @@ static void	init_ray(t_data *data, int i)
 }
 
 void	raycasting(t_data *data)
+
 {
 	int	i;
-	int	x;
-	int	y;
+	int	wall;
 
+	wall = 0x70420c;
 	i = 0;
-	x = (WINW - data->map->siz * data->map->width) - data->map->siz;
-	y = (WINH - data->map->siz * data->map->height) - data->map->siz;
 	data->player->rayc = -1 * (FOV / 2);
 	while (i++ < WINW)
 	{
-		init_ray(data, i);
+		init_rays(data, i);
 		get_sidist(data);
-		cast_ray(data);
-		if (data->map->show)
-			draw_dir(data, x + data->player->x, y + data->player->y,
-				data->ray->wdist * data->map->siz);
-		// Beginning of drawing
+		cast_rays(data);
 		data->cub->lheight = (int)(WINH / data->ray->wdist);
 		data->cub->sdraw = -data->cub->lheight / 2 + WINH / 2;
 		data->cub->edraw = data->cub->lheight / 2 + WINH / 2;
@@ -111,9 +106,7 @@ void	raycasting(t_data *data)
 			data->cub->sdraw = 0;
 		if (data->cub->edraw >= WINH)
 			data->cub->edraw = WINH - 1;
-		// End of drawing
+		draw_truline(data, i, wall);
 		data->player->rayc += FOV / WINW;
 	}
-	if (data->map->show)
-		draw_player(data);
 }

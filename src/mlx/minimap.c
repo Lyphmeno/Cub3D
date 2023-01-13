@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 12:11:16 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:56:38 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_dir(t_data *data, int px, int py, double len)
 		y += data->map->size * 2;
 	else
 		y -= data->map->size * 2;
-	draw_line(data, x, y, 0xFF0000);
+	draw_dirline(data, x, y, 0xFF0000);
 }
 
 void	draw_player(t_data *data)
@@ -46,6 +46,27 @@ void	draw_player(t_data *data)
 	px = x + data->player->x;
 	py = y + data->player->y;
 	draw_circle(data, px, py, 0x00FF00);
+}
+
+void	draw_rays(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->map->x = (WINW - data->map->siz * data->map->width) - data->map->siz;
+	data->map->y = (WINH - data->map->siz * data->map->height) - data->map->siz;
+	data->player->rayc = -1 * (FOV / 2);
+	while (i++ < WINW)
+	{
+		init_rays(data, i);
+		get_sidist(data);
+		cast_rays(data);
+		if (data->map->show)
+			draw_dir(data, data->map->x + data->player->x,
+				data->map->y + data->player->y,
+				data->ray->wdist * data->map->siz);
+		data->player->rayc += FOV / WINW;
+	}
 }
 
 void	draw_map(t_data *data)

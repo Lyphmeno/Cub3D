@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 11:43:14 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 13:06:05 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,27 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	}
 }
 
+void	fillscreen(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WINH)
+	{
+		y = 0;
+		while (y < WINW)
+		{
+			if (x > WINH / 2)
+				my_mlx_pixel_put(data->img, y, x, data->map->flr);
+			else
+				my_mlx_pixel_put(data->img, y, x, data->map->sky);
+			y++;
+		}
+		x++;
+	}
+}
+
 int	image_loop(t_data *data)
 {
 	data->img->img = mlx_new_image(data->mlx, WINW, WINH);
@@ -40,9 +61,14 @@ int	image_loop(t_data *data)
 			&data->img->length, &data->img->endian);
 	//mlx_mouse_hide(data->mlx, data->mlx_win);
 	move(data);
-	if (data->map->show)
-		draw_map(data);
+	fillscreen(data);
 	raycasting(data);
+	if (data->map->show)
+	{
+		draw_map(data);
+		draw_rays(data);
+		draw_player(data);
+	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img->img);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:39:05 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/06 10:53:55 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:22:17 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	draw_rectangle(t_data *data, int x, int y, int color)
 	}
 }
 
-void	draw_line(t_data *data, int x, int y, int color)
+void	draw_dirline(t_data *data, int x, int y, int color)
 {
 	int	dx;
 	int	dy;
@@ -86,5 +86,17 @@ void	draw_line(t_data *data, int x, int y, int color)
 				data->player->py += 2;
 			data->player->py += -1;
 		}
+	}
+}
+
+void	draw_truline(t_data *data, int i, int color)
+{
+	int	x;
+
+	x = data->cub->sdraw;
+	while (x != data->cub->edraw)
+	{
+		my_mlx_pixel_put(data->img, i, x, color);
+		x++;
 	}
 }

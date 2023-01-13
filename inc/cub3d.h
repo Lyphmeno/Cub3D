@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 12:09:44 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:56:20 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_map
 	char	**arr;
 	char	*txr[4];
 	double	size;
+	int		x;
+	int		y;
 }			t_map;
 
 typedef struct s_keys
@@ -82,6 +84,7 @@ typedef struct s_keys
 
 typedef struct s_ray
 {
+
 	int		hit;
 	int		side;
 	int		stepx;
@@ -151,7 +154,8 @@ int		print_err(char *str, int exit_code);
 //		Draw_form
 void	draw_circle(t_data *data, int x, int y, int color);
 void	draw_rectangle(t_data *data, int x, int y, int color);
-void	draw_line(t_data *data, int x, int y, int color);
+void	draw_dirline(t_data *data, int x, int y, int color);
+void	draw_truline(t_data *data, int i, int color);
 //		Move
 void	move(t_data *data);
 //		Handle key
@@ -161,11 +165,15 @@ int		handle_key(int keycode, t_data *data);
 //		Minimap
 void	draw_dir(t_data *data, int px, int py, double len);
 void	draw_player(t_data *data);
+void	draw_rays(t_data *data);
 void	draw_map(t_data *data);
 //		MLX base
 int		escape(t_data *data);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		image_loop(t_data *data);
 //		Raycasting
+void	get_sidist(t_data *data);
+void	cast_rays(t_data *data);
+void	init_rays(t_data *data, int i);
 void	raycasting(t_data *data);
 #endif
