@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 13:14:10 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/13 13:28:31 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	image_loop(t_data *data)
 	data->img->img = mlx_new_image(data->mlx, WINW, WINH);
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 			&data->img->length, &data->img->endian);
-	//mlx_mouse_hide(data->mlx, data->mlx_win);
+	mlx_mouse_hide(data->mlx, data->mlx_win);
 	move(data);
 	fillscreen(data);
 	raycasting(data);
