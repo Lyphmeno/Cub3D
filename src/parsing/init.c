@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:08:00 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 16:17:00 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/16 15:55:33 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,17 @@ int	init_data(t_data *data)
 	data->cub->lheight = 0;
 	data->cub->sdraw = 0;
 	data->cub->edraw = 0;
+	data->cub->notx = ft_calloc(sizeof(t_img), 1);
+	if (!data->cub->notx)
+		return (-1);
+	data->cub->sotx = ft_calloc(sizeof(t_img), 1);
+	if (!data->cub->sotx)
+		return (-1);
+	data->cub->eatx = ft_calloc(sizeof(t_img), 1);
+	if (!data->cub->eatx)
+		return (-1);
+	data->cub->wetx = ft_calloc(sizeof(t_img), 1);
+	if (!data->cub->wetx)
+		return (-1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 11:39:42 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/16 16:08:03 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,22 @@ void	free_data(t_data *data)
 	free(data->map->txr[SO]);
 	free(data->map->txr[WE]);
 	free(data->map->txr[EA]);
-	free(data->player);
 	free(data->map->arr);
 	free(data->map);
+	free(data->player);
+	mlx_destroy_image(data->mlx, data->cub->notx->img);
+	mlx_destroy_image(data->mlx, data->cub->sotx->img);
+	mlx_destroy_image(data->mlx, data->cub->eatx->img);
+	mlx_destroy_image(data->mlx, data->cub->wetx->img);
+	free(data->cub->notx);
+	free(data->cub->sotx);
+	free(data->cub->eatx);
+	free(data->cub->wetx);
+	free(data->cub);
 	free(data->mlx);
 	free(data->img);
 	free(data->keys);
 	free(data->ray);
-	free(data->cub);
 	free(data);
 }
 
@@ -63,6 +71,13 @@ int	main(int ac, char **av)
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, WINW, WINH, "CUB3D");
 	data->img = ft_calloc(sizeof(t_img), 1);
+	if (!data->img)
+		return (print_err("Base img init issue", -1));
+	if (init_txr(data))
+	{
+		free_data(data);
+		return (print_err("Texture init issue", -1));
+	}
 	image_loop(data);
 	mlx_hook(data->mlx_win, 3, 1L << 1, release_key, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key, data);

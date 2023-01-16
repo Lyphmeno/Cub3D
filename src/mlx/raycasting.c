@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:45:17 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/15 14:46:15 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/16 12:27:26 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	raycasting(t_data *data)
 	wall = 0x70420c;
 	i = 0;
 	data->player->rayc = -1 * (FOV / 2);
-	while (i++ <= WINW)
+	while (i++ < WINW)
 	{
 		init_rays(data, i);
 		get_sidist(data);

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/15 14:46:37 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/16 14:28:22 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libasic.h"
 # include "get_next_line.h"
 # include "../MLX42/mlx.h"
+#include <time.h>
 
 // Parsing
 # define NO 0
@@ -28,10 +29,10 @@
 # define MAPSYM "NSEW10 "
 
 // MLX
-# define WINW 1080
-# define WINH 720
-# define FOV 0.66
-# define SPEED 0.12
+# define WINW (1280)
+# define WINH (720)
+# define FOV (0.66)
+# define SPEED (0.02)
 
 typedef struct s_img
 {
@@ -40,6 +41,8 @@ typedef struct s_img
 	int		bpp;
 	int		length;
 	int		endian;
+	int		height;
+	int		width;
 }				t_img;
 
 typedef struct s_pr
@@ -84,7 +87,6 @@ typedef struct s_keys
 
 typedef struct s_ray
 {
-
 	int		hit;
 	int		side;
 	int		stepx;
@@ -106,6 +108,10 @@ typedef struct s_cub
 	int		lheight;
 	int		sdraw;
 	int		edraw;
+	t_img	*notx;
+	t_img	*sotx;
+	t_img	*eatx;
+	t_img	*wetx;
 }			t_cub;
 
 typedef struct s_data
@@ -156,6 +162,8 @@ void	draw_circle(t_data *data, int x, int y, int color);
 void	draw_rectangle(t_data *data, int x, int y, int color);
 void	draw_dirline(t_data *data, int x, int y, int color);
 void	draw_truline(t_data *data, int i, int color);
+//		Init_texture
+int		init_txr(t_data *data);
 //		Move
 void	move(t_data *data);
 //		Handle key

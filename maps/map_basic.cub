@@ -1,10 +1,10 @@
-NO  ../txr/sand_basic.webp
+NO  ./txr/sand_basic.xpm
 
-SO  ../txr/sand_clean.webp
+SO  ./txr/sand_clean.xpm
 
-WE  ../txr/sand_end.webp 
+WE  ./txr/sand_end.xpm
 
-EA  ../txr/sand_stone.webp 
+EA  ./txr/sand_stone.xpm
 
 C   150 , 170 , 225 
 
@@ -12,7 +12,7 @@ F   130 , 100 , 130
 
         1111111111111111111111111
         1000000000110000000000001
-        1011000001110001000000001
+        1011000001110001100000001
         1001000000000000100000001
 111111111011000001110000000000001
 100000000011000001110111111111111
