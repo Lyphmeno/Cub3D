@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:45:17 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/16 12:27:26 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/17 14:31:15 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,7 @@ void	raycasting(t_data *data)
 
 {
 	int	i;
-	int	wall;
 
-	wall = 0x70420c;
 	i = 0;
 	data->player->rayc = -1 * (FOV / 2);
 	while (i++ < WINW)
@@ -106,7 +104,7 @@ void	raycasting(t_data *data)
 			data->cub->sdraw = 0;
 		if (data->cub->edraw >= WINH)
 			data->cub->edraw = WINH - 1;
-		draw_truline(data, i, wall);
+		draw_truline(data, i);
 		data->player->rayc += FOV / WINW;
 	}
 }

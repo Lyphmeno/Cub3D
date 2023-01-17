@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:39:05 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/17 11:21:01 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/17 18:30:04 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,38 +89,76 @@ void	draw_dirline(t_data *data, int x, int y, int color)
 	}
 }
 
-static void	draw_wall(t_data *data, int i, int x, int color)
+int get_texture_color(t_img *texture, int x, int y)
 {
-	(void)color;
+    int offset = (y * texture->length) + (x * texture->bpp / 8);
+    return *((int*)(texture->addr + offset));
+}
+
+void	draw_notxr(t_data *data, int y, int x)
+{
+	int		texX;
+	int		color;
+	double	step;
+	double	wallX;
+	double	texPos;
+
+	if (data->ray->side == 0)
+		wallX = data->player->posy + data->ray->wdist * data->ray->diry;
+	else
+		wallX = data->player->posx + data->ray->wdist * data->ray->dirx;
+	wallX -= floor((wallX));
+	texX = (int)wallX * (double)data->cub->notx->width;
+	if(data->ray->side == 0 && data->ray->dirx > 0)
+		texX = data->cub->notx->width - texX - 1;
+	if(data->ray->side == 1 && data->ray->diry < 0)
+		texX = data->cub->notx->width - texX - 1;
+	step = (1.0 * data->cub->notx->height / data->cub->lheight);
+	texPos = (data->cub->sdraw - WINH / 2 + data->cub->lheight / 2) * step;
+	while (x < data->cub->edraw)
+	{
+		texPos += step;
+		if (texPos >= data->cub->notx->height)
+			texPos = data->cub->notx->height - 1;
+		color = get_texture_color(data->cub->notx, texX, texPos);
+		my_mlx_pixel_put(data->img, y, x, color);
+		x++;
+	}
+}
+
+static void	draw_wall(t_data *data, int y, int x)
+{
 	if (data->ray->side)
 	{
 		if (data->ray->diry < 0) // SOUTH
-			my_mlx_pixel_put(data->img, i, x, 0xFF0000);
+			draw_notxr(data, y, x);
 		else // NORTH
-			my_mlx_pixel_put(data->img, i, x, 0x00FF00);
+			my_mlx_pixel_put(data->img, y, x, 0xFF0000);
 	}
 	else
 	{
 		if (data->ray->dirx > 0) // WEST
-			my_mlx_pixel_put(data->img, i, x, 0xFF00FF);
+			my_mlx_pixel_put(data->img, y, x, 0x0000FF);
 		else // EAST
-			my_mlx_pixel_put(data->img, i, x, 0x0000FF);
+			my_mlx_pixel_put(data->img, y, x, 0x00FF00);
 	}
 }
 
-void	draw_truline(t_data *data, int i, int color)
+void	draw_truline(t_data *data, int i)
 {
 	int	x;
 
 	x = 0;
+	while (x <= data->cub->sdraw)
+	{
+		my_mlx_pixel_put(data->img, i, x, data->map->sky);
+		x++;
+	}
+	draw_wall(data, i, data->cub->sdraw);
+	x = WINH - data->cub->sdraw;
 	while (x < WINH)
 	{
-		if (x < data->cub->sdraw)
-			my_mlx_pixel_put(data->img, i, x, data->map->sky);
-		else if (x < data->cub->edraw)
-			draw_wall(data, i, x, color);
-		else
-			my_mlx_pixel_put(data->img, i, x, data->map->flr);
+		my_mlx_pixel_put(data->img, i, x, data->map->flr);
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/17 12:16:09 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/17 16:14:19 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int		print_err(char *str, int exit_code);
 void	draw_circle(t_data *data, int x, int y, int color);
 void	draw_rectangle(t_data *data, int x, int y, int color);
 void	draw_dirline(t_data *data, int x, int y, int color);
-void	draw_truline(t_data *data, int i, int color);
+void	draw_truline(t_data *data, int i);
 //		Init_texture
 void	free_txr(t_data *data);
 int		init_txr(t_data *data);
