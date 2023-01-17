@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:39:05 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/15 14:29:07 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/17 11:21:01 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,25 @@ void	draw_dirline(t_data *data, int x, int y, int color)
 	}
 }
 
+static void	draw_wall(t_data *data, int i, int x, int color)
+{
+	(void)color;
+	if (data->ray->side)
+	{
+		if (data->ray->diry < 0) // SOUTH
+			my_mlx_pixel_put(data->img, i, x, 0xFF0000);
+		else // NORTH
+			my_mlx_pixel_put(data->img, i, x, 0x00FF00);
+	}
+	else
+	{
+		if (data->ray->dirx > 0) // WEST
+			my_mlx_pixel_put(data->img, i, x, 0xFF00FF);
+		else // EAST
+			my_mlx_pixel_put(data->img, i, x, 0x0000FF);
+	}
+}
+
 void	draw_truline(t_data *data, int i, int color)
 {
 	int	x;
@@ -99,7 +118,7 @@ void	draw_truline(t_data *data, int i, int color)
 		if (x < data->cub->sdraw)
 			my_mlx_pixel_put(data->img, i, x, data->map->sky);
 		else if (x < data->cub->edraw)
-			my_mlx_pixel_put(data->img, i, x, color);
+			draw_wall(data, i, x, color);
 		else
 			my_mlx_pixel_put(data->img, i, x, data->map->flr);
 		x++;

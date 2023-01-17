@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/16 14:28:22 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/17 12:16:09 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libasic.h"
 # include "get_next_line.h"
 # include "../MLX42/mlx.h"
-#include <time.h>
 
 // Parsing
 # define NO 0
@@ -163,6 +162,7 @@ void	draw_rectangle(t_data *data, int x, int y, int color);
 void	draw_dirline(t_data *data, int x, int y, int color);
 void	draw_truline(t_data *data, int i, int color);
 //		Init_texture
+void	free_txr(t_data *data);
 int		init_txr(t_data *data);
 //		Move
 void	move(t_data *data);

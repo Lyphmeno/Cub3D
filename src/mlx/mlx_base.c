@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:48:43 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/16 15:52:40 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/17 12:03:58 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	escape(t_data *data)
 {
+	free_txr(data);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	free_data(data);

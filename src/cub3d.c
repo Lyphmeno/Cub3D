@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/16 16:08:03 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/17 12:14:14 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,12 @@ void	free_data(t_data *data)
 	free(data->map->txr[EA]);
 	free(data->map->arr);
 	free(data->map);
-	free(data->player);
-	mlx_destroy_image(data->mlx, data->cub->notx->img);
-	mlx_destroy_image(data->mlx, data->cub->sotx->img);
-	mlx_destroy_image(data->mlx, data->cub->eatx->img);
-	mlx_destroy_image(data->mlx, data->cub->wetx->img);
 	free(data->cub->notx);
 	free(data->cub->sotx);
 	free(data->cub->eatx);
 	free(data->cub->wetx);
 	free(data->cub);
+	free(data->player);
 	free(data->mlx);
 	free(data->img);
 	free(data->keys);
@@ -54,6 +50,21 @@ static int	parse_all(t_data *data, int ac, char *path)
 	return (0);
 }
 
+static int	init_img(t_data *data)
+{
+	data->img = ft_calloc(sizeof(t_img), 1);
+	if (!data->img)
+		return (print_err("Base img init issue", -1));
+	if (init_txr(data))
+	{
+		mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_display(data->mlx);
+		free_data(data);
+		return (print_err("Texture init issue", -1));
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -70,14 +81,8 @@ int	main(int ac, char **av)
 		return (-1);
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, WINW, WINH, "CUB3D");
-	data->img = ft_calloc(sizeof(t_img), 1);
-	if (!data->img)
-		return (print_err("Base img init issue", -1));
-	if (init_txr(data))
-	{
-		free_data(data);
-		return (print_err("Texture init issue", -1));
-	}
+	if (init_img(data))
+		return (-1);
 	image_loop(data);
 	mlx_hook(data->mlx_win, 3, 1L << 1, release_key, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key, data);
