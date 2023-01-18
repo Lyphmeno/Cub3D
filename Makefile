@@ -1,4 +1,5 @@
 NAME		:=	cub3d
+NAMEBONUS	:=	cub3d_bonus
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror -g
@@ -62,6 +63,61 @@ OBJSUBDIR	:=	$(shell find $(SRCDIR) -type d | cut -d/ -f2 | awk 'NR>1')
 OBJEXT		:=	o
 OBJS		:=	$(subst $(SRCDIR),$(OBJDIR),$(SRC:.$(SRCEXT)=.$(OBJEXT)))
 
+SRCDIRBONUS		:=	src_bonus
+SRCEXTBONUS		:=	c
+SRCBONUS		:=	\
+				./src_bonus/cub3d.c\
+				./src_bonus/libasic/ft_atoi.c\
+				./src_bonus/libasic/ft_bzero.c\
+				./src_bonus/libasic/ft_calloc.c\
+				./src_bonus/libasic/ft_memmove.c\
+				./src_bonus/libasic/ft_memset.c\
+				./src_bonus/libasic/ft_new_arr.c\
+				./src_bonus/libasic/ft_printab.c\
+				./src_bonus/libasic/ft_split.c\
+				./src_bonus/libasic/ft_split_whitespaces.c\
+				./src_bonus/libasic/ft_strchr.c\
+				./src_bonus/libasic/ft_strdup.c\
+				./src_bonus/libasic/ft_strfjoin.c\
+				./src_bonus/libasic/ft_strjoin.c\
+				./src_bonus/libasic/ft_strlcat.c\
+				./src_bonus/libasic/ft_strlcpy.c\
+				./src_bonus/libasic/ft_strlen.c\
+				./src_bonus/libasic/ft_strncmp.c\
+				./src_bonus/libasic/ft_substr.c\
+				./src_bonus/libasic/get_next_line.c\
+				./src_bonus/libasic/get_next_line_utils.c\
+				./src_bonus/mlx/draw_form.c\
+				./src_bonus/mlx/draw_txr.c\
+				./src_bonus/mlx/handle_keys.c\
+				./src_bonus/mlx/init_texture.c\
+				./src_bonus/mlx/minimap.c\
+				./src_bonus/mlx/mlx_base.c\
+				./src_bonus/mlx/move.c\
+				./src_bonus/mlx/raycasting.c\
+				./src_bonus/parsing/colors.c\
+				./src_bonus/parsing/init.c\
+				./src_bonus/parsing/mapfile.c\
+				./src_bonus/parsing/parse_colors.c\
+				./src_bonus/parsing/parse_info_error.c\
+				./src_bonus/parsing/parse_split_info.c\
+				./src_bonus/parsing/parse_map.c\
+				./src_bonus/parsing/parsing.c\
+				./src_bonus/parsing/parsing_utils.c\
+
+INCDIRBONUS		:=	inc_bonus
+INCEXTBONUS		:=	h
+HEADERSBONUS	:=	\
+				./inc_bonus/cub3d_bonus.h\
+				./inc_bonus/libasic.h\
+				./inc_bonus/get_next_line.h\
+				./MLX42/mlx.h\
+
+OBJDIRBONUS		:=	objsbonus
+OBJSUBDIRBONUS	:=	$(shell find $(SRCDIR) -type d | cut -d/ -f2 | awk 'NR>1')
+OBJEXTBONUS		:=	o
+OBJSBONUS		:=	$(subst $(SRCDIRBONUS),$(OBJDIRBONUS),$(SRCBONUS:.$(SRCEXTBONUS)=.$(OBJEXTBONUS)))
+
 .PHONY: all
 all: minilibx $(NAME)
 
@@ -82,16 +138,34 @@ $(OBJDIR)/%.$(OBJEXT) : 	$(SRCDIR)/%.$(SRCEXT)
 							$(CC) $(CFLAGS) -c -o $@ $<  -I $(INCDIR) $(MLXFLAGS)
 							@$(eval $(call update_bar))
 
+.PHONY: bonus
+bonus:		$(OBJDIRBONUS) $(OBJSBONUS) $(HEADERSBONUS) Makefile
+			@echo -ne '\033c$(E_BAR)\n'
+			@$(CC) $(CFLAGS) -o $(NAMEBONUS) $(OBJSBONUS) $(MLXFLAGS)
+
+$(OBJDIRBONUS):
+			@mkdir -p $(OBJDIRBONUS) $(OBJSUBDIRBONUS)
+			@mv -f $(OBJSUBDIRBONUS) $(OBJDIRBONUS)
+			@$(eval $(call update_bar))
+
+$(OBJDIRBONUS)/%.$(OBJEXTBONUS) : 	$(SRCDIRBONUS)/%.$(SRCEXTBONUS)
+									@echo -ne '\033c$(E_BAR)\n'
+									$(CC) $(CFLAGS) -c -o $@ $<  -I $(INCDIRBONUS) $(MLXFLAGS)
+									@$(eval $(call update_bar))
+
+.PHONY: rebonus
+rebonus: fclean bonus
+
 .PHONY: re
 re: fclean all
 
 .PHONY: clean
 clean:
-		@$(RM) -rf $(OBJDIR)
+		@$(RM) -rf $(OBJDIR) $(OBJDIRBONUS)
 
 .PHONY: fclean
 fclean: clean
-		@$(RM) -rf $(NAME)
+		@$(RM) -rf $(NAME) $(NAMEBONUS)
 
 #  ---------- PROGRESS BAR ----------  #
 _STOP		:=	\e[0m
