@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 11:18:54 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 13:33:02 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/18 14:39:28 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	handle_mouse(int x, int y, t_data *data)
 	speed = 0.02;
 	delta_x = x - data->mousex;
 	data->player->dir += delta_x * (speed * 0.5);
-	//mlx_mouse_move(data->mlx, data->mlx_win, x, WINH / 2);
 	data->mousex = x;
 	return (0);
 }

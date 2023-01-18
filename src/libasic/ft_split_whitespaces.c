@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 12:23:22 by hlevi             #+#    #+#             */
-/*   Updated: 2022/12/20 12:23:24 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/18 14:20:36 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,5 @@ char	**ft_split_whitespaces(char *str)
 		return (NULL);
 	fill_array(new_arr, str);
 	new_arr[nb_words] = NULL;
-	ft_printab_chars(new_arr, nb_words);
 	return (new_arr);
 }

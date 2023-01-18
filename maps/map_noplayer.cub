@@ -1,14 +1,14 @@
-NO  ../txr/sand_basic.webp
+NO  ./txr/test.xpm
 
-SO  ../txr/sand_clean.webp
+SO  ./txr/Wall2.xpm
 
-WE  ../txr/sand_end.webp 
+WE  ./txr/Wall3.xpm
 
-EA  ../txr/sand_stone.webp 
+EA  ./txr/Wall4.xpm
 
-F   200,100,255
+C   150 , 170 , 225 
 
-C   225,30,0
+F   130 , 100 , 130
 
 1111111111
 1000000001

@@ -1,14 +1,14 @@
-NO  ./path_to_the_north_texture
+NO  ./txr/test.xpm
 
-SO  ./path_to_the_south_texture
+SO  ./txr/Wall2.xpm
 
-WE  ./path_to_the_west_texture
+WE  ./txr/Wall3.xpm
 
-EA  ./path_to_the_east_texture
+EA  ./txr/Wall4.xpm
 
-F   200,100,0
+C   150 , 170 , 225 
 
-C   225,30,0
+F   130 , 100 , 130
 
 		1111111111111111111111111
 		1000000000110000000000001

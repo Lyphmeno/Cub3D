@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:37:27 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/12 16:33:02 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/18 14:34:02 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	parse_map_char(t_data *data, int i, int j)
 				return (print_err("Inavlid char on map", -1));
 			if (is_charset(data->map->arr[i][j], MAPP))
 			{
-				data->player->posx = j;
-				data->player->posy = i;
+				data->player->posx = j + 0.5;
+				data->player->posy = i + 0.5;
 				data->player->player++;
 				data->player->dir = data->map->arr[i][j];
 			}
@@ -113,8 +113,5 @@ int	parse_map(t_data *data)
 		* data->map->siz + data->map->siz / (double)2;
 	data->player->y = data->player->posy
 		* data->map->siz + data->map->siz / (double)2;
-	printf("map res	= [%dx%d]\n", data->map->height, data->map->width);
-	printf("player	= [%f,%f]\n", data->player->posx, data->player->posy);
-	printf("dir	= [%f]\n", data->player->dir);
 	return (0);
 }

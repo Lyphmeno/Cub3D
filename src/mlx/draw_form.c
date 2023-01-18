@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:39:05 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/17 18:30:04 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/18 10:34:05 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,61 +86,6 @@ void	draw_dirline(t_data *data, int x, int y, int color)
 				data->player->py += 2;
 			data->player->py += -1;
 		}
-	}
-}
-
-int get_texture_color(t_img *texture, int x, int y)
-{
-    int offset = (y * texture->length) + (x * texture->bpp / 8);
-    return *((int*)(texture->addr + offset));
-}
-
-void	draw_notxr(t_data *data, int y, int x)
-{
-	int		texX;
-	int		color;
-	double	step;
-	double	wallX;
-	double	texPos;
-
-	if (data->ray->side == 0)
-		wallX = data->player->posy + data->ray->wdist * data->ray->diry;
-	else
-		wallX = data->player->posx + data->ray->wdist * data->ray->dirx;
-	wallX -= floor((wallX));
-	texX = (int)wallX * (double)data->cub->notx->width;
-	if(data->ray->side == 0 && data->ray->dirx > 0)
-		texX = data->cub->notx->width - texX - 1;
-	if(data->ray->side == 1 && data->ray->diry < 0)
-		texX = data->cub->notx->width - texX - 1;
-	step = (1.0 * data->cub->notx->height / data->cub->lheight);
-	texPos = (data->cub->sdraw - WINH / 2 + data->cub->lheight / 2) * step;
-	while (x < data->cub->edraw)
-	{
-		texPos += step;
-		if (texPos >= data->cub->notx->height)
-			texPos = data->cub->notx->height - 1;
-		color = get_texture_color(data->cub->notx, texX, texPos);
-		my_mlx_pixel_put(data->img, y, x, color);
-		x++;
-	}
-}
-
-static void	draw_wall(t_data *data, int y, int x)
-{
-	if (data->ray->side)
-	{
-		if (data->ray->diry < 0) // SOUTH
-			draw_notxr(data, y, x);
-		else // NORTH
-			my_mlx_pixel_put(data->img, y, x, 0xFF0000);
-	}
-	else
-	{
-		if (data->ray->dirx > 0) // WEST
-			my_mlx_pixel_put(data->img, y, x, 0x0000FF);
-		else // EAST
-			my_mlx_pixel_put(data->img, y, x, 0x00FF00);
 	}
 }
 

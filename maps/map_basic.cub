@@ -1,10 +1,10 @@
-NO  ./txr/Wall1.xpm
+NO  ./txr/test.xpm
 
-SO  ./txr/sand_clean.xpm
+SO  ./txr/Wall2.xpm
 
-WE  ./txr/sand_end.xpm
+WE  ./txr/Wall3.xpm
 
-EA  ./txr/sand_stone.xpm
+EA  ./txr/Wall4.xpm
 
 C   150 , 170 , 225 
 

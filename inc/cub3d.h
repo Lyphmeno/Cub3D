@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/17 16:14:19 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/18 14:38:11 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define WINW (1280)
 # define WINH (720)
 # define FOV (0.66)
-# define SPEED (0.02)
+# define SPEED (0.05)
 
 typedef struct s_img
 {
@@ -104,7 +104,10 @@ typedef struct s_ray
 
 typedef struct s_cub
 {
+	double	tx;
+	double	ty;
 	int		lheight;
+	int		clr;
 	int		sdraw;
 	int		edraw;
 	t_img	*notx;
@@ -161,6 +164,8 @@ void	draw_circle(t_data *data, int x, int y, int color);
 void	draw_rectangle(t_data *data, int x, int y, int color);
 void	draw_dirline(t_data *data, int x, int y, int color);
 void	draw_truline(t_data *data, int i);
+//		Draw_txr
+void	draw_wall(t_data *data, int y, int x);
 //		Init_texture
 void	free_txr(t_data *data);
 int		init_txr(t_data *data);

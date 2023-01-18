@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:45:17 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/17 14:31:15 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/18 14:19:30 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	raycasting(t_data *data)
 		init_rays(data, i);
 		get_sidist(data);
 		cast_rays(data);
-		data->cub->lheight = WINH / data->ray->wdist;
+		data->cub->lheight = (int)(WINH / data->ray->wdist) * 2;
 		data->cub->sdraw = -data->cub->lheight / 2 + WINH / 2;
 		data->cub->edraw = data->cub->lheight / 2 + WINH / 2;
 		if (data->cub->sdraw < 0)

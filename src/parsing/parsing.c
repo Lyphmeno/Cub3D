@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/16 15:51:56 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/18 14:19:59 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,5 @@ int	parsing_base(t_data *data)
 		return (-1);
 	if (parse_map(data))
 		return (-1);
-	printf("data.txr[0] = %s\n", data->map->txr[0]);
-	printf("data.txr[1] = %s\n", data->map->txr[1]);
-	printf("data.txr[2] = %s\n", data->map->txr[2]);
-	printf("data.txr[3] = %s\n", data->map->txr[3]);
-	printf("data.sky = %d\n", data->map->sky);
-	printf("data.flr = %d\n", data->map->flr);
 	return (0);
 }

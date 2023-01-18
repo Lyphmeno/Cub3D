@@ -32,6 +32,7 @@ SRC			:=	\
 				./src/libasic/get_next_line.c\
 				./src/libasic/get_next_line_utils.c\
 				./src/mlx/draw_form.c\
+				./src/mlx/draw_txr.c\
 				./src/mlx/handle_keys.c\
 				./src/mlx/init_texture.c\
 				./src/mlx/minimap.c\
