@@ -6,12 +6,11 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:44:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/13 12:08:23 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/20 12:15:46 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <math.h>
 
 static void	move_up(t_data *data)
 {
@@ -81,8 +80,8 @@ static void	move_left(t_data *data)
 
 	posx = data->player->posx;
 	posy = data->player->posy;
-	incx = cos(data->player->dir + M_PI / 2) * SPEED;
-	incy = sin(data->player->dir + M_PI / 2) * SPEED;
+	incx = cos(data->player->dir + M_PI / 2) * (SPEED * 0.5);
+	incy = sin(data->player->dir + M_PI / 2) * (SPEED * 0.5);
 	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
@@ -110,8 +109,8 @@ static void	move_right(t_data *data)
 
 	posx = data->player->posx;
 	posy = data->player->posy;
-	incx = cos(data->player->dir + M_PI / 2) * SPEED;
-	incy = sin(data->player->dir + M_PI / 2) * SPEED;
+	incx = cos(data->player->dir + M_PI / 2) * (SPEED * 0.5);
+	incy = sin(data->player->dir + M_PI / 2) * (SPEED * 0.5);
 	dist = sqrt(incx * incx + incy * incy);
 	while (dist > 0)
 	{
@@ -140,7 +139,7 @@ void	move(t_data *data)
 	if (data->keys->kright)
 		move_right(data);
 	if (data->keys->kdirr)
-		data->player->dir -= SPEED;
+		data->player->dir -= (SPEED * 0.5);
 	if (data->keys->kdirl)
-		data->player->dir += SPEED;
+		data->player->dir += (SPEED * 0.5);
 }
