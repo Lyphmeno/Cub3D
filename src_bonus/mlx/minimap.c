@@ -6,11 +6,19 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:40:48 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/18 16:43:04 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/23 15:13:56 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc_bonus/cub3d_bonus.h"
+
+void	check_limit(t_data *data, double posx, double posy)
+{
+	if (posx > 1 && posx < data->map->width - 1)
+		data->player->posx = posx;
+	if (posy > 1 && posy < data->map->height - 1)
+		data->player->posy = posy;
+}
 
 void	draw_dir(t_data *data, int px, int py, double len)
 {

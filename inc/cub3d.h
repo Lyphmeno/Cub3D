@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:22:03 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/18 17:03:35 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/23 15:00:48 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ int		release_key(int keycode, t_data *data);
 int		handle_mouse(int x, int y, t_data *data);
 int		handle_key(int keycode, t_data *data);
 //		Minimap
+void	check_limit(t_data *data, double posx, double posy);
 void	draw_dir(t_data *data, int px, int py, double len);
 void	draw_player(t_data *data);
 void	draw_rays(t_data *data);

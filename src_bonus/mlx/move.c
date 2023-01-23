@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:44:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/20 12:15:46 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/23 15:12:09 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static void	move_up(t_data *data)
 		}
 		dist -= SPEED;
 	}
-	data->player->posx = posx;
-	data->player->posy = posy;
+	check_limit(data, posx, posy);
 }
 
 static void	move_down(t_data *data)
@@ -66,8 +65,7 @@ static void	move_down(t_data *data)
 		}
 		dist -= SPEED;
 	}
-	data->player->posx = posx;
-	data->player->posy = posy;
+	check_limit(data, posx, posy);
 }
 
 static void	move_left(t_data *data)
@@ -95,8 +93,7 @@ static void	move_left(t_data *data)
 		}
 		dist -= SPEED;
 	}
-	data->player->posx = posx;
-	data->player->posy = posy;
+	check_limit(data, posx, posy);
 }
 
 static void	move_right(t_data *data)
@@ -124,8 +121,7 @@ static void	move_right(t_data *data)
 		}
 		dist -= SPEED;
 	}
-	data->player->posx = posx;
-	data->player->posy = posy;
+	check_limit(data, posx, posy);
 }
 
 void	move(t_data *data)

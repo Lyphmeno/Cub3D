@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/18 16:35:12 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/23 15:13:14 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,24 @@ static int	parse_info(t_data *data)
 
 int	parsing_base(t_data *data)
 {
+	int	x;
+	int	y;
+
 	if (parse_info(data))
 		return (-1);
 	if (parse_map(data))
 		return (-1);
+	x = 0;
+	while (x < data->map->height)
+	{
+		y = 0;
+		while (y < data->map->width)
+		{
+			if (!is_charset(data->map->arr[x][y], "NSEW10"))
+				data->map->arr[x][y] = '1';
+			y++;
+		}
+		x++;
+	}
 	return (0);
 }
