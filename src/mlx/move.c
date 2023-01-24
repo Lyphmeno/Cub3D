@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 14:44:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/23 15:11:12 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/24 12:17:53 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,9 @@ static void	move_up(t_data *data)
 {
 	double	posx;
 	double	posy;
-	double	incx;
-	double	incy;
-	double	dist;
 
-	posx = data->player->posx;
-	posy = data->player->posy;
-	incx = cos(data->player->dir) * SPEED;
-	incy = sin(data->player->dir) * SPEED;
-	dist = sqrt(incx * incx + incy * incy);
-	while (dist > 0)
-	{
-		posx += incx;
-		posy += incy;
-		if (data->map->arr[(int)posy][(int)posx] == '1')
-		{
-			posx -= incx;
-			posy -= incy;
-			break ;
-		}
-		dist -= SPEED;
-	}
+	posx = data->player->posx + cos(data->player->dir) * (SPEED * 0.5);
+	posy = data->player->posy + sin(data->player->dir) * (SPEED * 0.5);
 	check_limit(data, posx, posy);
 }
 
@@ -44,27 +26,9 @@ static void	move_down(t_data *data)
 {
 	double	posx;
 	double	posy;
-	double	incx;
-	double	incy;
-	double	dist;
 
-	posx = data->player->posx;
-	posy = data->player->posy;
-	incx = cos(data->player->dir) * SPEED;
-	incy = sin(data->player->dir) * SPEED;
-	dist = sqrt(incx * incx + incy * incy);
-	while (dist > 0)
-	{
-		posx -= incx;
-		posy -= incy;
-		if (data->map->arr[(int)posy][(int)posx] == '1')
-		{
-			posx += incx;
-			posy += incy;
-			break ;
-		}
-		dist -= SPEED;
-	}
+	posx = data->player->posx - cos(data->player->dir) * (SPEED * 0.5);
+	posy = data->player->posy - sin(data->player->dir) * (SPEED * 0.5);
 	check_limit(data, posx, posy);
 }
 
@@ -72,27 +36,11 @@ static void	move_left(t_data *data)
 {
 	double	posx;
 	double	posy;
-	double	incx;
-	double	incy;
-	double	dist;
 
-	posx = data->player->posx;
-	posy = data->player->posy;
-	incx = cos(data->player->dir + M_PI / 2) * (SPEED * 0.5);
-	incy = sin(data->player->dir + M_PI / 2) * (SPEED * 0.5);
-	dist = sqrt(incx * incx + incy * incy);
-	while (dist > 0)
-	{
-		posx -= incx;
-		posy -= incy;
-		if (data->map->arr[(int)posy][(int)posx] == '1')
-		{
-			posx += incx;
-			posy += incy;
-			break ;
-		}
-		dist -= SPEED;
-	}
+	posx = data->player->posx - cos(data->player->dir + M_PI / 2)
+		* (SPEED * 0.5);
+	posy = data->player->posy - sin(data->player->dir + M_PI / 2)
+		* (SPEED * 0.5);
 	check_limit(data, posx, posy);
 }
 
@@ -100,27 +48,11 @@ static void	move_right(t_data *data)
 {
 	double	posx;
 	double	posy;
-	double	incx;
-	double	incy;
-	double	dist;
 
-	posx = data->player->posx;
-	posy = data->player->posy;
-	incx = cos(data->player->dir + M_PI / 2) * (SPEED * 0.5);
-	incy = sin(data->player->dir + M_PI / 2) * (SPEED * 0.5);
-	dist = sqrt(incx * incx + incy * incy);
-	while (dist > 0)
-	{
-		posx += incx;
-		posy += incy;
-		if (data->map->arr[(int)posy][(int)posx] == '1')
-		{
-			posx -= incx;
-			posy -= incy;
-			break ;
-		}
-		dist -= SPEED;
-	}
+	posx = data->player->posx + cos(data->player->dir + M_PI / 2)
+		* (SPEED * 0.5);
+	posy = data->player->posy + sin(data->player->dir + M_PI / 2)
+		* (SPEED * 0.5);
 	check_limit(data, posx, posy);
 }
 
