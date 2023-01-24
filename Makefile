@@ -1,5 +1,6 @@
 NAME		:=	cub3D
-NAMEBONUS	:=	cub3D_bonus
+
+LIBMLX		:=	./MLX42/libmlx.a
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror -g
@@ -119,12 +120,12 @@ OBJEXTBONUS		:=	o
 OBJSBONUS		:=	$(subst $(SRCDIRBONUS),$(OBJDIRBONUS),$(SRCBONUS:.$(SRCEXTBONUS)=.$(OBJEXTBONUS)))
 
 .PHONY: all
-all: minilibx $(NAME)
+all:		$(NAME)	
 
-minilibx:
+$(LIBMLX):	
 			@make -C ./MLX42/
 
-$(NAME):	$(OBJDIR) $(OBJS) $(HEADERS) Makefile
+$(NAME):	$(LIBMLX) $(OBJDIR) $(OBJS) $(HEADERS) Makefile
 			@echo -ne '\033c$(E_BAR)\n'
 			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLXFLAGS)
 
@@ -139,14 +140,14 @@ $(OBJDIR)/%.$(OBJEXT) : 	$(SRCDIR)/%.$(SRCEXT)
 							@$(eval $(call update_bar))
 
 .PHONY: bonus
-bonus:		$(OBJDIRBONUS) $(OBJSBONUS) $(HEADERSBONUS) Makefile
+bonus:		$(LIBMLX) $(OBJDIRBONUS) $(OBJSBONUS) $(HEADERSBONUS) Makefile
 			@echo -ne '\033c$(E_BAR)\n'
-			@$(CC) $(CFLAGS) -o $(NAMEBONUS) $(OBJSBONUS) $(MLXFLAGS)
+			@$(CC) $(CFLAGS) -o $(NAME) $(OBJSBONUS) $(MLXFLAGS)
 
 $(OBJDIRBONUS):
-			@mkdir -p $(OBJDIRBONUS) $(OBJSUBDIRBONUS)
-			@mv -f $(OBJSUBDIRBONUS) $(OBJDIRBONUS)
-			@$(eval $(call update_bar))
+				@mkdir -p $(OBJDIRBONUS) $(OBJSUBDIRBONUS)
+				@mv -f $(OBJSUBDIRBONUS) $(OBJDIRBONUS)
+				@$(eval $(call update_bar))
 
 $(OBJDIRBONUS)/%.$(OBJEXTBONUS) : 	$(SRCDIRBONUS)/%.$(SRCEXTBONUS)
 									@echo -ne '\033c$(E_BAR)\n'
@@ -165,7 +166,7 @@ clean:
 
 .PHONY: fclean
 fclean: clean
-		@$(RM) -rf $(NAME) $(NAMEBONUS)
+		@$(RM) -rf $(NAME)
 
 #  ---------- PROGRESS BAR ----------  #
 _STOP		:=	\e[0m
