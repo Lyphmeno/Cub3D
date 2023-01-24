@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/23 14:44:53 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/24 15:10:31 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int	parse_info(t_data *data)
 		free(tmp_array);
 		ret++;
 	}
-	if (get_map(data, tmp_line))
+	if ((parse_check_isfull(data)) || get_map(data, tmp_line))
 		return (-1);
 	return (parse_info_miss(data));
 }
@@ -126,7 +126,7 @@ int	parsing_base(t_data *data)
 		while (y < data->map->width)
 		{
 			if (!is_charset(data->map->arr[x][y], "NSEW10"))
-				data->map->arr[x][y] = '1';
+				data->map->arr[x][y]= '1';
 			y++;
 		}
 		x++;

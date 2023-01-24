@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:30:19 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/23 15:13:14 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/24 15:16:08 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int	parse_info(t_data *data)
 		free(tmp_array);
 		ret++;
 	}
-	if (get_map(data, tmp_line))
+	if ((parse_check_isfull(data)) || get_map(data, tmp_line))
 		return (-1);
 	return (parse_info_miss(data));
 }

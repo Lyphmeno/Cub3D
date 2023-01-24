@@ -6,7 +6,7 @@
 /*   By: hlevi <hlevi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 16:37:24 by hlevi             #+#    #+#             */
-/*   Updated: 2023/01/17 12:14:14 by hlevi            ###   ########.fr       */
+/*   Updated: 2023/01/24 15:05:34 by hlevi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	free_data(t_data *data)
 static int	parse_all(t_data *data, int ac, char *path)
 {
 	if (ac != 2)
+	{
+		free_data(data);
 		return (print_err("Invalid number of arguments", -1));
+	}
 	if (mapfile_check(data, path))
 	{
 		free_data(data);
