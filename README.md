@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>Cub3D Project : <a href="https://github.com/JaeSeoKim/badge42"><img src="https://badge42.vercel.app/api/v2/cljbd5ceo007308mltneinai5/project/2903342" alt="hlevi's 42 cub3d Score" /></a></h1>
+  <h1>Cub3D Project :</a></h1>
   <p>Welcome to the Cub3D project !</p>
   <p>This project is the discovery of <a href="https://fr.wikipedia.org/wiki/Raycasting">Raycasting</a> and a deeper dive into the <a href="https://github.com/42Paris/minilibx-linux">MLX42</a>.</p>
   
